@@ -1,118 +1,42 @@
 /**
- * Created by gaoxin on 2016/6/17.
+ * Created by hubq on 2016/2/29.
  */
+const JsAPI = require('./apifactory');
+var jsAPI = new JsAPI();//拿一个API对象
+/*
+ * 上传图片
+ * do注入的参数:{ ‘selectedImages’ : [{ id : ‘123abc’ ,name:’***.png’},
+ {id : ‘456zxc’,name:’***.png’]}
 
-//window.onerror = function(err) {
-//  log('window.onerror: ' + err)
-//}
+ do :function(responseData) {
+ alert(responseData. selectedImages[0].id);
+ }
 
- function setupWebViewJavascriptBridge(callback) {
-  if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
-  if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
-  window.WVJBCallbacks = [callback];
-  var WVJBIframe = document.createElement('iframe');
-  WVJBIframe.style.display = 'none';
-  WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
-  document.documentElement.appendChild(WVJBIframe);
-  setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
-}
-let apiFunc= null;
 
- setupWebViewJavascriptBridge(
-    function(bridge) {
-      //var uniqueId = 1
-      function log(message,data){
-         console.log(`{message}成功,数据为{data}`);
+ uploadImageHandler回调事件注入参数{id:’’,tempFilePath:’abc123’,result:true}
+ * */
+module.exports = {
+  //H5调用原生
+  limsCaller:function(){
 
+    return {
+      pushView:function(params,callback){
+        jsAPI.limsCaller("pushView",params,callback);
+        return this;
+      },
+      setTitle:function(){
+        jsAPI.limsCaller("setTitle",params,callback);
+        return this;
       }
 
-      apiFunc= {
-        limsRegister:function(name,params,callback){
-          bridge.callHandler(name, params, function(response) {
-            log(name, response);
-            if (callback){callback(response);}
-          });
-          //console.log('limsRegister');
-        },
-        limsAppCaller:function(name,callback){
-
-          bridge.registerHandler(name, function(data, responseCallback) {
-            // log('ObjC called testJavascriptHandler with', data)
-            //var responseData = { 'ms' }
-            log(name, data);
-
-            //responseCallback(responseData);
-            callback(data,responseCallback);
-          });
-          //console.log('limsAppCaller');
-        }
-      }
-
-
-      //function log(message, data) {
-      //  var log = document.getElementById('log')
-      //  var el = document.createElement('div')
-      //  el.className = 'logLine'
-      //  el.innerHTML = uniqueId++ + '. ' + message + ':<br/>' + JSON.stringify(data)
-      //  if (log.children.length) { log.insertBefore(el, log.children[0]) }
-      //  else { log.appendChild(el) }
-      //}
-
-      //原生调用H5
-      //bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
-      // // log('ObjC called testJavascriptHandler with', data)
-      //  var responseData = { 'Javascript Says':'Right back atcha!' }
-      // // log('JS responding with', responseData)
-      //
-      //  responseCallback(responseData)
-      //})
-
-     // document.body.appendChild(document.createElement('br'))
-
-      //H5页面按钮调用原生
-      //var callbackButton = document.getElementById('buttons').appendChild(document.createElement('button'))
-      //callbackButton.innerHTML = 'Fire testObjcCallback'
-      //callbackButton.onclick = function(e) {
-        //e.preventDefault()
-        //log('JS calling handler "testObjcCallback"')
-        //bridge.callHandler('testObjcCallback', {'foo': 'bar'}, function(response) {
-          //log('JS got response', response)
-        //})
-      //}
     }
-
-)
-console.log(apiFunc);
-module.exports =apiFunc;
-//
-//
-//module.exports  = {
-//
-//  showMessage:function(json,callback){
-//     //接口名
-//     //参数
-//     //回调函数
-//
-//  },
-//  pushView:function(json,callback){
-//
-//
-//
-//  },
-//  popView:function(json,callback){
-//
-//
-//  },
-//  setTitle:function(json,callback){
-//
-//
-//  },
-//  showLoading:function(sign,callback){
-//
-//
-//  },
-//  appRegister:function(name,callback){
-//
-//
-//  }
-//}
+  },
+  limsRegister:function(){
+    return {
+       approveBridge:function(callback){
+          jsAPI.limsregister("approveBridge",callback);
+         return this;
+       }
+    }
+  }
+};

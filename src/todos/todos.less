@@ -1,11 +1,66 @@
-ul.agenda {
 
-  li{
 
-    width: 200px;
-    height: 100px;
-    background-color: indianred;
-    font-size: 24px;
-  }
-  
+html,body{
+  height:100%;
+  background-color: darkgrey;
+}
+
+#todos{
+  width: 100%;
+  height:100%;
+
+
+}
+
+#todos div.menu{
+
+
+  width: 100%;
+  height: 3rem;
+  position: relative;
+  cursor: pointer;
+  background-color: white;
+  margin-top: 3rem;
+}
+
+div.menu span:before{
+
+  content:"";
+  display: inline-block;
+
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+
+  left: 0;
+
+
+}
+div.menu_analysis span:before {
+  background: url("../assets/images/icon_analysis.png") no-repeat left top;
+  background-size: 100%;
+}
+div.menu_coa span:before{
+
+
+  background: url("../assets/images/icon_coa.png") no-repeat left top;
+  background-size: 100%;
+
+
+
+}
+div.menu span{
+
+  position: absolute;
+  padding-left: 4rem;
+}
+div.menu i{
+
+  display: inline-block;
+  background: url("../assets/images/icon_right.png") no-repeat left top;
+  width: 2rem;
+  height: 100%;
+  position: absolute;
+  right: 0;
+
 }

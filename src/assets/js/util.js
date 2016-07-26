@@ -1,56 +1,56 @@
-(function() {
-
-    //如果页面上存在id为mo_refresh_mask的元素  则下边的代码就不执行了
-    if (document.getElementById('mo_refresh_mask')) {
-        return;
-    }
-
-    //动态创建DOM节点元素  （刷新组件的页面结构）
-    var oImgRefresh = createEle('div', {
-        'id': 'mo_refresh_mask_flush'
-    });
-    var mask = createEle('div', {
-        'id': 'mo_refresh_mask'
-    });
-
-    /*
-     *  动态创建DOM节点元素 并赋值id 图片路径
-     *  @param tagName (增加标签类型)
-     *  @param attr (增加id或src及属性)
-     *
-     */
-    function createEle(tagName, attrs) {
-        var temp = document.createElement(tagName);
-        for (var key in attrs) {
-            if (attrs.hasOwnProperty(key)) {
-                temp.setAttribute(key, attrs[key]);
-            }
-        }
-        return temp;
-    }
-
-    //插入新的节点
-    mask.appendChild(oImgRefresh);
-
-    //将新建的DOM结构放在body下
-    document.body.appendChild(mask);
-
-    //私有化 暴露接口
-    window.refresh = {
-
-        //显示刷新图片 和遮罩层
-        show: function() {
-            mask.style.display = "block";
-            oImgRefresh.style.display = "block";
-        },
-
-        //隐藏刷新图片和遮罩层
-        hide: function() {
-            mask.style.display = "none";
-            oImgRefresh.style.display = "none";
-        }
-    }
-})();;
+//(function() {
+//
+//    //如果页面上存在id为mo_refresh_mask的元素  则下边的代码就不执行了
+//    if (document.getElementById('mo_refresh_mask')) {
+//        return;
+//    }
+//
+//    //动态创建DOM节点元素  （刷新组件的页面结构）
+//    var oImgRefresh = createEle('div', {
+//        'id': 'mo_refresh_mask_flush'
+//    });
+//    var mask = createEle('div', {
+//        'id': 'mo_refresh_mask'
+//    });
+//
+//    /*
+//     *  动态创建DOM节点元素 并赋值id 图片路径
+//     *  @param tagName (增加标签类型)
+//     *  @param attr (增加id或src及属性)
+//     *
+//     */
+//    function createEle(tagName, attrs) {
+//        var temp = document.createElement(tagName);
+//        for (var key in attrs) {
+//            if (attrs.hasOwnProperty(key)) {
+//                temp.setAttribute(key, attrs[key]);
+//            }
+//        }
+//        return temp;
+//    }
+//
+//    //插入新的节点
+//    mask.appendChild(oImgRefresh);
+//
+//    //将新建的DOM结构放在body下
+//    document.body.appendChild(mask);
+//
+//    //私有化 暴露接口
+//    window.refresh = {
+//
+//        //显示刷新图片 和遮罩层
+//        show: function() {
+//            mask.style.display = "block";
+//            oImgRefresh.style.display = "block";
+//        },
+//
+//        //隐藏刷新图片和遮罩层
+//        hide: function() {
+//            mask.style.display = "none";
+//            oImgRefresh.style.display = "none";
+//        }
+//    }
+//})();;
 (function($) {
 
     //

@@ -57,7 +57,7 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                loader: ExtractTextPlugin.extract('css!less')
+                loader: ExtractTextPlugin.extract('css!postcss!less')
             },
             //{
             //    test: /\.scss$/,

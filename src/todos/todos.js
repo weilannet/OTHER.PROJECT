@@ -4,61 +4,45 @@
 
 require('assets/style/reset.css');
 require('assets/style/common.less');
-
-require('./todos.less');
+require('./todos.css');
 
 let React = require('react');
 let ReactDOM = require('react-dom');
 import { Router, Route, Link,IndexRoute,hashHistory,browserHistory} from 'react-router'
 
-window.host = 'http://10.238.18.59:8033/';
-window.isApp = 0;
 
+let limsCaller= require('assets/common/limsapi').limsCaller();
+let limsRegister= require('assets/common/limsapi').limsRegister();
+require('assets/js/config');
+let LimsLink= require('components/LimsLink');
+
+
+function getURL(to) {
 //参数化对象 到字符串
-function paramUrl(obj) {
-  obj = obj || {};
-  var result = [];
-  for (var i in obj) {
-    if (obj.hasOwnProperty(i)) {
-      result.push(i + "=" + obj[i]);
+  function paramUrl(obj) {
+    obj = obj || {};
+    var result = [];
+    for (var i in obj) {
+      if (obj.hasOwnProperty(i)) {
+        result.push(i + "=" + obj[i]);
+      }
     }
+    return result.join('&');
   }
-  return result.join('&');
-}
-
-function setupWebViewJavascriptBridge(callback) {
-  if (window.WebViewJavascriptBridge) {
-    return callback(WebViewJavascriptBridge);
-  }
-  if (window.WVJBCallbacks) {
-    return window.WVJBCallbacks.push(callback);
-  }
-  window.WVJBCallbacks = [callback];
-  var WVJBIframe = document.createElement('iframe');
-  WVJBIframe.style.display = 'none';
-  WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
-  document.documentElement.appendChild(WVJBIframe);
-  setTimeout(function () {
-    document.documentElement.removeChild(WVJBIframe)
-  }, 0)
-}
-
-
-function getLocation(to) {
 
   if (to && to.search) {
-    return `${window.host}todos.html#${to.pathname}${to.search}`;
+    return `${LimsConfig.host}todos.html#${to.pathname}${to.search}`;
 
   }
 
   let _query = paramUrl(to.query);
-  return `${window.host}todos.html#${to.pathname}?${_query }`;
+  return `${LimsConfig.host}todos.html#${to.pathname}?${_query }`;
 
 }
 
+//审核主页面
 const App = new React.createClass({
   propType: {
-
     todoStatus: React.PropTypes.int
   },
   contextTypes: {
@@ -76,39 +60,21 @@ const App = new React.createClass({
       value: 'Hello!'
     };
   },
-  childContextTypes: {
-    todoStatus: React.PropTypes.number
-  },
-  getChildContext: function () {
-    return {
-      todoStatus: this.props.todoStatus
-    }
-  },
-  testApi:function(){
-
-
-  },
   handleChange: function (event) {
     this.setState({value: event.target.value});
   },
 
   onJsApi: function (to) {
     //H5页面按钮调用原生
-    var _this = this;
-    let _url = getLocation(to);
+    let _url = getURL(to);
     console.log(_url);
-    setupWebViewJavascriptBridge(
-        function (bridge) {
-          bridge.callHandler('pushView', {url: _url}, function (response) {
-            //log('JS got response', response)
+    limsCaller.pushView({url: _url},function(){
 
-          });
-        });
-
+    });
   },
   render: function () {
     return (
-        <div>
+        <div id="todos">
 
           <h2>主页</h2>
           <input
@@ -116,17 +82,19 @@ const App = new React.createClass({
               value={this.state.value}
               onChange={this.handleChange}
           />
+
           <LimsLink className="link-item"
                     onJsApi={this.onJsApi} to={{ pathname: '/about', query:{'name':encodeURIComponent('分析任务审核')}}}>
-            分析任务审核
+
+            <div className="menu menu_analysis"><span>分析任务审核</span><i></i></div>
           </LimsLink>
-          <div onClick={ this.testApi }>测试新的JSAPI</div>
+          <LimsLink className="link-item"
+                    onJsApi={this.onJsApi} to={{ pathname: '/Inbox', query:{'name':encodeURIComponent('合格证审核')}}}>
+            <div className="menu menu_coa"><span>合格证审核</span><i></i></div>
+          </LimsLink>
           <div className="agenda">
-
             {this.props.children}
-
           </div>
-
         </div>
 
     );
@@ -141,10 +109,23 @@ const App = new React.createClass({
 
 
 const About = React.createClass({
+  getInitialState() {
+    return {
+      currentInfo: 'hehe'
+
+    };
+  },
   contextTypes: {
     router: React.PropTypes.object.isRequired
+  } ,
+  childContextTypes:{
+    currentInfo: React.PropTypes.string
   },
-
+  getChildContext: function() {
+    return {
+      currentInfo: this.state.currentInfo
+    }
+  },
   componentWillMount: function () {
 
   },
@@ -163,7 +144,9 @@ const About = React.createClass({
     let { name }=this.props.location.query;
     return (
         <div>
-          <h1>传参{ decodeURIComponent(name) }</h1>
+
+          <p>测试currentInfo {this.state.currentInfo}</p>
+          <h1>地址传参{ decodeURIComponent(name) }</h1>
           <div onClick={ this.backFunction }>点我返回</div>
 
           <ul>
@@ -177,70 +160,20 @@ const About = React.createClass({
   }
 });
 
-const LimsLink = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.object.isRequired
-  },
-
-  componentWillMount: function () {
-
-  },
-  getDefaultProps(){
-    return {
-      to: {
-        pathname: '',
-        query: null
-      },
-      className: '',
-      onJsApi: null
-    }
-
-  },
-  clickHandle: function () {
-
-    if (window.isApp && this.props.onJsApi) {
-      this.props.onJsApi(this.props.to);
-      return;
-    }
-
-    this.context.router.push(
-        {
-          pathname: this.props.to.pathname,
-          query: this.props.to.query
-        }
-    );
-
-  },
-  render: function () {
-    return (<div className={this.props.className} onClick={ this.clickHandle }>{this.props.children}</div>);
-
-  }
-
-});
-
 const Message = React.createClass({
   getInitialState() {
     return {
-      currentInfo: 'hehe'
+      //currentInfo: 'hehe'
 
     };
   },
   contextTypes: {
-    router: React.PropTypes.object.isRequired
-  },
-  childContextTypes: {
+    router: React.PropTypes.object.isRequired,
     currentInfo: React.PropTypes.string
-
-  },
-  getChildContext: function () {
-    return {
-      currentInfo: this.state.currentInfo
-    }
   },
   onJsApi: function (to) {
 
-
-    let _url = getLocation(to);
+    let _url = getURL(to);
     console.log(_url);
 
     let _json = {
@@ -254,17 +187,13 @@ const Message = React.createClass({
       ],
       "params": to.query
     }
+    limsCaller.pushView(_json,function(response){
 
-    setupWebViewJavascriptBridge(
-        function (bridge) {
-          bridge.callHandler('pushView', _json, function (response) {
-            //log('JS got response', response)
+    });
 
-          });
-        });
   },
   render: function () {
-
+    this.context.currentInfo="lala";
     //根据params.id不同，请求不同list
     let list = [];
     if (this.props.params.id == 1) {
@@ -308,10 +237,12 @@ const Message = React.createClass({
     };
 
     return (
-
+        <div>
+          <h1>测试currentInfo传参{this.context.currentInfo}</h1>
         <ul >
           {list.map(createItem)}
         </ul>
+          </div>
     );
   }
 
@@ -322,39 +253,22 @@ const messageInfo = React.createClass({
 
   onAppApi: function (query) {
     //H5页面按钮调用原生
-    var _this = this;
-    //alert("query.id"+query.id);
-    let _url = getLocation( {pathname:'/messageapprove/'+query.id,query: query});
+    let _url = getURL( {pathname:'/messageapprove/'+query.id,query: query});
     console.log(_url);
-    setupWebViewJavascriptBridge(
-        function (bridge) {
-          bridge.callHandler('pushView', {url: _url}, function (response) {
-            //log('JS got response', response)
+    limsCaller.pushView( {url: _url},function(response){
 
-          });
-        });
+    });
 
   },
   componentWillMount: function () {
-    // alert(1);
+
     //拿到LOCATION,调用JS桥推送location页面
-    //
    var _this= this;
+    limsRegister.approveBridge(function(data,responseCallback){
 
-    setupWebViewJavascriptBridge(
-        function (bridge) {
-          bridge.registerHandler('approveBridge', function (data, responseCallback) {
-            console.log(JSON.stringify(data));
-           // var responseData = {'app says': 'okay!'}
-
-            //推审核的页面
-            _this.onAppApi(data);
-
-            responseCallback("ok");
-          })
-        });
-
-
+          //推审核的页面
+         _this.onAppApi(data);
+    });
   },
   componentDidMount: function () {
 
@@ -376,11 +290,7 @@ const messageInfo = React.createClass({
             <li>{age}</li>
 
           </ul>
-
-
           <Link  to={{ pathname: '/messageapprove/'+id, query:{'id':id, 'name':name,'age':age}}}>点我进入待办</Link>
-
-
         </div>
 
     );
@@ -388,8 +298,6 @@ const messageInfo = React.createClass({
 
   },
   render: function () {
-
-    // console.log(this.context.currentInfo);
     return this.getList();
   }
 
@@ -411,6 +319,12 @@ const messageApprove= React.createClass({
          <li>age:{age}</li>
        </ul><br/>
        <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>
+
+       <div><span>同意</span><span>选择</span></div>
+       <div><span>拒绝</span><span>选择</span></div>
+
+       <textarea width="100%" height="500px" placeholder="请输入审批意见!"></textarea>
+       <br/><button width="100%" height="100px" >提交 </button>
      </div>
 
    );
@@ -464,9 +378,8 @@ ReactDOM.render(
             <IndexRoute component={DashboardAbout}/>
 
             <Route path="message/:id" component={Message}>
-              <IndexRoute component={Dashboard}/>
-
-            </Route>
+            <IndexRoute component={Dashboard}/>
+          </Route>
 
           </Route>
           <Route path="messageinfo/:id" component={messageInfo}>
