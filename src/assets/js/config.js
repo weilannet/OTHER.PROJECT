@@ -5,7 +5,7 @@ let limsRegister = require('assets/common/limsapi').limsRegister();
 
   config.host = 'http://10.238.18.59:8016/1.0/';
   config.apihost = 'http://10.238.18.59:8016/';
-  config.isApp = 0; //1为APP模式，0为WEB模式
+  config.isApp = 1; //1为APP模式，0为WEB模式
 
   //审核类型  分析任务审核为1，合格证审核为2
   config.approve = [1, 2];
