@@ -26,7 +26,7 @@ const LimsLink = React.createClass({
   },
   clickHandle: function (ev) {
      //如果是APP模式，并且设置了jsAPI,则调用该JSAPI，传入PATHNAME和QUERY
-    debugger
+
     ev.preventDefault();
 
     if (LimsConfig.isApp && this.props.onJsApi) {

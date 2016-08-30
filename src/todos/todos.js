@@ -9,6 +9,7 @@ require('./todos.less');
 let React = require('react');
 let ReactDOM = require('react-dom');
 import { Router, Route, Link,IndexRoute,hashHistory,browserHistory} from 'react-router'
+import iScroll from 'iscroll'
 
 let limsCaller = require('assets/common/limsapi').limsCaller();
 let limsRegister = require('assets/common/limsapi').limsRegister();
@@ -17,7 +18,10 @@ require('assets/js/util');
 require('assets/js/config');
 
 let LimsLink = require('components/LimsLink');
+import ReactIScroll from 'components/react-iscroll';
 let TodoHelp = require('./todohelp');
+
+let FastClick = require('fastclick');
 
 import LimsTab from './ref/LimsTab';
 import  TodoMenu from './ref/TodoMenu';
@@ -28,8 +32,7 @@ import AnalysisApprove from './ref/AnalysisApprove';
 import CoaInfo from './ref/CoaInfo';
 import CoaApprove from './ref/CoaApprove';
 
-import iScroll from 'iscroll'
-import ReactIScroll from 'assets/js/react-iscroll'
+
 
 const iScrollOptions = {
   mouseWheel: true,
@@ -45,6 +48,7 @@ const TodoApp = new React.createClass({
     router: React.PropTypes.object.isRequired
   },
   onJsApi: function (to) {
+
     //H5页面按钮调用原生
     let _url = TodoHelp.getURL(to);
     console.log(_url);
@@ -118,6 +122,13 @@ const TodoTab = React.createClass({
 
 //TabList
 const TodoList = React.createClass({
+  init:{
+    scrollStartPos:0,
+    scrollPos:0,
+    downreload:false,
+    upreload:false,
+    refresh:false
+  },
   defaults: {
     pageindex: 1,
     pagesize: 5,
@@ -138,7 +149,7 @@ const TodoList = React.createClass({
     router: React.PropTypes.object.isRequired
   },
   componentWillMount: function () {
-
+    this.attachFastClick();
     let todoDone = this.props.params.isdone;
     let { type }=this.props.location.query;
     this.setState({todoDone: todoDone && parseInt(todoDone), todoType: type && parseInt(type)});
@@ -171,6 +182,9 @@ const TodoList = React.createClass({
   //
   //  //return this.state.todoDone != nextState.todoDone; //状态不一致才更新
   //},
+  attachFastClick() {
+    FastClick.attach(document.body);
+  },
   sendAjax:function(params){
     var that = this;
     util.api({
@@ -183,9 +197,12 @@ const TodoList = React.createClass({
           util.hidLoading();
 
           params.type==1
-              ? that.setState({todoDone:params.isDone,data_analysis: data['data']['fields']})
-              : that.setState({todoDone:params.isDone,data_coa: data['data']['fields']});
+              ? that.setState({todoDone:params.isDone,data_analysis: (!that.init.refresh?data['data']['fields']:this.state.data_analysis.concat(data['data']['fields']))})
+              : that.setState({todoDone:params.isDone,data_coa: (!that.init.refresh?data['data']['fields']:this.state.data_coa.concat(data['data']['fields']))});
         }
+        that.init.refresh=false;
+        that.init.downreload=false;
+        that.init.upreload=false;
       },
       complete: function () {
 
@@ -236,15 +253,34 @@ const TodoList = React.createClass({
     this.context.router.replace('/');
   },
   onScrollStart:function(iScrollInstance){
-    this.setState({isScrolling: true})
-    console.log(`start:${iScrollInstance.y}`);
+    //this.setState({isScrolling: true})
+    //console.log(`start:${iScrollInstance.y}`);
+    var me= iScrollInstance;
+
+    this.init.scrollStartPos=me.y;
+
   },
   onScrollEnd:function(iScrollInstance){
+    var me=iScrollInstance;
 
-    this.setState({isScrolling: false, y: iScrollInstance.y})
-    console.log(`end:${iScrollInstance.y}`);
+    if (this.init.downreload||this.init.upreload){
+
+      if (this.init.downreload){
+        this.defaults.pageindex++;
+        this.init.refresh = true;
+      }
+      if (this.init.upreload){
+        this.defaults.pageindex=1;
+        this.init.refresh = false;
+      }
+      this.queryList(this.defaults);
+    }
+
+    //this.setState({isScrolling: false, y: iScrollInstance.y})
+    //console.log(`end:${iScrollInstance.y}`);
   },
   onScrollRefresh:function(iScrollInstance){
+
     const hasVerticalScroll = iScrollInstance.hasVerticalScroll
 
     if(this.state.canVerticallyScroll !== hasVerticalScroll) {
@@ -252,7 +288,18 @@ const TodoList = React.createClass({
     }
   },
   onScroll:function(iScrollInstance){
-    //console.log(`onScroll:${iScrollInstance.y}`);
+    var me= iScrollInstance;
+
+    if (me.y < me.maxScrollY-50){
+      //alert('刷');
+      this.init.downreload=true;
+    }
+    if (me.y > 50){
+      //alert('刷');
+      this.init.upreload=true;
+    }
+
+    console.log(`onScroll:${iScrollInstance.y}`);
   },
   render: function () {
 
@@ -337,7 +384,8 @@ const TodoInfo = React.createClass({
         return (
             <div>
               <AnalysisInfo data={ result }></AnalysisInfo>
-              <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>
+              {!LimsConfig.isApp? <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>:''}
+
             </div>
         );
         break;
@@ -345,7 +393,7 @@ const TodoInfo = React.createClass({
         return (
             <div>
               <CoaInfo data={ result }></CoaInfo>
-              <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>
+              {!LimsConfig.isApp? <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>:''}
             </div>
         );
         break;
@@ -456,7 +504,8 @@ const TodoApprove = React.createClass({
         return (
             <div>
               <AnalysisApprove submitForm={this.submitForm}></AnalysisApprove>
-              <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>
+              {!LimsConfig.isApp? <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>:''}
+
             </div>
         );
         break;
@@ -464,7 +513,8 @@ const TodoApprove = React.createClass({
         return (
             <div>
               <CoaApprove submitForm={this.submitForm}></CoaApprove>
-              <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>
+              {!LimsConfig.isApp? <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>:''}
+
             </div>
         );
         break;

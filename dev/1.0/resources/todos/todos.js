@@ -10,45 +10,45 @@ webpackJsonp([2,4],{
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 173);
 	
-	var _LimsTab = __webpack_require__(/*! ./ref/LimsTab */ 235);
-	
-	var _LimsTab2 = _interopRequireDefault(_LimsTab);
-	
-	var _TodoMenu = __webpack_require__(/*! ./ref/TodoMenu */ 236);
-	
-	var _TodoMenu2 = _interopRequireDefault(_TodoMenu);
-	
-	var _ViewAnalysis = __webpack_require__(/*! ./ref/ViewAnalysis */ 238);
-	
-	var _ViewAnalysis2 = _interopRequireDefault(_ViewAnalysis);
-	
-	var _ViewCoa = __webpack_require__(/*! ./ref/ViewCoa */ 239);
-	
-	var _ViewCoa2 = _interopRequireDefault(_ViewCoa);
-	
-	var _AnalysisInfo = __webpack_require__(/*! ./ref/AnalysisInfo */ 240);
-	
-	var _AnalysisInfo2 = _interopRequireDefault(_AnalysisInfo);
-	
-	var _AnalysisApprove = __webpack_require__(/*! ./ref/AnalysisApprove */ 241);
-	
-	var _AnalysisApprove2 = _interopRequireDefault(_AnalysisApprove);
-	
-	var _CoaInfo = __webpack_require__(/*! ./ref/CoaInfo */ 242);
-	
-	var _CoaInfo2 = _interopRequireDefault(_CoaInfo);
-	
-	var _CoaApprove = __webpack_require__(/*! ./ref/CoaApprove */ 243);
-	
-	var _CoaApprove2 = _interopRequireDefault(_CoaApprove);
-	
-	var _iscroll = __webpack_require__(/*! iscroll */ 244);
+	var _iscroll = __webpack_require__(/*! iscroll */ 235);
 	
 	var _iscroll2 = _interopRequireDefault(_iscroll);
 	
-	var _reactIscroll = __webpack_require__(/*! assets/js/react-iscroll */ 245);
+	var _reactIscroll = __webpack_require__(/*! components/react-iscroll */ 236);
 	
 	var _reactIscroll2 = _interopRequireDefault(_reactIscroll);
+	
+	var _LimsTab = __webpack_require__(/*! ./ref/LimsTab */ 237);
+	
+	var _LimsTab2 = _interopRequireDefault(_LimsTab);
+	
+	var _TodoMenu = __webpack_require__(/*! ./ref/TodoMenu */ 238);
+	
+	var _TodoMenu2 = _interopRequireDefault(_TodoMenu);
+	
+	var _ViewAnalysis = __webpack_require__(/*! ./ref/ViewAnalysis */ 240);
+	
+	var _ViewAnalysis2 = _interopRequireDefault(_ViewAnalysis);
+	
+	var _ViewCoa = __webpack_require__(/*! ./ref/ViewCoa */ 241);
+	
+	var _ViewCoa2 = _interopRequireDefault(_ViewCoa);
+	
+	var _AnalysisInfo = __webpack_require__(/*! ./ref/AnalysisInfo */ 242);
+	
+	var _AnalysisInfo2 = _interopRequireDefault(_AnalysisInfo);
+	
+	var _AnalysisApprove = __webpack_require__(/*! ./ref/AnalysisApprove */ 243);
+	
+	var _AnalysisApprove2 = _interopRequireDefault(_AnalysisApprove);
+	
+	var _CoaInfo = __webpack_require__(/*! ./ref/CoaInfo */ 244);
+	
+	var _CoaInfo2 = _interopRequireDefault(_CoaInfo);
+	
+	var _CoaApprove = __webpack_require__(/*! ./ref/CoaApprove */ 245);
+	
+	var _CoaApprove2 = _interopRequireDefault(_CoaApprove);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -70,8 +70,11 @@ webpackJsonp([2,4],{
 	__webpack_require__(/*! assets/js/util */ 255);
 	__webpack_require__(/*! assets/js/config */ 256);
 	
-	var LimsLink = __webpack_require__(/*! components/LimsLink */ 237);
+	var LimsLink = __webpack_require__(/*! components/LimsLink */ 239);
+	
 	var TodoHelp = __webpack_require__(/*! ./todohelp */ 257);
+	
+	var FastClick = __webpack_require__(/*! fastclick */ 258);
 	
 	var iScrollOptions = {
 	  mouseWheel: true,
@@ -87,6 +90,7 @@ webpackJsonp([2,4],{
 	    router: React.PropTypes.object.isRequired
 	  },
 	  onJsApi: function onJsApi(to) {
+	
 	    //H5页面按钮调用原生
 	    var _url = TodoHelp.getURL(to);
 	    console.log(_url);
@@ -156,6 +160,13 @@ webpackJsonp([2,4],{
 	var TodoList = React.createClass({
 	  displayName: 'TodoList',
 	
+	  init: {
+	    scrollStartPos: 0,
+	    scrollPos: 0,
+	    downreload: false,
+	    upreload: false,
+	    refresh: false
+	  },
 	  defaults: {
 	    pageindex: 1,
 	    pagesize: 5,
@@ -177,7 +188,7 @@ webpackJsonp([2,4],{
 	    router: React.PropTypes.object.isRequired
 	  },
 	  componentWillMount: function componentWillMount() {
-	
+	    this.attachFastClick();
 	    var todoDone = this.props.params.isdone;
 	    var type = this.props.location.query.type;
 	
@@ -208,19 +219,28 @@ webpackJsonp([2,4],{
 	  //
 	  //  //return this.state.todoDone != nextState.todoDone; //状态不一致才更新
 	  //},
+	  attachFastClick: function attachFastClick() {
+	    FastClick.attach(document.body);
+	  },
+	
 	  sendAjax: function sendAjax(params) {
+	    var _this2 = this;
+	
 	    var that = this;
 	    util.api({
 	      url: '/AppService.svc/GetTodosData',
 	      data: params,
 	      type: 'get',
 	      success: function success(data) {
-	
+	        debugger;
 	        if (data['msgcode']) {
 	          util.hidLoading();
 	
-	          params.type == 1 ? that.setState({ todoDone: params.isDone, data_analysis: data['data']['fields'] }) : that.setState({ todoDone: params.isDone, data_coa: data['data']['fields'] });
+	          params.type == 1 ? that.setState({ todoDone: params.isDone, data_analysis: !that.init.refresh ? data['data']['fields'] : _this2.state.data_analysis.concat(data['data']['fields']) }) : that.setState({ todoDone: params.isDone, data_coa: !that.init.refresh ? data['data']['fields'] : _this2.state.data_coa.concat(data['data']['fields']) });
 	        }
+	        that.init.refresh = false;
+	        that.init.downreload = false;
+	        that.init.upreload = false;
 	      },
 	      complete: function complete() {}
 	    }, false);
@@ -263,15 +283,33 @@ webpackJsonp([2,4],{
 	    this.context.router.replace('/');
 	  },
 	  onScrollStart: function onScrollStart(iScrollInstance) {
-	    this.setState({ isScrolling: true });
-	    console.log('start:' + iScrollInstance.y);
+	    //this.setState({isScrolling: true})
+	    //console.log(`start:${iScrollInstance.y}`);
+	    var me = iScrollInstance;
+	
+	    this.init.scrollStartPos = me.y;
 	  },
 	  onScrollEnd: function onScrollEnd(iScrollInstance) {
+	    var me = iScrollInstance;
+	    debugger;
+	    if (this.init.downreload || this.init.upreload) {
 	
-	    this.setState({ isScrolling: false, y: iScrollInstance.y });
-	    console.log('end:' + iScrollInstance.y);
+	      if (this.init.downreload) {
+	        this.defaults.pageindex++;
+	        this.init.refresh = true;
+	      }
+	      if (this.init.upreload) {
+	        this.defaults.pageindex = 1;
+	        this.init.refresh = false;
+	      }
+	      this.queryList(this.defaults);
+	    }
+	
+	    //this.setState({isScrolling: false, y: iScrollInstance.y})
+	    //console.log(`end:${iScrollInstance.y}`);
 	  },
 	  onScrollRefresh: function onScrollRefresh(iScrollInstance) {
+	
 	    var hasVerticalScroll = iScrollInstance.hasVerticalScroll;
 	
 	    if (this.state.canVerticallyScroll !== hasVerticalScroll) {
@@ -279,26 +317,37 @@ webpackJsonp([2,4],{
 	    }
 	  },
 	  onScroll: function onScroll(iScrollInstance) {
-	    //console.log(`onScroll:${iScrollInstance.y}`);
+	    var me = iScrollInstance;
+	
+	    if (me.y < me.maxScrollY - 50) {
+	      //alert('刷');
+	      this.init.downreload = true;
+	    }
+	    if (me.y > 50) {
+	      //alert('刷');
+	      this.init.upreload = true;
+	    }
+	
+	    console.log('onScroll:' + iScrollInstance.y);
 	  },
 	  render: function render() {
-	    var _this2 = this;
+	    var _this3 = this;
 	
 	    //根据params.id不同，请求不同list
 	    var createItemAnaysis = function createItemAnaysis(item, index) {
 	      return React.createElement(
 	        LimsLink,
-	        { className: 'link-item', onJsApi: _this2.onJsApi,
-	          to: { pathname: '/todoinfo', query: { sign: _this2.state.todoType, type: 1, data: encodeURIComponent(JSON.stringify(item && item['fieldList'])) } } },
-	        React.createElement(_ViewAnalysis2.default, { todoType: _this2.state.pageindex, todoDone: _this2.state.todoDone, item: item && item['fieldList'] })
+	        { className: 'link-item', onJsApi: _this3.onJsApi,
+	          to: { pathname: '/todoinfo', query: { sign: _this3.state.todoType, type: 1, data: encodeURIComponent(JSON.stringify(item && item['fieldList'])) } } },
+	        React.createElement(_ViewAnalysis2.default, { todoType: _this3.state.pageindex, todoDone: _this3.state.todoDone, item: item && item['fieldList'] })
 	      );
 	    };
 	    var createItemCoa = function createItemCoa(item, index) {
 	      return React.createElement(
 	        LimsLink,
-	        { className: 'link-item', onJsApi: _this2.onJsApi,
-	          to: { pathname: '/todoinfo', query: { sign: _this2.state.todoType, type: 2, data: encodeURIComponent(JSON.stringify(item && item['fieldList'])) } } },
-	        React.createElement(_ViewCoa2.default, { todoType: _this2.state.pageindex, todoDone: _this2.state.todoDone, item: item && item['fieldList'] })
+	        { className: 'link-item', onJsApi: _this3.onJsApi,
+	          to: { pathname: '/todoinfo', query: { sign: _this3.state.todoType, type: 2, data: encodeURIComponent(JSON.stringify(item && item['fieldList'])) } } },
+	        React.createElement(_ViewCoa2.default, { todoType: _this3.state.pageindex, todoDone: _this3.state.todoDone, item: item && item['fieldList'] })
 	      );
 	    };
 	
@@ -368,13 +417,13 @@ webpackJsonp([2,4],{
 	          'div',
 	          null,
 	          React.createElement(_AnalysisInfo2.default, { data: result }),
-	          React.createElement(
+	          !LimsConfig.isApp ? React.createElement(
 	            'div',
 	            { onClick: function onClick() {
 	                _reactRouter.browserHistory.goBack();
 	              } },
 	            '点我返回'
-	          )
+	          ) : ''
 	        );
 	        break;
 	      case 2:
@@ -382,13 +431,13 @@ webpackJsonp([2,4],{
 	          'div',
 	          null,
 	          React.createElement(_CoaInfo2.default, { data: result }),
-	          React.createElement(
+	          !LimsConfig.isApp ? React.createElement(
 	            'div',
 	            { onClick: function onClick() {
 	                _reactRouter.browserHistory.goBack();
 	              } },
 	            '点我返回'
-	          )
+	          ) : ''
 	        );
 	        break;
 	      default:
@@ -515,13 +564,13 @@ webpackJsonp([2,4],{
 	          'div',
 	          null,
 	          React.createElement(_AnalysisApprove2.default, { submitForm: this.submitForm }),
-	          React.createElement(
+	          !LimsConfig.isApp ? React.createElement(
 	            'div',
 	            { onClick: function onClick() {
 	                _reactRouter.browserHistory.goBack();
 	              } },
 	            '点我返回'
-	          )
+	          ) : ''
 	        );
 	        break;
 	      case 2:
@@ -529,13 +578,13 @@ webpackJsonp([2,4],{
 	          'div',
 	          null,
 	          React.createElement(_CoaApprove2.default, { submitForm: this.submitForm }),
-	          React.createElement(
+	          !LimsConfig.isApp ? React.createElement(
 	            'div',
 	            { onClick: function onClick() {
 	                _reactRouter.browserHistory.goBack();
 	              } },
 	            '点我返回'
-	          )
+	          ) : ''
 	        );
 	        break;
 	      default:
@@ -630,867 +679,6 @@ webpackJsonp([2,4],{
 /***/ },
 
 /***/ 235:
-/*!**********************************!*\
-  !*** ./src/todos/ref/LimsTab.js ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 38);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/7/27.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var LimsTab = function (_Component) {
-	  _inherits(LimsTab, _Component);
-	
-	  function LimsTab(props) {
-	    _classCallCheck(this, LimsTab);
-	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(LimsTab).call(this, props));
-	
-	    _this.tabClick = function (type, e) {
-	      //console.log(type);
-	      //console.log(e.target);
-	
-	      _this.setState({ actived: type });
-	      _this.props.tabClick(type);
-	    };
-	
-	    _this.state = {
-	      liked: false,
-	      actived: 0
-	    };
-	    _this.tabClick = _this.tabClick.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(LimsTab, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.props.tabClick(0);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'ul',
-	        { className: 'tab', key: Date.now() + Math.random() * 1000 },
-	        _react2.default.createElement(
-	          'li',
-	          { className: this.state.actived == 0 ? 'active' : '', onClick: this.tabClick.bind(this, 0) },
-	          _react2.default.createElement('i', null),
-	          _react2.default.createElement(
-	            'span',
-	            null,
-	            '待办'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'li',
-	          { className: this.state.actived == 1 ? 'active' : '', onClick: this.tabClick.bind(this, 1) },
-	          _react2.default.createElement('i', null),
-	          _react2.default.createElement(
-	            'span',
-	            null,
-	            '已办'
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return LimsTab;
-	}(_react.Component);
-	
-	exports.default = LimsTab;
-
-/***/ },
-
-/***/ 236:
-/*!***********************************!*\
-  !*** ./src/todos/ref/TodoMenu.js ***!
-  \***********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 38);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/7/27.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var LimsLink = __webpack_require__(/*! components/LimsLink */ 237);
-	
-	var TodoMenu = function (_Component) {
-	  _inherits(TodoMenu, _Component);
-	
-	  function TodoMenu(props) {
-	    _classCallCheck(this, TodoMenu);
-	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TodoMenu).call(this, props));
-	
-	    _this.onJsApi = function (e) {
-	      _this.props.onJsApi(e);
-	    };
-	
-	    return _this;
-	  }
-	
-	  _createClass(TodoMenu, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { id: 'todos-menu' },
-	        _react2.default.createElement(
-	          LimsLink,
-	          { className: 'link-item',
-	            onJsApi: this.onJsApi,
-	            to: { pathname: '/todotab', query: { type: 1 } } },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'menu menu_analysis' },
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              '分析任务审核'
-	            ),
-	            _react2.default.createElement('i', null)
-	          )
-	        ),
-	        _react2.default.createElement(
-	          LimsLink,
-	          { className: 'link-item',
-	            onJsApi: this.onJsApi,
-	            to: { pathname: '/todotab', query: { type: 2 } } },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'menu menu_coa' },
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              '合格证审核'
-	            ),
-	            _react2.default.createElement('i', null)
-	          )
-	        ),
-	        _react2.default.createElement(
-	          LimsLink,
-	          { className: 'link-item',
-	            onJsApi: this.onJsApi,
-	            to: { pathname: '/todotab', query: { type: 0 } } },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'menu menu_coa' },
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              '消息管理'
-	            ),
-	            _react2.default.createElement('i', null)
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return TodoMenu;
-	}(_react.Component);
-	
-	exports.default = TodoMenu;
-
-/***/ },
-
-/***/ 237:
-/*!************************************!*\
-  !*** ./src/components/LimsLink.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	/**
-	 * Created by gaoxin on 2016/7/21.
-	 */
-	
-	var React = __webpack_require__(/*! react */ 1);
-	var ReactDOM = __webpack_require__(/*! react-dom */ 38);
-	//重写LINK组件
-	var LimsLink = React.createClass({
-	  displayName: 'LimsLink',
-	
-	  contextTypes: {
-	    router: React.PropTypes.object.isRequired
-	  },
-	
-	  componentWillMount: function componentWillMount() {},
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      to: {
-	        pathname: '',
-	        query: null
-	      },
-	      className: '',
-	      onJsApi: null
-	    };
-	  },
-	
-	  clickHandle: function clickHandle(ev) {
-	    //如果是APP模式，并且设置了jsAPI,则调用该JSAPI，传入PATHNAME和QUERY
-	    debugger;
-	    ev.preventDefault();
-	
-	    if (LimsConfig.isApp && this.props.onJsApi) {
-	      this.props.onJsApi(this.props.to);
-	      return;
-	    }
-	
-	    this.context.router.push({
-	      pathname: this.props.to.pathname,
-	      query: this.props.to.query
-	    });
-	  },
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: this.props.className, onClick: this.clickHandle },
-	      this.props.children
-	    );
-	  }
-	
-	});
-	module.exports = LimsLink;
-
-/***/ },
-
-/***/ 238:
-/*!***************************************!*\
-  !*** ./src/todos/ref/ViewAnalysis.js ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 38);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/7/27.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var ViewAnalysis = function (_Component) {
-	  _inherits(ViewAnalysis, _Component);
-	
-	  function ViewAnalysis(props) {
-	    _classCallCheck(this, ViewAnalysis);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ViewAnalysis).call(this, props));
-	  }
-	
-	  _createClass(ViewAnalysis, [{
-	    key: 'shouldComponentUpdate',
-	    value: function shouldComponentUpdate(nextProps, nextState) {
-	
-	      if (this.props.todoType == nextProps.todoType && this.props.todoDone == nextProps.todoDone) {
-	        return false;
-	      }
-	
-	      return true;
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var createRow = function createRow(item, index) {
-	        if (item.is_show && item.is_main) {
-	          return _react2.default.createElement(
-	            'li',
-	            { key: Date.now() + Math.random() * 1000 },
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              item.text
-	            ),
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              item.value
-	            )
-	          );
-	        }
-	      };
-	      return _react2.default.createElement(
-	        'div',
-	        { id: 'list-data', className: 'list-data', key: Date.now() + Math.random() * 1000 },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'title' },
-	          _react2.default.createElement(
-	            'span',
-	            null,
-	            '待办类型'
-	          ),
-	          _react2.default.createElement(
-	            'span',
-	            null,
-	            '分析任务审批'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'ul',
-	          { className: 'content' },
-	          this.props.item.map(createRow)
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return ViewAnalysis;
-	}(_react.Component);
-	
-	exports.default = ViewAnalysis;
-
-/***/ },
-
-/***/ 239:
-/*!**********************************!*\
-  !*** ./src/todos/ref/ViewCoa.js ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 38);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/7/27.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var ViewCoa = function (_Component) {
-	  _inherits(ViewCoa, _Component);
-	
-	  function ViewCoa(props) {
-	    _classCallCheck(this, ViewCoa);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ViewCoa).call(this, props));
-	  }
-	
-	  _createClass(ViewCoa, [{
-	    key: 'shouldComponentUpdate',
-	    value: function shouldComponentUpdate(nextProps, nextState) {
-	
-	      if (this.props.todoType == nextProps.todoType && this.props.todoDone == nextProps.todoDone) {
-	        return false;
-	      }
-	      return true;
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	
-	      var createRow = function createRow(item, index) {
-	
-	        if (item.is_show && item.is_main) {
-	          return _react2.default.createElement(
-	            'li',
-	            { key: Date.now() + Math.random() * 1000 },
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              item.text
-	            ),
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              item.value
-	            )
-	          );
-	        }
-	      };
-	      return _react2.default.createElement(
-	        'div',
-	        { id: 'list-data', className: 'list-data', key: Date.now() + Math.random() * 1000 },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'title' },
-	          _react2.default.createElement(
-	            'span',
-	            null,
-	            '待办类型'
-	          ),
-	          _react2.default.createElement(
-	            'span',
-	            null,
-	            '合格证审批'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'ul',
-	          { className: 'content' },
-	          this.props.item.map(createRow)
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return ViewCoa;
-	}(_react.Component);
-	
-	exports.default = ViewCoa;
-
-/***/ },
-
-/***/ 240:
-/*!***************************************!*\
-  !*** ./src/todos/ref/AnalysisInfo.js ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 38);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 173);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/8/2.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var AnalysisInfo = function (_Component) {
-	  _inherits(AnalysisInfo, _Component);
-	
-	  function AnalysisInfo(props) {
-	    _classCallCheck(this, AnalysisInfo);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(AnalysisInfo).call(this, props));
-	  }
-	
-	  _createClass(AnalysisInfo, [{
-	    key: 'render',
-	    value: function render() {
-	      var createItem = function createItem(item, index) {
-	        if (item.is_show) {
-	          return _react2.default.createElement(
-	            'li',
-	            { key: Date.now() + Math.random() * 1000 },
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              item.text
-	            ),
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              item.value
-	            )
-	          );
-	        }
-	      };
-	
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'todo-info', id: 'todo-info' },
-	        _react2.default.createElement(
-	          'ul',
-	          null,
-	          this.props.data.map(createItem)
-	        ),
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: { pathname: '/todoapprove', query: { type: 1, data: encodeURIComponent(JSON.stringify(this.props.data)) } } },
-	          '点我进入审核'
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return AnalysisInfo;
-	}(_react.Component);
-	
-	exports.default = AnalysisInfo;
-
-/***/ },
-
-/***/ 241:
-/*!******************************************!*\
-  !*** ./src/todos/ref/AnalysisApprove.js ***!
-  \******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 38);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/8/2.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var AnalysisApprove = function (_Component) {
-	  _inherits(AnalysisApprove, _Component);
-	
-	  function AnalysisApprove(props) {
-	    _classCallCheck(this, AnalysisApprove);
-	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AnalysisApprove).call(this, props));
-	
-	    _this.checkedClick = function (e) {
-	      _this.setState({ actived: !_this.state.actived });
-	    };
-	
-	    _this.handleChange = function (e) {
-	
-	      _this.setState({ value: _this.refs.txtcontent.value });
-	    };
-	
-	    _this.submitForm = function (e) {
-	
-	      var _isApprove = _this.state.actived ? 'pass' : 'reject';
-	
-	      var _contet = _this.state.value;
-	
-	      _this.props.submitForm(_isApprove, _contet);
-	    };
-	
-	    _this.state = {
-	      value: '',
-	      actived: true
-	    };
-	    return _this;
-	  }
-	
-	  _createClass(AnalysisApprove, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'todo-approve', id: 'todo-approve' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'checkboxs' },
-	          _react2.default.createElement(
-	            'span',
-	            { onClick: this.checkedClick, className: this.state.actived ? 'active' : '' },
-	            '同意'
-	          ),
-	          _react2.default.createElement(
-	            'span',
-	            { onClick: this.checkedClick, className: this.state.actived ? '' : 'active' },
-	            '拒绝'
-	          )
-	        ),
-	        _react2.default.createElement('textarea', { className: 'textinput', value: this.state.value,
-	          ref: 'txtcontent', onChange: this.handleChange.bind(this), placeholder: '请输入审批意见!' }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'button',
-	          { className: 'button', onClick: this.submitForm },
-	          '提交'
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return AnalysisApprove;
-	}(_react.Component);
-	
-	exports.default = AnalysisApprove;
-
-/***/ },
-
-/***/ 242:
-/*!**********************************!*\
-  !*** ./src/todos/ref/CoaInfo.js ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 38);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 173);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/8/2.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	/**
-	 * Created by gaoxin on 2016/8/2.
-	 */
-	
-	var CoaInfo = function (_Component) {
-	  _inherits(CoaInfo, _Component);
-	
-	  function CoaInfo(props) {
-	    _classCallCheck(this, CoaInfo);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(CoaInfo).call(this, props));
-	  }
-	
-	  _createClass(CoaInfo, [{
-	    key: 'render',
-	    value: function render() {
-	      var createItem = function createItem(item, index) {
-	        if (item.is_show) {
-	          return _react2.default.createElement(
-	            'li',
-	            { key: Date.now() + Math.random() * 1000 },
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              item.text
-	            ),
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              item.value
-	            )
-	          );
-	        }
-	      };
-	
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'todo-info', id: 'todo-info' },
-	        _react2.default.createElement(
-	          'ul',
-	          null,
-	          this.props.data.map(createItem)
-	        ),
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: { pathname: '/todoapprove', query: { type: 2, data: encodeURIComponent(JSON.stringify(this.props.data)) } } },
-	          '点我进入审核'
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return CoaInfo;
-	}(_react.Component);
-	
-	exports.default = CoaInfo;
-
-/***/ },
-
-/***/ 243:
-/*!*************************************!*\
-  !*** ./src/todos/ref/CoaApprove.js ***!
-  \*************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 38);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/8/2.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var CoaApprove = function (_Component) {
-	  _inherits(CoaApprove, _Component);
-	
-	  function CoaApprove(props) {
-	    _classCallCheck(this, CoaApprove);
-	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CoaApprove).call(this, props));
-	
-	    _this.checkedClick = function (type, e) {
-	      _this.setState({ actived: type });
-	    };
-	
-	    _this.handleChange = function (e) {
-	      _this.setState({ value: _this.refs.txtcontent.value });
-	    };
-	
-	    _this.submitForm = function (e) {
-	
-	      var _isApprove = _this.state.actived;
-	      var _contet = _this.state.value;
-	
-	      _this.props.submitForm(_isApprove, _contet);
-	    };
-	
-	    _this.state = {
-	      value: '',
-	      actived: 1
-	    };
-	    return _this;
-	  }
-	
-	  _createClass(CoaApprove, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'todo-approve', id: 'todo-approve' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'checkboxs' },
-	          _react2.default.createElement(
-	            'span',
-	            { onClick: this.checkedClick.bind(this, 1), className: this.state.actived == 1 ? 'active' : '' },
-	            '同意'
-	          ),
-	          _react2.default.createElement(
-	            'span',
-	            { onClick: this.checkedClick.bind(this, 2), className: this.state.actived == 2 ? 'active' : '' },
-	            '拒绝'
-	          ),
-	          _react2.default.createElement(
-	            'span',
-	            { onClick: this.checkedClick.bind(this, 3), className: this.state.actived == 3 ? 'active' : '' },
-	            '废弃'
-	          )
-	        ),
-	        _react2.default.createElement('textarea', { className: 'textinput', value: this.state.value,
-	          ref: 'txtcontent', onChange: this.handleChange, placeholder: '请输入审批意见!' }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'button',
-	          { className: 'button', onClick: this.submitForm },
-	          '提交'
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return CoaApprove;
-	}(_react.Component);
-	
-	exports.default = CoaApprove;
-
-/***/ },
-
-/***/ 244:
 /*!******************************************!*\
   !*** ./~/iscroll/build/iscroll-probe.js ***!
   \******************************************/
@@ -3101,7 +2289,7 @@ webpackJsonp([2,4],{
 		},
 	
 		handleEvent: function (e) {
-			debugger
+	
 			switch ( e.type ) {
 				case 'touchstart':
 				case 'pointerdown':
@@ -3619,55 +2807,21 @@ webpackJsonp([2,4],{
 
 /***/ },
 
-/***/ 245:
-/*!****************************************!*\
-  !*** ./src/assets/js/react-iscroll.js ***!
-  \****************************************/
+/***/ 236:
+/*!*****************************************!*\
+  !*** ./src/components/react-iscroll.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	
-	var _slicedToArray = function () {
-	  function sliceIterator(arr, i) {
-	    var _arr = [];var _n = true;var _d = false;var _e = undefined;try {
-	      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-	        _arr.push(_s.value);if (i && _arr.length === i) break;
-	      }
-	    } catch (err) {
-	      _d = true;_e = err;
-	    } finally {
-	      try {
-	        if (!_n && _i["return"]) _i["return"]();
-	      } finally {
-	        if (_d) throw _e;
-	      }
-	    }return _arr;
-	  }return function (arr, i) {
-	    if (Array.isArray(arr)) {
-	      return arr;
-	    } else if (Symbol.iterator in Object(arr)) {
-	      return sliceIterator(arr, i);
-	    } else {
-	      throw new TypeError("Invalid attempt to destructure non-iterable instance");
-	    }
-	  };
-	}();
+	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 	
-	var _createClass = function () {
-	  function defineProperties(target, props) {
-	    for (var i = 0; i < props.length; i++) {
-	      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-	    }
-	  }return function (Constructor, protoProps, staticProps) {
-	    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-	  };
-	}();
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(/*! react */ 1);
 	
@@ -3681,27 +2835,13 @@ webpackJsonp([2,4],{
 	
 	var _deepEqual2 = _interopRequireDefault(_deepEqual);
 	
-	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { default: obj };
-	}
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) {
-	  if (!(instance instanceof Constructor)) {
-	    throw new TypeError("Cannot call a class as a function");
-	  }
-	}
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	function _possibleConstructorReturn(self, call) {
-	  if (!self) {
-	    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-	  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-	}
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) {
-	  if (typeof superClass !== "function" && superClass !== null) {
-	    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-	  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-	}
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var PropTypes = _react2.default.PropTypes;
 	
@@ -3711,6 +2851,7 @@ webpackJsonp([2,4],{
 	var availableEvents = [['beforeScrollStart', "onBeforeScrollStart"], ['scrollCancel', "onScrollCancel"], ['scrollStart', "onScrollStart"], ['scroll', "onScroll"], ['scrollEnd', "onScrollEnd"], ['flick', "onFlick"], ['zoomStart', "onZoomStart"], ['zoomEnd', "onZoomEnd"]];
 	
 	var iScrollPropType = function iScrollPropType(props, propName, componentName) {
+	
 	  var iScroll = props[propName];
 	  var proto = iScroll && iScroll.prototype;
 	
@@ -3820,6 +2961,7 @@ webpackJsonp([2,4],{
 	  }, {
 	    key: 'withIScroll',
 	    value: function withIScroll(waitForInit, callback) {
+	
 	      if (!callback && typeof waitForInit == "function") {
 	        callback = waitForInit;
 	      }
@@ -3833,6 +2975,7 @@ webpackJsonp([2,4],{
 	  }, {
 	    key: 'refresh',
 	    value: function refresh() {
+	
 	      this.withIScroll(function (iScrollInstance) {
 	        return iScrollInstance.refresh();
 	      });
@@ -3858,6 +3001,7 @@ webpackJsonp([2,4],{
 	      var origRefresh = iScrollInstance.refresh;
 	
 	      iScrollInstance.refresh = function () {
+	
 	        origRefresh.apply(iScrollInstance);
 	        _this3._triggerRefreshEvent();
 	      };
@@ -3873,6 +3017,7 @@ webpackJsonp([2,4],{
 	      var _this4 = this;
 	
 	      var defer = this.props.defer;
+	
 	
 	      if (defer === false) {
 	        this._runInitializeIScroll();
@@ -3897,6 +3042,7 @@ webpackJsonp([2,4],{
 	  }, {
 	    key: '_teardownIScroll',
 	    value: function _teardownIScroll() {
+	
 	      if (this._iScrollInstance) {
 	        this._iScrollInstance.destroy();
 	        this._iScrollInstance = undefined;
@@ -3905,6 +3051,7 @@ webpackJsonp([2,4],{
 	  }, {
 	    key: '_bindIScrollEvents',
 	    value: function _bindIScrollEvents() {
+	
 	      // Bind events on iScroll instance
 	      this._iScrollBindedEvents = {};
 	      this._updateIScrollEvents({}, this.props);
@@ -3915,6 +3062,7 @@ webpackJsonp([2,4],{
 	  }, {
 	    key: '_updateIScrollEvents',
 	    value: function _updateIScrollEvents(prevProps, nextProps) {
+	
 	      var len = availableEvents.length;
 	
 	      for (var _i2 = 0; _i2 < len; _i2++) {
@@ -3963,6 +3111,7 @@ webpackJsonp([2,4],{
 	    value: function _triggerRefreshEvent() {
 	      var onRefresh = this.props.onRefresh;
 	
+	
 	      if (onRefresh) {
 	        this.withIScroll(function (iScrollInstance) {
 	          return onRefresh(iScrollInstance);
@@ -4001,6 +3150,867 @@ webpackJsonp([2,4],{
 	  }
 	};
 	exports.default = ReactIScroll;
+
+/***/ },
+
+/***/ 237:
+/*!**********************************!*\
+  !*** ./src/todos/ref/LimsTab.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 38);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/7/27.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var LimsTab = function (_Component) {
+	  _inherits(LimsTab, _Component);
+	
+	  function LimsTab(props) {
+	    _classCallCheck(this, LimsTab);
+	
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(LimsTab).call(this, props));
+	
+	    _this.tabClick = function (type, e) {
+	      //console.log(type);
+	      //console.log(e.target);
+	
+	      _this.setState({ actived: type });
+	      _this.props.tabClick(type);
+	    };
+	
+	    _this.state = {
+	      liked: false,
+	      actived: 0
+	    };
+	    _this.tabClick = _this.tabClick.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(LimsTab, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.props.tabClick(0);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'ul',
+	        { className: 'tab', key: Date.now() + Math.random() * 1000 },
+	        _react2.default.createElement(
+	          'li',
+	          { className: this.state.actived == 0 ? 'active' : '', onClick: this.tabClick.bind(this, 0) },
+	          _react2.default.createElement('i', null),
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            '待办'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          { className: this.state.actived == 1 ? 'active' : '', onClick: this.tabClick.bind(this, 1) },
+	          _react2.default.createElement('i', null),
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            '已办'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return LimsTab;
+	}(_react.Component);
+	
+	exports.default = LimsTab;
+
+/***/ },
+
+/***/ 238:
+/*!***********************************!*\
+  !*** ./src/todos/ref/TodoMenu.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 38);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/7/27.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var LimsLink = __webpack_require__(/*! components/LimsLink */ 239);
+	
+	var TodoMenu = function (_Component) {
+	  _inherits(TodoMenu, _Component);
+	
+	  function TodoMenu(props) {
+	    _classCallCheck(this, TodoMenu);
+	
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TodoMenu).call(this, props));
+	
+	    _this.onJsApi = function (e) {
+	      _this.props.onJsApi(e);
+	    };
+	
+	    return _this;
+	  }
+	
+	  _createClass(TodoMenu, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'todos-menu' },
+	        _react2.default.createElement(
+	          LimsLink,
+	          { className: 'link-item',
+	            onJsApi: this.onJsApi,
+	            to: { pathname: '/todotab', query: { type: 1 } } },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'menu menu_analysis' },
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              '分析任务审核'
+	            ),
+	            _react2.default.createElement('i', null)
+	          )
+	        ),
+	        _react2.default.createElement(
+	          LimsLink,
+	          { className: 'link-item',
+	            onJsApi: this.onJsApi,
+	            to: { pathname: '/todotab', query: { type: 2 } } },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'menu menu_coa' },
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              '合格证审核'
+	            ),
+	            _react2.default.createElement('i', null)
+	          )
+	        ),
+	        _react2.default.createElement(
+	          LimsLink,
+	          { className: 'link-item',
+	            onJsApi: this.onJsApi,
+	            to: { pathname: '/todotab', query: { type: 0 } } },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'menu menu_coa' },
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              '消息管理'
+	            ),
+	            _react2.default.createElement('i', null)
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return TodoMenu;
+	}(_react.Component);
+	
+	exports.default = TodoMenu;
+
+/***/ },
+
+/***/ 239:
+/*!************************************!*\
+  !*** ./src/components/LimsLink.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	/**
+	 * Created by gaoxin on 2016/7/21.
+	 */
+	
+	var React = __webpack_require__(/*! react */ 1);
+	var ReactDOM = __webpack_require__(/*! react-dom */ 38);
+	//重写LINK组件
+	var LimsLink = React.createClass({
+	  displayName: 'LimsLink',
+	
+	  contextTypes: {
+	    router: React.PropTypes.object.isRequired
+	  },
+	
+	  componentWillMount: function componentWillMount() {},
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      to: {
+	        pathname: '',
+	        query: null
+	      },
+	      className: '',
+	      onJsApi: null
+	    };
+	  },
+	
+	  clickHandle: function clickHandle(ev) {
+	    //如果是APP模式，并且设置了jsAPI,则调用该JSAPI，传入PATHNAME和QUERY
+	
+	    ev.preventDefault();
+	
+	    if (LimsConfig.isApp && this.props.onJsApi) {
+	      this.props.onJsApi(this.props.to);
+	      return;
+	    }
+	
+	    this.context.router.push({
+	      pathname: this.props.to.pathname,
+	      query: this.props.to.query
+	    });
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: this.props.className, onClick: this.clickHandle },
+	      this.props.children
+	    );
+	  }
+	
+	});
+	module.exports = LimsLink;
+
+/***/ },
+
+/***/ 240:
+/*!***************************************!*\
+  !*** ./src/todos/ref/ViewAnalysis.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 38);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/7/27.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var ViewAnalysis = function (_Component) {
+	  _inherits(ViewAnalysis, _Component);
+	
+	  function ViewAnalysis(props) {
+	    _classCallCheck(this, ViewAnalysis);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ViewAnalysis).call(this, props));
+	  }
+	
+	  _createClass(ViewAnalysis, [{
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(nextProps, nextState) {
+	
+	      if (this.props.todoType == nextProps.todoType && this.props.todoDone == nextProps.todoDone) {
+	        return false;
+	      }
+	
+	      return true;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var createRow = function createRow(item, index) {
+	        if (item.is_show && item.is_main) {
+	          return _react2.default.createElement(
+	            'li',
+	            { key: Date.now() + Math.random() * 1000 },
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              item.text
+	            ),
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              item.value
+	            )
+	          );
+	        }
+	      };
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'list-data', className: 'list-data', key: Date.now() + Math.random() * 1000 },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'title' },
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            '待办类型'
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            '分析任务审批'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'content' },
+	          this.props.item.map(createRow)
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return ViewAnalysis;
+	}(_react.Component);
+	
+	exports.default = ViewAnalysis;
+
+/***/ },
+
+/***/ 241:
+/*!**********************************!*\
+  !*** ./src/todos/ref/ViewCoa.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 38);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/7/27.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var ViewCoa = function (_Component) {
+	  _inherits(ViewCoa, _Component);
+	
+	  function ViewCoa(props) {
+	    _classCallCheck(this, ViewCoa);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ViewCoa).call(this, props));
+	  }
+	
+	  _createClass(ViewCoa, [{
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(nextProps, nextState) {
+	
+	      if (this.props.todoType == nextProps.todoType && this.props.todoDone == nextProps.todoDone) {
+	        return false;
+	      }
+	      return true;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	
+	      var createRow = function createRow(item, index) {
+	
+	        if (item.is_show && item.is_main) {
+	          return _react2.default.createElement(
+	            'li',
+	            { key: Date.now() + Math.random() * 1000 },
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              item.text
+	            ),
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              item.value
+	            )
+	          );
+	        }
+	      };
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'list-data', className: 'list-data', key: Date.now() + Math.random() * 1000 },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'title' },
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            '待办类型'
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            '合格证审批'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'content' },
+	          this.props.item.map(createRow)
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return ViewCoa;
+	}(_react.Component);
+	
+	exports.default = ViewCoa;
+
+/***/ },
+
+/***/ 242:
+/*!***************************************!*\
+  !*** ./src/todos/ref/AnalysisInfo.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 38);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 173);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/8/2.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var AnalysisInfo = function (_Component) {
+	  _inherits(AnalysisInfo, _Component);
+	
+	  function AnalysisInfo(props) {
+	    _classCallCheck(this, AnalysisInfo);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(AnalysisInfo).call(this, props));
+	  }
+	
+	  _createClass(AnalysisInfo, [{
+	    key: 'render',
+	    value: function render() {
+	      var createItem = function createItem(item, index) {
+	        if (item.is_show) {
+	          return _react2.default.createElement(
+	            'li',
+	            { key: Date.now() + Math.random() * 1000 },
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              item.text
+	            ),
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              item.value
+	            )
+	          );
+	        }
+	      };
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'todo-info', id: 'todo-info' },
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          this.props.data.map(createItem)
+	        ),
+	        !LimsConfig.isApp ? _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: { pathname: '/todoapprove', query: { type: 1, data: encodeURIComponent(JSON.stringify(this.props.data)) } } },
+	          '点我进入审核'
+	        ) : ''
+	      );
+	    }
+	  }]);
+	
+	  return AnalysisInfo;
+	}(_react.Component);
+	
+	exports.default = AnalysisInfo;
+
+/***/ },
+
+/***/ 243:
+/*!******************************************!*\
+  !*** ./src/todos/ref/AnalysisApprove.js ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 38);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/8/2.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var AnalysisApprove = function (_Component) {
+	  _inherits(AnalysisApprove, _Component);
+	
+	  function AnalysisApprove(props) {
+	    _classCallCheck(this, AnalysisApprove);
+	
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AnalysisApprove).call(this, props));
+	
+	    _this.checkedClick = function (e) {
+	      _this.setState({ actived: !_this.state.actived });
+	    };
+	
+	    _this.handleChange = function (e) {
+	
+	      _this.setState({ value: _this.refs.txtcontent.value });
+	    };
+	
+	    _this.submitForm = function (e) {
+	
+	      var _isApprove = _this.state.actived ? 'pass' : 'reject';
+	
+	      var _contet = _this.state.value;
+	
+	      _this.props.submitForm(_isApprove, _contet);
+	    };
+	
+	    _this.state = {
+	      value: '',
+	      actived: true
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(AnalysisApprove, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'todo-approve', id: 'todo-approve' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'checkboxs' },
+	          _react2.default.createElement(
+	            'span',
+	            { onClick: this.checkedClick, className: this.state.actived ? 'active' : '' },
+	            '同意'
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            { onClick: this.checkedClick, className: this.state.actived ? '' : 'active' },
+	            '拒绝'
+	          )
+	        ),
+	        _react2.default.createElement('textarea', { className: 'textinput', value: this.state.value,
+	          ref: 'txtcontent', onChange: this.handleChange.bind(this), placeholder: '请输入审批意见!' }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'button',
+	          { className: 'button', onClick: this.submitForm },
+	          '提交'
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return AnalysisApprove;
+	}(_react.Component);
+	
+	exports.default = AnalysisApprove;
+
+/***/ },
+
+/***/ 244:
+/*!**********************************!*\
+  !*** ./src/todos/ref/CoaInfo.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 38);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 173);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/8/2.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	/**
+	 * Created by gaoxin on 2016/8/2.
+	 */
+	
+	var CoaInfo = function (_Component) {
+	  _inherits(CoaInfo, _Component);
+	
+	  function CoaInfo(props) {
+	    _classCallCheck(this, CoaInfo);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(CoaInfo).call(this, props));
+	  }
+	
+	  _createClass(CoaInfo, [{
+	    key: 'render',
+	    value: function render() {
+	      var createItem = function createItem(item, index) {
+	        if (item.is_show) {
+	          return _react2.default.createElement(
+	            'li',
+	            { key: Date.now() + Math.random() * 1000 },
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              item.text
+	            ),
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              item.value
+	            )
+	          );
+	        }
+	      };
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'todo-info', id: 'todo-info' },
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          this.props.data.map(createItem)
+	        ),
+	        !LimsConfig.isApp ? _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: { pathname: '/todoapprove', query: { type: 2, data: encodeURIComponent(JSON.stringify(this.props.data)) } } },
+	          '点我进入审核'
+	        ) : ''
+	      );
+	    }
+	  }]);
+	
+	  return CoaInfo;
+	}(_react.Component);
+	
+	exports.default = CoaInfo;
+
+/***/ },
+
+/***/ 245:
+/*!*************************************!*\
+  !*** ./src/todos/ref/CoaApprove.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 38);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by gaoxin on 2016/8/2.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var CoaApprove = function (_Component) {
+	  _inherits(CoaApprove, _Component);
+	
+	  function CoaApprove(props) {
+	    _classCallCheck(this, CoaApprove);
+	
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CoaApprove).call(this, props));
+	
+	    _this.checkedClick = function (type, e) {
+	      _this.setState({ actived: type });
+	    };
+	
+	    _this.handleChange = function (e) {
+	      _this.setState({ value: _this.refs.txtcontent.value });
+	    };
+	
+	    _this.submitForm = function (e) {
+	
+	      var _isApprove = _this.state.actived;
+	      var _contet = _this.state.value;
+	
+	      _this.props.submitForm(_isApprove, _contet);
+	    };
+	
+	    _this.state = {
+	      value: '',
+	      actived: 1
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(CoaApprove, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'todo-approve', id: 'todo-approve' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'checkboxs' },
+	          _react2.default.createElement(
+	            'span',
+	            { onClick: this.checkedClick.bind(this, 1), className: this.state.actived == 1 ? 'active' : '' },
+	            '同意'
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            { onClick: this.checkedClick.bind(this, 2), className: this.state.actived == 2 ? 'active' : '' },
+	            '拒绝'
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            { onClick: this.checkedClick.bind(this, 3), className: this.state.actived == 3 ? 'active' : '' },
+	            '废弃'
+	          )
+	        ),
+	        _react2.default.createElement('textarea', { className: 'textinput', value: this.state.value,
+	          ref: 'txtcontent', onChange: this.handleChange, placeholder: '请输入审批意见!' }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'button',
+	          { className: 'button', onClick: this.submitForm },
+	          '提交'
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return CoaApprove;
+	}(_react.Component);
+	
+	exports.default = CoaApprove;
 
 /***/ },
 
@@ -4556,6 +4566,7 @@ webpackJsonp([2,4],{
 	  //var win = window,
 	  //	IBSS = win.IBSS;
 	
+	  //config.host = 'http://10.238.18.59:8016/1.0/';
 	  config.host = 'http://10.238.18.59:8016/1.0/';
 	  config.apihost = 'http://10.238.18.59:8016/';
 	  config.isApp = 0; //1为APP模式，0为WEB模式
@@ -4712,6 +4723,857 @@ webpackJsonp([2,4],{
 	    }
 	  }
 	};
+
+/***/ },
+
+/***/ 258:
+/*!**************************************!*\
+  !*** ./~/fastclick/lib/fastclick.js ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;;(function () {
+		'use strict';
+	
+		/**
+		 * @preserve FastClick: polyfill to remove click delays on browsers with touch UIs.
+		 *
+		 * @codingstandard ftlabs-jsv2
+		 * @copyright The Financial Times Limited [All Rights Reserved]
+		 * @license MIT License (see LICENSE.txt)
+		 */
+	
+		/*jslint browser:true, node:true*/
+		/*global define, Event, Node*/
+	
+	
+		/**
+		 * Instantiate fast-clicking listeners on the specified layer.
+		 *
+		 * @constructor
+		 * @param {Element} layer The layer to listen on
+		 * @param {Object} [options={}] The options to override the defaults
+		 */
+		function FastClick(layer, options) {
+			var oldOnClick;
+	
+			options = options || {};
+	
+			/**
+			 * Whether a click is currently being tracked.
+			 *
+			 * @type boolean
+			 */
+			this.trackingClick = false;
+	
+	
+			/**
+			 * Timestamp for when click tracking started.
+			 *
+			 * @type number
+			 */
+			this.trackingClickStart = 0;
+	
+	
+			/**
+			 * The element being tracked for a click.
+			 *
+			 * @type EventTarget
+			 */
+			this.targetElement = null;
+	
+	
+			/**
+			 * X-coordinate of touch start event.
+			 *
+			 * @type number
+			 */
+			this.touchStartX = 0;
+	
+	
+			/**
+			 * Y-coordinate of touch start event.
+			 *
+			 * @type number
+			 */
+			this.touchStartY = 0;
+	
+	
+			/**
+			 * ID of the last touch, retrieved from Touch.identifier.
+			 *
+			 * @type number
+			 */
+			this.lastTouchIdentifier = 0;
+	
+	
+			/**
+			 * Touchmove boundary, beyond which a click will be cancelled.
+			 *
+			 * @type number
+			 */
+			this.touchBoundary = options.touchBoundary || 10;
+	
+	
+			/**
+			 * The FastClick layer.
+			 *
+			 * @type Element
+			 */
+			this.layer = layer;
+	
+			/**
+			 * The minimum time between tap(touchstart and touchend) events
+			 *
+			 * @type number
+			 */
+			this.tapDelay = options.tapDelay || 200;
+	
+			/**
+			 * The maximum time for a tap
+			 *
+			 * @type number
+			 */
+			this.tapTimeout = options.tapTimeout || 700;
+	
+			if (FastClick.notNeeded(layer)) {
+				return;
+			}
+	
+			// Some old versions of Android don't have Function.prototype.bind
+			function bind(method, context) {
+				return function() { return method.apply(context, arguments); };
+			}
+	
+	
+			var methods = ['onMouse', 'onClick', 'onTouchStart', 'onTouchMove', 'onTouchEnd', 'onTouchCancel'];
+			var context = this;
+			for (var i = 0, l = methods.length; i < l; i++) {
+				context[methods[i]] = bind(context[methods[i]], context);
+			}
+	
+			// Set up event handlers as required
+			if (deviceIsAndroid) {
+				layer.addEventListener('mouseover', this.onMouse, true);
+				layer.addEventListener('mousedown', this.onMouse, true);
+				layer.addEventListener('mouseup', this.onMouse, true);
+			}
+	
+			layer.addEventListener('click', this.onClick, true);
+			layer.addEventListener('touchstart', this.onTouchStart, false);
+			layer.addEventListener('touchmove', this.onTouchMove, false);
+			layer.addEventListener('touchend', this.onTouchEnd, false);
+			layer.addEventListener('touchcancel', this.onTouchCancel, false);
+	
+			// Hack is required for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
+			// which is how FastClick normally stops click events bubbling to callbacks registered on the FastClick
+			// layer when they are cancelled.
+			if (!Event.prototype.stopImmediatePropagation) {
+				layer.removeEventListener = function(type, callback, capture) {
+					var rmv = Node.prototype.removeEventListener;
+					if (type === 'click') {
+						rmv.call(layer, type, callback.hijacked || callback, capture);
+					} else {
+						rmv.call(layer, type, callback, capture);
+					}
+				};
+	
+				layer.addEventListener = function(type, callback, capture) {
+					var adv = Node.prototype.addEventListener;
+					if (type === 'click') {
+						adv.call(layer, type, callback.hijacked || (callback.hijacked = function(event) {
+							if (!event.propagationStopped) {
+								callback(event);
+							}
+						}), capture);
+					} else {
+						adv.call(layer, type, callback, capture);
+					}
+				};
+			}
+	
+			// If a handler is already declared in the element's onclick attribute, it will be fired before
+			// FastClick's onClick handler. Fix this by pulling out the user-defined handler function and
+			// adding it as listener.
+			if (typeof layer.onclick === 'function') {
+	
+				// Android browser on at least 3.2 requires a new reference to the function in layer.onclick
+				// - the old one won't work if passed to addEventListener directly.
+				oldOnClick = layer.onclick;
+				layer.addEventListener('click', function(event) {
+					oldOnClick(event);
+				}, false);
+				layer.onclick = null;
+			}
+		}
+	
+		/**
+		* Windows Phone 8.1 fakes user agent string to look like Android and iPhone.
+		*
+		* @type boolean
+		*/
+		var deviceIsWindowsPhone = navigator.userAgent.indexOf("Windows Phone") >= 0;
+	
+		/**
+		 * Android requires exceptions.
+		 *
+		 * @type boolean
+		 */
+		var deviceIsAndroid = navigator.userAgent.indexOf('Android') > 0 && !deviceIsWindowsPhone;
+	
+	
+		/**
+		 * iOS requires exceptions.
+		 *
+		 * @type boolean
+		 */
+		var deviceIsIOS = /iP(ad|hone|od)/.test(navigator.userAgent) && !deviceIsWindowsPhone;
+	
+	
+		/**
+		 * iOS 4 requires an exception for select elements.
+		 *
+		 * @type boolean
+		 */
+		var deviceIsIOS4 = deviceIsIOS && (/OS 4_\d(_\d)?/).test(navigator.userAgent);
+	
+	
+		/**
+		 * iOS 6.0-7.* requires the target element to be manually derived
+		 *
+		 * @type boolean
+		 */
+		var deviceIsIOSWithBadTarget = deviceIsIOS && (/OS [6-7]_\d/).test(navigator.userAgent);
+	
+		/**
+		 * BlackBerry requires exceptions.
+		 *
+		 * @type boolean
+		 */
+		var deviceIsBlackBerry10 = navigator.userAgent.indexOf('BB10') > 0;
+	
+		/**
+		 * Determine whether a given element requires a native click.
+		 *
+		 * @param {EventTarget|Element} target Target DOM element
+		 * @returns {boolean} Returns true if the element needs a native click
+		 */
+		FastClick.prototype.needsClick = function(target) {
+			switch (target.nodeName.toLowerCase()) {
+	
+			// Don't send a synthetic click to disabled inputs (issue #62)
+			case 'button':
+			case 'select':
+			case 'textarea':
+				if (target.disabled) {
+					return true;
+				}
+	
+				break;
+			case 'input':
+	
+				// File inputs need real clicks on iOS 6 due to a browser bug (issue #68)
+				if ((deviceIsIOS && target.type === 'file') || target.disabled) {
+					return true;
+				}
+	
+				break;
+			case 'label':
+			case 'iframe': // iOS8 homescreen apps can prevent events bubbling into frames
+			case 'video':
+				return true;
+			}
+	
+			return (/\bneedsclick\b/).test(target.className);
+		};
+	
+	
+		/**
+		 * Determine whether a given element requires a call to focus to simulate click into element.
+		 *
+		 * @param {EventTarget|Element} target Target DOM element
+		 * @returns {boolean} Returns true if the element requires a call to focus to simulate native click.
+		 */
+		FastClick.prototype.needsFocus = function(target) {
+			switch (target.nodeName.toLowerCase()) {
+			case 'textarea':
+				return true;
+			case 'select':
+				return !deviceIsAndroid;
+			case 'input':
+				switch (target.type) {
+				case 'button':
+				case 'checkbox':
+				case 'file':
+				case 'image':
+				case 'radio':
+				case 'submit':
+					return false;
+				}
+	
+				// No point in attempting to focus disabled inputs
+				return !target.disabled && !target.readOnly;
+			default:
+				return (/\bneedsfocus\b/).test(target.className);
+			}
+		};
+	
+	
+		/**
+		 * Send a click event to the specified element.
+		 *
+		 * @param {EventTarget|Element} targetElement
+		 * @param {Event} event
+		 */
+		FastClick.prototype.sendClick = function(targetElement, event) {
+			var clickEvent, touch;
+	
+			// On some Android devices activeElement needs to be blurred otherwise the synthetic click will have no effect (#24)
+			if (document.activeElement && document.activeElement !== targetElement) {
+				document.activeElement.blur();
+			}
+	
+			touch = event.changedTouches[0];
+	
+			// Synthesise a click event, with an extra attribute so it can be tracked
+			clickEvent = document.createEvent('MouseEvents');
+			clickEvent.initMouseEvent(this.determineEventType(targetElement), true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, false, false, false, false, 0, null);
+			clickEvent.forwardedTouchEvent = true;
+			targetElement.dispatchEvent(clickEvent);
+		};
+	
+		FastClick.prototype.determineEventType = function(targetElement) {
+	
+			//Issue #159: Android Chrome Select Box does not open with a synthetic click event
+			if (deviceIsAndroid && targetElement.tagName.toLowerCase() === 'select') {
+				return 'mousedown';
+			}
+	
+			return 'click';
+		};
+	
+	
+		/**
+		 * @param {EventTarget|Element} targetElement
+		 */
+		FastClick.prototype.focus = function(targetElement) {
+			var length;
+	
+			// Issue #160: on iOS 7, some input elements (e.g. date datetime month) throw a vague TypeError on setSelectionRange. These elements don't have an integer value for the selectionStart and selectionEnd properties, but unfortunately that can't be used for detection because accessing the properties also throws a TypeError. Just check the type instead. Filed as Apple bug #15122724.
+			if (deviceIsIOS && targetElement.setSelectionRange && targetElement.type.indexOf('date') !== 0 && targetElement.type !== 'time' && targetElement.type !== 'month') {
+				length = targetElement.value.length;
+				targetElement.setSelectionRange(length, length);
+			} else {
+				targetElement.focus();
+			}
+		};
+	
+	
+		/**
+		 * Check whether the given target element is a child of a scrollable layer and if so, set a flag on it.
+		 *
+		 * @param {EventTarget|Element} targetElement
+		 */
+		FastClick.prototype.updateScrollParent = function(targetElement) {
+			var scrollParent, parentElement;
+	
+			scrollParent = targetElement.fastClickScrollParent;
+	
+			// Attempt to discover whether the target element is contained within a scrollable layer. Re-check if the
+			// target element was moved to another parent.
+			if (!scrollParent || !scrollParent.contains(targetElement)) {
+				parentElement = targetElement;
+				do {
+					if (parentElement.scrollHeight > parentElement.offsetHeight) {
+						scrollParent = parentElement;
+						targetElement.fastClickScrollParent = parentElement;
+						break;
+					}
+	
+					parentElement = parentElement.parentElement;
+				} while (parentElement);
+			}
+	
+			// Always update the scroll top tracker if possible.
+			if (scrollParent) {
+				scrollParent.fastClickLastScrollTop = scrollParent.scrollTop;
+			}
+		};
+	
+	
+		/**
+		 * @param {EventTarget} targetElement
+		 * @returns {Element|EventTarget}
+		 */
+		FastClick.prototype.getTargetElementFromEventTarget = function(eventTarget) {
+	
+			// On some older browsers (notably Safari on iOS 4.1 - see issue #56) the event target may be a text node.
+			if (eventTarget.nodeType === Node.TEXT_NODE) {
+				return eventTarget.parentNode;
+			}
+	
+			return eventTarget;
+		};
+	
+	
+		/**
+		 * On touch start, record the position and scroll offset.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onTouchStart = function(event) {
+			var targetElement, touch, selection;
+	
+			// Ignore multiple touches, otherwise pinch-to-zoom is prevented if both fingers are on the FastClick element (issue #111).
+			if (event.targetTouches.length > 1) {
+				return true;
+			}
+	
+			targetElement = this.getTargetElementFromEventTarget(event.target);
+			touch = event.targetTouches[0];
+	
+			if (deviceIsIOS) {
+	
+				// Only trusted events will deselect text on iOS (issue #49)
+				selection = window.getSelection();
+				if (selection.rangeCount && !selection.isCollapsed) {
+					return true;
+				}
+	
+				if (!deviceIsIOS4) {
+	
+					// Weird things happen on iOS when an alert or confirm dialog is opened from a click event callback (issue #23):
+					// when the user next taps anywhere else on the page, new touchstart and touchend events are dispatched
+					// with the same identifier as the touch event that previously triggered the click that triggered the alert.
+					// Sadly, there is an issue on iOS 4 that causes some normal touch events to have the same identifier as an
+					// immediately preceeding touch event (issue #52), so this fix is unavailable on that platform.
+					// Issue 120: touch.identifier is 0 when Chrome dev tools 'Emulate touch events' is set with an iOS device UA string,
+					// which causes all touch events to be ignored. As this block only applies to iOS, and iOS identifiers are always long,
+					// random integers, it's safe to to continue if the identifier is 0 here.
+					if (touch.identifier && touch.identifier === this.lastTouchIdentifier) {
+						event.preventDefault();
+						return false;
+					}
+	
+					this.lastTouchIdentifier = touch.identifier;
+	
+					// If the target element is a child of a scrollable layer (using -webkit-overflow-scrolling: touch) and:
+					// 1) the user does a fling scroll on the scrollable layer
+					// 2) the user stops the fling scroll with another tap
+					// then the event.target of the last 'touchend' event will be the element that was under the user's finger
+					// when the fling scroll was started, causing FastClick to send a click event to that layer - unless a check
+					// is made to ensure that a parent layer was not scrolled before sending a synthetic click (issue #42).
+					this.updateScrollParent(targetElement);
+				}
+			}
+	
+			this.trackingClick = true;
+			this.trackingClickStart = event.timeStamp;
+			this.targetElement = targetElement;
+	
+			this.touchStartX = touch.pageX;
+			this.touchStartY = touch.pageY;
+	
+			// Prevent phantom clicks on fast double-tap (issue #36)
+			if ((event.timeStamp - this.lastClickTime) < this.tapDelay) {
+				event.preventDefault();
+			}
+	
+			return true;
+		};
+	
+	
+		/**
+		 * Based on a touchmove event object, check whether the touch has moved past a boundary since it started.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.touchHasMoved = function(event) {
+			var touch = event.changedTouches[0], boundary = this.touchBoundary;
+	
+			if (Math.abs(touch.pageX - this.touchStartX) > boundary || Math.abs(touch.pageY - this.touchStartY) > boundary) {
+				return true;
+			}
+	
+			return false;
+		};
+	
+	
+		/**
+		 * Update the last position.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onTouchMove = function(event) {
+			if (!this.trackingClick) {
+				return true;
+			}
+	
+			// If the touch has moved, cancel the click tracking
+			if (this.targetElement !== this.getTargetElementFromEventTarget(event.target) || this.touchHasMoved(event)) {
+				this.trackingClick = false;
+				this.targetElement = null;
+			}
+	
+			return true;
+		};
+	
+	
+		/**
+		 * Attempt to find the labelled control for the given label element.
+		 *
+		 * @param {EventTarget|HTMLLabelElement} labelElement
+		 * @returns {Element|null}
+		 */
+		FastClick.prototype.findControl = function(labelElement) {
+	
+			// Fast path for newer browsers supporting the HTML5 control attribute
+			if (labelElement.control !== undefined) {
+				return labelElement.control;
+			}
+	
+			// All browsers under test that support touch events also support the HTML5 htmlFor attribute
+			if (labelElement.htmlFor) {
+				return document.getElementById(labelElement.htmlFor);
+			}
+	
+			// If no for attribute exists, attempt to retrieve the first labellable descendant element
+			// the list of which is defined here: http://www.w3.org/TR/html5/forms.html#category-label
+			return labelElement.querySelector('button, input:not([type=hidden]), keygen, meter, output, progress, select, textarea');
+		};
+	
+	
+		/**
+		 * On touch end, determine whether to send a click event at once.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onTouchEnd = function(event) {
+			var forElement, trackingClickStart, targetTagName, scrollParent, touch, targetElement = this.targetElement;
+	
+			if (!this.trackingClick) {
+				return true;
+			}
+	
+			// Prevent phantom clicks on fast double-tap (issue #36)
+			if ((event.timeStamp - this.lastClickTime) < this.tapDelay) {
+				this.cancelNextClick = true;
+				return true;
+			}
+	
+			if ((event.timeStamp - this.trackingClickStart) > this.tapTimeout) {
+				return true;
+			}
+	
+			// Reset to prevent wrong click cancel on input (issue #156).
+			this.cancelNextClick = false;
+	
+			this.lastClickTime = event.timeStamp;
+	
+			trackingClickStart = this.trackingClickStart;
+			this.trackingClick = false;
+			this.trackingClickStart = 0;
+	
+			// On some iOS devices, the targetElement supplied with the event is invalid if the layer
+			// is performing a transition or scroll, and has to be re-detected manually. Note that
+			// for this to function correctly, it must be called *after* the event target is checked!
+			// See issue #57; also filed as rdar://13048589 .
+			if (deviceIsIOSWithBadTarget) {
+				touch = event.changedTouches[0];
+	
+				// In certain cases arguments of elementFromPoint can be negative, so prevent setting targetElement to null
+				targetElement = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset) || targetElement;
+				targetElement.fastClickScrollParent = this.targetElement.fastClickScrollParent;
+			}
+	
+			targetTagName = targetElement.tagName.toLowerCase();
+			if (targetTagName === 'label') {
+				forElement = this.findControl(targetElement);
+				if (forElement) {
+					this.focus(targetElement);
+					if (deviceIsAndroid) {
+						return false;
+					}
+	
+					targetElement = forElement;
+				}
+			} else if (this.needsFocus(targetElement)) {
+	
+				// Case 1: If the touch started a while ago (best guess is 100ms based on tests for issue #36) then focus will be triggered anyway. Return early and unset the target element reference so that the subsequent click will be allowed through.
+				// Case 2: Without this exception for input elements tapped when the document is contained in an iframe, then any inputted text won't be visible even though the value attribute is updated as the user types (issue #37).
+				if ((event.timeStamp - trackingClickStart) > 100 || (deviceIsIOS && window.top !== window && targetTagName === 'input')) {
+					this.targetElement = null;
+					return false;
+				}
+	
+				this.focus(targetElement);
+				this.sendClick(targetElement, event);
+	
+				// Select elements need the event to go through on iOS 4, otherwise the selector menu won't open.
+				// Also this breaks opening selects when VoiceOver is active on iOS6, iOS7 (and possibly others)
+				if (!deviceIsIOS || targetTagName !== 'select') {
+					this.targetElement = null;
+					event.preventDefault();
+				}
+	
+				return false;
+			}
+	
+			if (deviceIsIOS && !deviceIsIOS4) {
+	
+				// Don't send a synthetic click event if the target element is contained within a parent layer that was scrolled
+				// and this tap is being used to stop the scrolling (usually initiated by a fling - issue #42).
+				scrollParent = targetElement.fastClickScrollParent;
+				if (scrollParent && scrollParent.fastClickLastScrollTop !== scrollParent.scrollTop) {
+					return true;
+				}
+			}
+	
+			// Prevent the actual click from going though - unless the target node is marked as requiring
+			// real clicks or if it is in the whitelist in which case only non-programmatic clicks are permitted.
+			if (!this.needsClick(targetElement)) {
+				event.preventDefault();
+				this.sendClick(targetElement, event);
+			}
+	
+			return false;
+		};
+	
+	
+		/**
+		 * On touch cancel, stop tracking the click.
+		 *
+		 * @returns {void}
+		 */
+		FastClick.prototype.onTouchCancel = function() {
+			this.trackingClick = false;
+			this.targetElement = null;
+		};
+	
+	
+		/**
+		 * Determine mouse events which should be permitted.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onMouse = function(event) {
+	
+			// If a target element was never set (because a touch event was never fired) allow the event
+			if (!this.targetElement) {
+				return true;
+			}
+	
+			if (event.forwardedTouchEvent) {
+				return true;
+			}
+	
+			// Programmatically generated events targeting a specific element should be permitted
+			if (!event.cancelable) {
+				return true;
+			}
+	
+			// Derive and check the target element to see whether the mouse event needs to be permitted;
+			// unless explicitly enabled, prevent non-touch click events from triggering actions,
+			// to prevent ghost/doubleclicks.
+			if (!this.needsClick(this.targetElement) || this.cancelNextClick) {
+	
+				// Prevent any user-added listeners declared on FastClick element from being fired.
+				if (event.stopImmediatePropagation) {
+					event.stopImmediatePropagation();
+				} else {
+	
+					// Part of the hack for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
+					event.propagationStopped = true;
+				}
+	
+				// Cancel the event
+				event.stopPropagation();
+				event.preventDefault();
+	
+				return false;
+			}
+	
+			// If the mouse event is permitted, return true for the action to go through.
+			return true;
+		};
+	
+	
+		/**
+		 * On actual clicks, determine whether this is a touch-generated click, a click action occurring
+		 * naturally after a delay after a touch (which needs to be cancelled to avoid duplication), or
+		 * an actual click which should be permitted.
+		 *
+		 * @param {Event} event
+		 * @returns {boolean}
+		 */
+		FastClick.prototype.onClick = function(event) {
+			var permitted;
+	
+			// It's possible for another FastClick-like library delivered with third-party code to fire a click event before FastClick does (issue #44). In that case, set the click-tracking flag back to false and return early. This will cause onTouchEnd to return early.
+			if (this.trackingClick) {
+				this.targetElement = null;
+				this.trackingClick = false;
+				return true;
+			}
+	
+			// Very odd behaviour on iOS (issue #18): if a submit element is present inside a form and the user hits enter in the iOS simulator or clicks the Go button on the pop-up OS keyboard the a kind of 'fake' click event will be triggered with the submit-type input element as the target.
+			if (event.target.type === 'submit' && event.detail === 0) {
+				return true;
+			}
+	
+			permitted = this.onMouse(event);
+	
+			// Only unset targetElement if the click is not permitted. This will ensure that the check for !targetElement in onMouse fails and the browser's click doesn't go through.
+			if (!permitted) {
+				this.targetElement = null;
+			}
+	
+			// If clicks are permitted, return true for the action to go through.
+			return permitted;
+		};
+	
+	
+		/**
+		 * Remove all FastClick's event listeners.
+		 *
+		 * @returns {void}
+		 */
+		FastClick.prototype.destroy = function() {
+			var layer = this.layer;
+	
+			if (deviceIsAndroid) {
+				layer.removeEventListener('mouseover', this.onMouse, true);
+				layer.removeEventListener('mousedown', this.onMouse, true);
+				layer.removeEventListener('mouseup', this.onMouse, true);
+			}
+	
+			layer.removeEventListener('click', this.onClick, true);
+			layer.removeEventListener('touchstart', this.onTouchStart, false);
+			layer.removeEventListener('touchmove', this.onTouchMove, false);
+			layer.removeEventListener('touchend', this.onTouchEnd, false);
+			layer.removeEventListener('touchcancel', this.onTouchCancel, false);
+		};
+	
+	
+		/**
+		 * Check whether FastClick is needed.
+		 *
+		 * @param {Element} layer The layer to listen on
+		 */
+		FastClick.notNeeded = function(layer) {
+			var metaViewport;
+			var chromeVersion;
+			var blackberryVersion;
+			var firefoxVersion;
+	
+			// Devices that don't support touch don't need FastClick
+			if (typeof window.ontouchstart === 'undefined') {
+				return true;
+			}
+	
+			// Chrome version - zero for other browsers
+			chromeVersion = +(/Chrome\/([0-9]+)/.exec(navigator.userAgent) || [,0])[1];
+	
+			if (chromeVersion) {
+	
+				if (deviceIsAndroid) {
+					metaViewport = document.querySelector('meta[name=viewport]');
+	
+					if (metaViewport) {
+						// Chrome on Android with user-scalable="no" doesn't need FastClick (issue #89)
+						if (metaViewport.content.indexOf('user-scalable=no') !== -1) {
+							return true;
+						}
+						// Chrome 32 and above with width=device-width or less don't need FastClick
+						if (chromeVersion > 31 && document.documentElement.scrollWidth <= window.outerWidth) {
+							return true;
+						}
+					}
+	
+				// Chrome desktop doesn't need FastClick (issue #15)
+				} else {
+					return true;
+				}
+			}
+	
+			if (deviceIsBlackBerry10) {
+				blackberryVersion = navigator.userAgent.match(/Version\/([0-9]*)\.([0-9]*)/);
+	
+				// BlackBerry 10.3+ does not require Fastclick library.
+				// https://github.com/ftlabs/fastclick/issues/251
+				if (blackberryVersion[1] >= 10 && blackberryVersion[2] >= 3) {
+					metaViewport = document.querySelector('meta[name=viewport]');
+	
+					if (metaViewport) {
+						// user-scalable=no eliminates click delay.
+						if (metaViewport.content.indexOf('user-scalable=no') !== -1) {
+							return true;
+						}
+						// width=device-width (or less than device-width) eliminates click delay.
+						if (document.documentElement.scrollWidth <= window.outerWidth) {
+							return true;
+						}
+					}
+				}
+			}
+	
+			// IE10 with -ms-touch-action: none or manipulation, which disables double-tap-to-zoom (issue #97)
+			if (layer.style.msTouchAction === 'none' || layer.style.touchAction === 'manipulation') {
+				return true;
+			}
+	
+			// Firefox version - zero for other browsers
+			firefoxVersion = +(/Firefox\/([0-9]+)/.exec(navigator.userAgent) || [,0])[1];
+	
+			if (firefoxVersion >= 27) {
+				// Firefox 27+ does not have tap delay if the content is not zoomable - https://bugzilla.mozilla.org/show_bug.cgi?id=922896
+	
+				metaViewport = document.querySelector('meta[name=viewport]');
+				if (metaViewport && (metaViewport.content.indexOf('user-scalable=no') !== -1 || document.documentElement.scrollWidth <= window.outerWidth)) {
+					return true;
+				}
+			}
+	
+			// IE11: prefixed -ms-touch-action is no longer supported and it's recomended to use non-prefixed version
+			// http://msdn.microsoft.com/en-us/library/windows/apps/Hh767313.aspx
+			if (layer.style.touchAction === 'none' || layer.style.touchAction === 'manipulation') {
+				return true;
+			}
+	
+			return false;
+		};
+	
+	
+		/**
+		 * Factory method for creating a FastClick object
+		 *
+		 * @param {Element} layer The layer to listen on
+		 * @param {Object} [options={}] The options to override the defaults
+		 */
+		FastClick.attach = function(layer, options) {
+			return new FastClick(layer, options);
+		};
+	
+	
+		if (true) {
+	
+			// AMD. Register as an anonymous module.
+			!(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
+				return FastClick;
+			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else if (typeof module !== 'undefined' && module.exports) {
+			module.exports = FastClick.attach;
+			module.exports.FastClick = FastClick;
+		} else {
+			window.FastClick = FastClick;
+		}
+	}());
+
 
 /***/ }
 

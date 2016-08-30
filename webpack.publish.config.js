@@ -54,7 +54,7 @@ var config={
 
         //app:path.resolve(__dirname,'src/app.js'),
         //当你的应用依赖其他库尤其是像 React JS 这种大型库的时候，你需要考虑把这些依赖分离出去，这样就能够让用户在你更新应用之后不需要再次下载第三方文件。当满足下面几个情况的时候你就需要这么做了：
-        'resources/vendor': ['./src/assets/js/libs/zepto.js', './src/assets/js/libs/touch.js', './src/assets/js/libs/iscroll-lite.js',  'react', 'react-dom', 'react-router'],
+        'resources/vendor': ['./src/assets/js/libs/zepto.js', './src/assets/js/libs/touch.js','react', 'react-dom', 'react-router'],
         'resources/result/result':'./src/result/result.js',
         'resources/message/message':'./src/message/message.js',
         'resources/todos/todos':'./src/todos/todos.js',

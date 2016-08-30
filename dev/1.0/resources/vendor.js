@@ -102,9 +102,9 @@
   \******************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(/*! ./src/assets/js/libs/zepto.js */258);
-	__webpack_require__(/*! ./src/assets/js/libs/touch.js */259);
-	__webpack_require__(/*! ./src/assets/js/libs/iscroll-lite.js */260);
+	__webpack_require__(/*! ./src/assets/js/libs/zepto.js */259);
+	__webpack_require__(/*! ./src/assets/js/libs/touch.js */260);
+	__webpack_require__(/*! ./src/assets/js/libs/iscroll-lite.js */261);
 	__webpack_require__(/*! react */1);
 	__webpack_require__(/*! react-dom */38);
 	module.exports = __webpack_require__(/*! react-router */173);
@@ -26603,7 +26603,8 @@
 /* 255 */,
 /* 256 */,
 /* 257 */,
-/* 258 */
+/* 258 */,
+/* 259 */
 /*!*************************************!*\
   !*** ./src/assets/js/libs/zepto.js ***!
   \*************************************/
@@ -28199,7 +28200,7 @@
 
 
 /***/ },
-/* 259 */
+/* 260 */
 /*!*************************************!*\
   !*** ./src/assets/js/libs/touch.js ***!
   \*************************************/
@@ -28372,7 +28373,7 @@
 	})(Zepto)
 
 /***/ },
-/* 260 */
+/* 261 */
 /*!********************************************!*\
   !*** ./src/assets/js/libs/iscroll-lite.js ***!
   \********************************************/

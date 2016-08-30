@@ -32,8 +32,8 @@ export default class AnalysisInfo extends Component {
           <ul>
             { this.props.data.map(createItem)}
           </ul>
+          { !LimsConfig.isApp?<Link to={{ pathname: '/todoapprove', query:{type:1,data:encodeURIComponent(JSON.stringify(this.props.data))}}}>点我进入审核</Link>:'' }
 
-          <Link to={{ pathname: '/todoapprove', query:{type:1,data:encodeURIComponent(JSON.stringify(this.props.data))}}}>点我进入审核</Link>
         </div>
 
     );

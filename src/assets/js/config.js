@@ -3,6 +3,7 @@ let limsRegister = require('assets/common/limsapi').limsRegister();
   //var win = window,
   //	IBSS = win.IBSS;
 
+  //config.host = 'http://10.238.18.59:8016/1.0/';
   config.host = 'http://10.238.18.59:8016/1.0/';
   config.apihost = 'http://10.238.18.59:8016/';
   config.isApp = 1; //1为APP模式，0为WEB模式
