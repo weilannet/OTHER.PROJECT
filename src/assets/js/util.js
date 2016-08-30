@@ -1,56 +1,56 @@
-//(function() {
-//
-//    //如果页面上存在id为mo_refresh_mask的元素  则下边的代码就不执行了
-//    if (document.getElementById('mo_refresh_mask')) {
-//        return;
-//    }
-//
-//    //动态创建DOM节点元素  （刷新组件的页面结构）
-//    var oImgRefresh = createEle('div', {
-//        'id': 'mo_refresh_mask_flush'
-//    });
-//    var mask = createEle('div', {
-//        'id': 'mo_refresh_mask'
-//    });
-//
-//    /*
-//     *  动态创建DOM节点元素 并赋值id 图片路径
-//     *  @param tagName (增加标签类型)
-//     *  @param attr (增加id或src及属性)
-//     *
-//     */
-//    function createEle(tagName, attrs) {
-//        var temp = document.createElement(tagName);
-//        for (var key in attrs) {
-//            if (attrs.hasOwnProperty(key)) {
-//                temp.setAttribute(key, attrs[key]);
-//            }
-//        }
-//        return temp;
-//    }
-//
-//    //插入新的节点
-//    mask.appendChild(oImgRefresh);
-//
-//    //将新建的DOM结构放在body下
-//    document.body.appendChild(mask);
-//
-//    //私有化 暴露接口
-//    window.refresh = {
-//
-//        //显示刷新图片 和遮罩层
-//        show: function() {
-//            mask.style.display = "block";
-//            oImgRefresh.style.display = "block";
-//        },
-//
-//        //隐藏刷新图片和遮罩层
-//        hide: function() {
-//            mask.style.display = "none";
-//            oImgRefresh.style.display = "none";
-//        }
-//    }
-//})();;
+(function() {
+
+    //如果页面上存在id为mo_refresh_mask的元素  则下边的代码就不执行了
+    if (document.getElementById('mo_refresh_mask')) {
+        return;
+    }
+
+    //动态创建DOM节点元素  （刷新组件的页面结构）
+    var oImgRefresh = createEle('div', {
+        'id': 'mo_refresh_mask_flush'
+    });
+    var mask = createEle('div', {
+        'id': 'mo_refresh_mask'
+    });
+
+    /*
+     *  动态创建DOM节点元素 并赋值id 图片路径
+     *  @param tagName (增加标签类型)
+     *  @param attr (增加id或src及属性)
+     *
+     */
+    function createEle(tagName, attrs) {
+        var temp = document.createElement(tagName);
+        for (var key in attrs) {
+            if (attrs.hasOwnProperty(key)) {
+                temp.setAttribute(key, attrs[key]);
+            }
+        }
+        return temp;
+    }
+
+    //插入新的节点
+    mask.appendChild(oImgRefresh);
+
+    //将新建的DOM结构放在body下
+    document.body.appendChild(mask);
+
+    //私有化 暴露接口
+    window.refresh = {
+
+        //显示刷新图片 和遮罩层
+        show: function() {
+            mask.style.display = "block";
+            oImgRefresh.style.display = "block";
+        },
+
+        //隐藏刷新图片和遮罩层
+        hide: function() {
+            mask.style.display = "none";
+            oImgRefresh.style.display = "none";
+        }
+    }
+})();;
 (function($) {
 
     //
@@ -80,34 +80,28 @@
     var win = window,
         TIME_OUT = 300000; //请求超时时间
 
-    /**
-     * @type {Object}
-     * 全局命名空间    
-     */
-    win.IBSS = win.IBSS || {};
-
-    IBSS.role = null; //当前用户信息
-    IBSS.USERS = {}; //客服 id->名字 map
-    IBSS.position = {
-        'latitude': '',
-        'longitude': '',
-        'message': '',
-        'city': ''
-    }; //位置信息
-
-    IBSS.ASYNCCSS = true; //是否异步载入css文件
-    IBSS.API_PATH = '';
 
     var $body = $('body');
     /**
      *@description工具类对象
      */
     var util = {
+        clone: function clone(obj){
+            function Fn(){}
+            Fn.prototype = obj;
+            var o = new Fn();
+            for(var a in o){
+                if(typeof o[a] == "object") {
+                    o[a] = clone(o[a]);
+                }
+            }
+            return o;
+        },
 
         /*
          *  计算日期
          *  @param AddDayCount {number}
-         *  根据输入的 number 计算返回的日期  
+         *  根据输入的 number 计算返回的日期
          *  如 -1 返回昨天的日期
          */
         getDateStr: function(AddDayCount) {
@@ -119,8 +113,14 @@
             var d = dd.getDate();
             return y + "-" + (m < 10 ? '0' + m : m) + "-" + (d < 10 ? '0' + d : d);
         },
+        showLoading:function(){
+            window.refresh && window.refresh.show();
+        },
+        hidLoading:function(){
+            window.refresh && window.refresh.hide();
+        },
         /**
-         * @desc 显示toast 
+         * @desc 显示toast
          *
          */
         showToast: function(msg) {
@@ -224,17 +224,18 @@
 
             if (opt.url.indexOf('~') == 0) {
                 opt.url = opt.url.slice(1);
-            } else {
-                opt.url = IBSS.API_PATH + opt.url;
             }
+            //else {
+            //    opt.url = IBSS.API_PATH + opt.url;
+            //}
 
             var _startTime = Date.now();
 
             opt.beforeSend = function() {
                 window.refresh && window.refresh.show();
-                if (mask == true) {
-                    util.showGlobalLoading();
-                }
+                //if (mask == true) {
+                //    util.showGlobalLoading();
+                //}
                 opt.button.el && opt.button.el.attr('disabled', 'disabled').text(opt.button.text);
                 return beforeSend && beforeSend.apply(this, arguments);
             };
@@ -244,15 +245,16 @@
                     location.href = "/login?from=" + location.pathname;
                     return;
                 }
-                if (!data.success) {
+
+                if (!data.msgcode) {
                     //截取20位
-                    if (data.message && data.message.length > 20) {
-                        data.message = data.message.slice(0, 20);
+                    if (data.msg && data.msg.length > 20) {
+                        data.msg = data.msg.slice(0, 20);
                     } else {
-                        data.message = data.message + ',请尝试刷新！';
+                        data.msg = data.msg + ',请尝试刷新！';
                     }
 
-                    that.showToast('请求错误  ' + data.message);
+                    that.showToast('请求错误  ' + data.msg);
                 }
                 return success && success.apply(this, arguments);
             };
@@ -274,111 +276,15 @@
                     time: time
                 }, true);
 
-                if (mask == true) {
-                    util.hideGlobalLoading();
-                }
+                //if (mask == true) {
+                //    util.hideGlobalLoading();
+                //}
                 opt.button.el && opt.button.el.removeAttr('disabled').text(btntext);
                 return complete && complete.apply(this, arguments);
             }
             return $.ajax(opt);
-        },
-        /**
-         *
-         * @获取当前位置的经纬度
-         * @
-         * @
-         */
-        getLocation: function(callback) {
-            var that = this;
-            IBSS.position = {
-                'latitude': '',
-                'longitude': '',
-                'message': '',
-                'city': ''
-            };
-
-            if (navigator.geolocation) {
-
-                navigator.geolocation.getCurrentPosition(function(position) {
-
-                    IBSS.position['message'] = '';
-                    IBSS.position.latitude = position.coords.latitude;
-                    IBSS.position.longitude = position.coords.longitude;
-                    that.getCity();
-                    callback && callback();
-                    return;
-                }, function(error) {
-
-                    switch (error.code) {
-                        case error.PERMISSION_DENIED:
-                            IBSS.position['message'] = "用户拒绝对获取地理位置的请求。"
-                            break;
-                        case error.POSITION_UNAVAILABLE:
-                            IBSS.position['message'] = "位置信息是不可用的。"
-                            break;
-                        case error.TIMEOUT:
-                            IBSS.position['message'] = "请求用户地理位置超时。"
-                            break;
-                        case error.UNKNOWN_ERROR:
-                            IBSS.position['message'] = "未知错误。"
-                            break;
-                    }
-                    return;
-                    //that.showToast(IBSS.position['message']);
-                });
-                var g_sUA = navigator.userAgent.toLowerCase();
-                var android = g_sUA.match(/(android)\s+([\d.]+)/);
-
-                if (android && parseFloat(android[2]) < 4.3) {
-                    IBSS.position['message'] = '该系统不支持获取地理位置。';
-                    // that.showToast(IBSS.position['message']);
-                    callback && callback();
-                }
-                /* if(!IBSS.position['message']){
-                     IBSS.position['message'] = '该系统不支持获取地理位置。';
-                    // that.showToast(IBSS.position['message']);
-                    callback&&callback();
-                 }*/
-            } else {
-
-                IBSS.position['message'] = '该浏览器不支持获取地理位置。';
-                //that.showToast(IBSS.position['message']);
-                callback && callback();
-            }
-        },
-        /**
-         *
-         * @根据经纬度获取当前城市
-         * @
-         * @
-         */
-        getCity: function() {
-            var that = this;
-
-            //初始化地图
-            AMap.service('AMap.Geocoder', function() { //回调函数
-                //实例化Geocoder
-                var geocoder = new AMap.Geocoder({
-                    radius: 1000,
-                    extensions: "all"
-                });
-                //TODO: 使用geocoder 对象完成相关功能
-                if (!IBSS.position['message']) {
-                    var lnglatXY = [IBSS.position.longitude, IBSS.position.latitude]
-
-                    geocoder.getAddress(lnglatXY, function(status, result) {
-                        if (status === 'complete' && result.info === 'OK') {
-                            var cityStr = result.regeocode.addressComponent['city'] || result.regeocode.addressComponent['province']
-                            IBSS.position['city'] = cityStr;
-                        }
-                    });
-
-                } else {
-                    that.showToast(IBSS.position['message']);
-                    return false;
-                }
-            });
         }
+
 
     };
 

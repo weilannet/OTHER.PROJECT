@@ -4,176 +4,212 @@
 
 require('assets/style/reset.css');
 require('assets/style/common.less');
-require('./todos.css');
+require('./todos.less');
 
 let React = require('react');
 let ReactDOM = require('react-dom');
 import { Router, Route, Link,IndexRoute,hashHistory,browserHistory} from 'react-router'
 
+let limsCaller = require('assets/common/limsapi').limsCaller();
+let limsRegister = require('assets/common/limsapi').limsRegister();
 
-let limsCaller= require('assets/common/limsapi').limsCaller();
-let limsRegister= require('assets/common/limsapi').limsRegister();
+require('assets/js/util');
 require('assets/js/config');
-let LimsLink= require('components/LimsLink');
 
+let LimsLink = require('components/LimsLink');
+let TodoHelp = require('./todohelp');
 
-function getURL(to) {
-//参数化对象 到字符串
-  function paramUrl(obj) {
-    obj = obj || {};
-    var result = [];
-    for (var i in obj) {
-      if (obj.hasOwnProperty(i)) {
-        result.push(i + "=" + obj[i]);
-      }
-    }
-    return result.join('&');
-  }
+import LimsTab from './ref/LimsTab';
+import  TodoMenu from './ref/TodoMenu';
+import ViewAnalysis from './ref/ViewAnalysis';
+import ViewCoa from './ref/ViewCoa';
+import AnalysisInfo from './ref/AnalysisInfo';
+import AnalysisApprove from './ref/AnalysisApprove';
+import CoaInfo from './ref/CoaInfo';
+import CoaApprove from './ref/CoaApprove';
 
-  if (to && to.search) {
-    return `${LimsConfig.host}todos.html#${to.pathname}${to.search}`;
+import iScroll from 'iscroll'
+import ReactIScroll from 'assets/js/react-iscroll'
 
-  }
-
-  let _query = paramUrl(to.query);
-  return `${LimsConfig.host}todos.html#${to.pathname}?${_query }`;
-
+const iScrollOptions = {
+  mouseWheel: true,
+  scrollbars: true,
+  scrollX: false,
+  probeType: 3,
+  preventDefaultException: { tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT|LI)$/ }
 }
 
 //审核主页面
-const App = new React.createClass({
-  propType: {
-    todoStatus: React.PropTypes.int
-  },
+const TodoApp = new React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
-  getDefaultProps: function () {
-    return {
-      todoStatus: 1
-
-    };
-
-  },
-  getInitialState: function () {
-    return {
-      value: 'Hello!'
-    };
-  },
-  handleChange: function (event) {
-    this.setState({value: event.target.value});
-  },
-
   onJsApi: function (to) {
     //H5页面按钮调用原生
-    let _url = getURL(to);
+    let _url = TodoHelp.getURL(to);
     console.log(_url);
-    limsCaller.pushView({url: _url},function(){
-
+    limsCaller.pushView({url: _url}, function () {
     });
   },
   render: function () {
+    //console.log(this.props.children);
     return (
-        <div id="todos">
-
-          <h2>主页</h2>
-          <input
-              type="text"
-              value={this.state.value}
-              onChange={this.handleChange}
-          />
-
-          <LimsLink className="link-item"
-                    onJsApi={this.onJsApi} to={{ pathname: '/about', query:{'name':encodeURIComponent('分析任务审核')}}}>
-
-            <div className="menu menu_analysis"><span>分析任务审核</span><i></i></div>
-          </LimsLink>
-          <LimsLink className="link-item"
-                    onJsApi={this.onJsApi} to={{ pathname: '/Inbox', query:{'name':encodeURIComponent('合格证审核')}}}>
-            <div className="menu menu_coa"><span>合格证审核</span><i></i></div>
-          </LimsLink>
-          <div className="agenda">
-            {this.props.children}
-          </div>
-        </div>
-
+        <TodoMenu onJsApi={this.onJsApi}></TodoMenu>
     );
   },
-
   componentWillUnmount: function () {
 
   }
-
-
 });
 
+//Tab组件
+const TodoTab = React.createClass({
+      getInitialState() {
+        return {
+          tabStatus: 'active'
 
-const About = React.createClass({
-  getInitialState() {
+        };
+      },
+      contextTypes: {
+        router: React.PropTypes.object.isRequired
+      },
+
+      componentWillMount: function () {
+        let { type }=this.props.location.query;
+
+        switch (parseInt(type) ){
+          case 0:
+            TodoHelp.setTitle('消息管理');
+            break;
+          case 1:
+            TodoHelp.setTitle('分析任务审核');
+            break;
+          case 2:
+            TodoHelp.setTitle('合格证审核');
+            break;
+        }
+
+      },
+
+      tabClick: function (sign) {
+
+        //sign为0是待办，1是已办
+        let { type }=this.props.location.query;
+        this.context.type = type;
+        this.context.router.push(
+            {
+              pathname: "/todotab/todolist/" + sign,
+              action: "REPLACE",
+              query: {type: type}
+            }
+        );
+
+      },
+      render: function () {
+        return (
+            <div id="todo-list">
+              <LimsTab tabClick={ this.tabClick}></LimsTab>
+              {this.props.children}
+            </div>
+
+        );
+      }
+    });
+
+//TabList
+const TodoList = React.createClass({
+  defaults: {
+    pageindex: 1,
+    pagesize: 5,
+    uid: ''
+  },
+  getInitialState(){
     return {
-      currentInfo: 'hehe'
-
+      data_analysis: [],
+      data_coa: [],
+      todoDone: 0,
+      todoType: 0,
+      pageindex: this.defaults.pageindex,
+      y: 0,
+      isScrolling: false
     };
   },
   contextTypes: {
     router: React.PropTypes.object.isRequired
-  } ,
-  childContextTypes:{
-    currentInfo: React.PropTypes.string
-  },
-  getChildContext: function() {
-    return {
-      currentInfo: this.state.currentInfo
-    }
   },
   componentWillMount: function () {
 
-  },
-  backFunction: function () {
-    //browserHistory.goBack();
-    this.context.router.replace('/');
-  },
-  goInbox: function () {
-    this.context.router.push('/inbox');
-    //Router.browserHistory.pushState(null, '/inbox');
-    //browserHistory.push('/inbox');
+    let todoDone = this.props.params.isdone;
+    let { type }=this.props.location.query;
+    this.setState({todoDone: todoDone && parseInt(todoDone), todoType: type && parseInt(type)});
 
   },
-  render: function () {
+  componentDidMount: function () {
+    var that= this;
+    TodoHelp.getUser(function(data){
+      TodoHelp.setUser(data);
+      $.extend(that.defaults, { isDone:that.state.isDone,uid:LimsUser.IDENTITY });
+      that.queryList(that.defaults);
 
-    let { name }=this.props.location.query;
-    return (
-        <div>
-
-          <p>测试currentInfo {this.state.currentInfo}</p>
-          <h1>地址传参{ decodeURIComponent(name) }</h1>
-          <div onClick={ this.backFunction }>点我返回</div>
-
-          <ul>
-            <li><Link to= { { pathname:"/about/message/1",action:"REPLACE" }} >待办</Link></li>
-            <li><Link to= { { pathname:"/about/message/2",action:"REPLACE" }} >已办</Link></li>
-          </ul>
-          {this.props.children}
-        </div>
-
-    );
-  }
-});
-
-const Message = React.createClass({
-  getInitialState() {
-    return {
-      //currentInfo: 'hehe'
-
-    };
+    });
   },
-  contextTypes: {
-    router: React.PropTypes.object.isRequired,
-    currentInfo: React.PropTypes.string
+  componentWillReceiveProps: function (nextProps) {
+
+    if (this.state.todoDone == parseInt(nextProps.params.isdone)) {
+      return;
+    }
+    //this.setState({data_analysis: [], data_coa: [], todoDone: parseInt(nextProps.params.isdone)});
+    $.extend(this.defaults, { isDone:parseInt(nextProps.params.isdone) });
+    this.queryList(this.defaults);
+
+  },
+  //shouldComponentUpdate(nextProps, nextState){
+  //  //if (this.state.toDone == nextState.todoDone || this.state.todoType == nextProps.todoType){
+  //  //  return false;
+  //  //}
+  //  return true;
+  //
+  //  //return this.state.todoDone != nextState.todoDone; //状态不一致才更新
+  //},
+  sendAjax:function(params){
+    var that = this;
+    util.api({
+      url: '/AppService.svc/GetTodosData',
+      data: params,
+      type: 'get',
+      success: data => {
+
+        if (data['msgcode']) {
+          util.hidLoading();
+
+          params.type==1
+              ? that.setState({todoDone:params.isDone,data_analysis: data['data']['fields']})
+              : that.setState({todoDone:params.isDone,data_coa: data['data']['fields']});
+        }
+      },
+      complete: function () {
+
+      }
+    }, false);
+  },
+  queryList: function (params) {
+    //type为审核类型，1为分析任务审核，2为合格证审核
+    util.showLoading();
+
+    if (this.state.todoType == 1 || this.state.todoType == 0) {
+      var params1= util.clone(params);
+      this.sendAjax( $.extend(params1, {type: 1}));
+    }
+    //如果是消息管理，继续加载列表
+    if (this.state.todoType == 2 || this.state.todoType == 0) {
+      var param2= util.clone(params);
+      this.sendAjax($.extend(param2, {type: 2}));
+
+    }
+
   },
   onJsApi: function (to) {
-
-    let _url = getURL(to);
+    let _url = TodoHelp.getURL(to);
     console.log(_url);
 
     let _json = {
@@ -187,165 +223,261 @@ const Message = React.createClass({
       ],
       "params": to.query
     }
-    limsCaller.pushView(_json,function(response){
-
+    //如果是已办，不设置button
+    if (this.state.todoDone){
+      _json['button'].length=0;
+    }
+    limsCaller.pushView(_json, function (response) {
     });
 
   },
-  render: function () {
-    this.context.currentInfo="lala";
-    //根据params.id不同，请求不同list
-    let list = [];
-    if (this.props.params.id == 1) {
-      list = [
-        {id: "1", "name": "待办-gaoxin", age: 18},
-        {id: "2", "name": "待办-gaoxin2", age: 19},
-        {id: "3", "name": "待办-gaoxin3", age: 20},
-        {id: "4", "name": "待办-gaoxin4", age: 21},
-        {id: "5", "name": "待办-gaoxin5", age: 22},
+  backFunction: function () {
+    //browserHistory.goBack();
+    this.context.router.replace('/');
+  },
+  onScrollStart:function(iScrollInstance){
+    this.setState({isScrolling: true})
+    console.log(`start:${iScrollInstance.y}`);
+  },
+  onScrollEnd:function(iScrollInstance){
 
-      ];
+    this.setState({isScrolling: false, y: iScrollInstance.y})
+    console.log(`end:${iScrollInstance.y}`);
+  },
+  onScrollRefresh:function(iScrollInstance){
+    const hasVerticalScroll = iScrollInstance.hasVerticalScroll
 
-    } else {
-      list = [
-        {id: "1", "name": "已办-gaoxin", age: 18},
-        {id: "2", "name": "已办-gaoxin2", age: 19},
-        {id: "3", "name": "已办-gaoxin3", age: 20},
-        {id: "4", "name": "已办-gaoxin4", age: 21},
-        {id: "5", "name": "已办-gaoxin5", age: 22},
-
-      ];
-
+    if(this.state.canVerticallyScroll !== hasVerticalScroll) {
+      this.setState({canVerticallyScroll: hasVerticalScroll})
     }
+  },
+  onScroll:function(iScrollInstance){
+    //console.log(`onScroll:${iScrollInstance.y}`);
+  },
+  render: function () {
 
-    let createItem = (item, index) => {
+    //根据params.id不同，请求不同list
+    let createItemAnaysis = (item, index) => {
       return (
-          <li className="list-item" key={item.id}>
-
-            <LimsLink className="link-item"
-                      onJsApi={this.onJsApi}
-                      to={{ pathname: '/messageinfo/'+item.id, query:{'id':item.id, 'name': encodeURIComponent(item.name) ,'age':item.age}}}
-                     >
-
-              <div>{item.id}</div>
-              <div>{item.name}</div>
-              <div>{item.age}</div>
-            </LimsLink>
-
-          </li>
+          <LimsLink className="link-item" onJsApi={this.onJsApi}
+                    to={{ pathname: '/todoinfo', query:{sign:this.state.todoType, type:1,data:encodeURIComponent(JSON.stringify(item&&item['fieldList']))}}}>
+            <ViewAnalysis todoType={this.state.pageindex} todoDone={this.state.todoDone} item={item&&item['fieldList']}></ViewAnalysis>
+          </LimsLink>
+      );
+    };
+    let createItemCoa = (item, index) => {
+      return (
+          <LimsLink className="link-item" onJsApi={this.onJsApi}
+                    to={{ pathname: '/todoinfo', query:{sign:this.state.todoType, type:2,data:encodeURIComponent(JSON.stringify(item&&item['fieldList']))}}}>
+            <ViewCoa todoType={this.state.pageindex} todoDone={this.state.todoDone} item={item&&item['fieldList']}></ViewCoa>
+          </LimsLink>
       );
     };
 
     return (
-        <div>
-          <h1>测试currentInfo传参{this.context.currentInfo}</h1>
-        <ul >
-          {list.map(createItem)}
-        </ul>
+        <div id="wrapper">
+          <ReactIScroll iScroll={iScroll}
+                        options={iScrollOptions}
+                        onScrollStart={this.onScrollStart}
+                        onScrollEnd={this.onScrollEnd}
+                        onRefresh={this.onScrollRefresh}
+                        onScroll={this.onScroll}>
+          <div id="scroller">
+            { (this.state.todoType==1||this.state.todoType==0) &&this.state.data_analysis && this.state.data_analysis.map(createItemAnaysis)}
+            { (this.state.todoType==2||this.state.todoType==0) &&this.state.data_coa && this.state.data_coa.map(createItemCoa)}
+
           </div>
+          </ReactIScroll>
+
+        </div>
     );
+
   }
 
 });
 
-
-const messageInfo = React.createClass({
+//TabInfo
+const TodoInfo = React.createClass({
 
   onAppApi: function (query) {
     //H5页面按钮调用原生
-    let _url = getURL( {pathname:'/messageapprove/'+query.id,query: query});
-    console.log(_url);
-    limsCaller.pushView( {url: _url},function(response){
+    let _url = TodoHelp.getURL({pathname: '/todoapprove', query: query});
 
+    console.log(_url);
+    limsCaller.pushView({url: _url}, function (response) {
     });
 
   },
   componentWillMount: function () {
 
-    //拿到LOCATION,调用JS桥推送location页面
-   var _this= this;
-    limsRegister.approveBridge(function(data,responseCallback){
+    //如果是app模式则注册JS桥
+    //alert(this.props.onJsApi);
+    if (LimsConfig.isApp) {
+      TodoHelp.setTitle('详细数据');
+      //拿到LOCATION,调用JS桥推送location页面
+      var _this = this;
+      limsRegister.approveBridge(function (data, responseCallback) {
+        //推审核的页面
 
-          //推审核的页面
-         _this.onAppApi(data);
-    });
+        _this.onAppApi(data);
+      });
+    }
   },
   componentDidMount: function () {
-
-
   },
   contextTypes: {
     currentInfo: React.PropTypes.object
   },
+  render: function () {
 
-  getList: function () {
-    let {id,name,age}=this.props.location.query;
-    return (
-        <div>
-          <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>
+    let {data,type}=this.props.location.query;
+    let result = JSON.parse(decodeURIComponent(data));
+    switch (parseInt(type)) {
+      case 1:
+        return (
+            <div>
+              <AnalysisInfo data={ result }></AnalysisInfo>
+              <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>
+            </div>
+        );
+        break;
+      case 2:
+        return (
+            <div>
+              <CoaInfo data={ result }></CoaInfo>
+              <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>
+            </div>
+        );
+        break;
+      default:
+        break;
 
-          <ul>
-            <li>{id}</li>
-            <li>{ decodeURIComponent(name)}</li>
-            <li>{age}</li>
+    }
 
-          </ul>
-          <Link  to={{ pathname: '/messageapprove/'+id, query:{'id':id, 'name':name,'age':age}}}>点我进入待办</Link>
-        </div>
+  }
+});
 
-    );
-    //
+//TodoApprove
+const TodoApprove = React.createClass({
+  defaults : {
+    uid:'',
+    recordkey:'',
+    uname:'',
+    type:0,
+    sign:0 //跳转到消息管理还是其他审核
+
+ },
+  propType: {
+    todoStatus: React.PropTypes.int
+  },
+  getDefaultProps: function () {
+    return {
+      todoStatus: 1
+    };
+  },
+
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+  componentWillMount: function () {
+
+    let {data,type,sign}=this.props.location.query;
+    var result = JSON.parse(decodeURIComponent(data));
+
+    for (var item of result) {
+      if (item['id']=='IDENTITY' || item['id']=='ID'){
+        this.defaults.recordkey=item['value'];
+        break;
+      }
+    }
+    this.defaults.type= type;
+    this.defaults.sign= sign;
+    TodoHelp.setTitle(type==1?`委托单号${this.defaults.recordkey}`:`样品编号${this.defaults.recordkey}`);
 
   },
-  render: function () {
-    return this.getList();
+  submitForm: function (action, text) {
+
+    let recordkey=this.defaults.recordkey;
+    let uname='系统';
+    let uid='';
+
+    let posturl=this.defaults.type==1?'CheckAnalysis':'CheckCoa';
+    let postData = {action, text, recordkey, uname , uid};
+
+    var that= this;
+    TodoHelp.getUser(function(data){
+      TodoHelp.setUser(data);
+
+      $.extend(postData, { uid:LimsUser.IDENTITY });
+
+      util.showLoading();
+      util.api({
+        url: '/AppService.svc/'+posturl,
+        data: postData,
+        type: 'get',
+        success: data => {
+
+          if (data['msgcode']) {
+            util.hidLoading();
+            util.showTip('提交成功!1s后跳转');
+            setTimeout(function () {
+              TodoHelp.popView('message');
+              //alert(that.defaults.sign);
+              //sign为0是待办，1是已办,此处判断进入消息管理
+              //that.context.router.push(
+              //    {
+              //      pathname: "/todotab/todolist/0",
+              //      action: "REPLACE",
+              //      query: {type: type}
+              //    }
+              //);
+              //util.hidLoading();
+
+            }, 1000);
+          }
+        },
+        complete: function () {
+
+        }
+      }, false);
+    });
+
+
+
+
+
+
+
+  },
+  render(){
+    let {type}=this.props.location.query;
+    switch (parseInt(type)) {
+      case 1:
+        return (
+            <div>
+              <AnalysisApprove submitForm={this.submitForm}></AnalysisApprove>
+              <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>
+            </div>
+        );
+        break;
+      case 2:
+        return (
+            <div>
+              <CoaApprove submitForm={this.submitForm}></CoaApprove>
+              <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>
+            </div>
+        );
+        break;
+      default:
+        break;
+
+    }
+
   }
 
-
 });
 
-const messageApprove= React.createClass({
-
-   render(){
-
-     let {id,name,age}=this.props.location.query;
-
-   return (
-     <div>
-       <p>这里是审核界面</p><br/>
-       <ul>
-         <li>id:{id}</li>
-         <li>name:{decodeURIComponent(name)}</li>
-         <li>age:{age}</li>
-       </ul><br/>
-       <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>
-
-       <div><span>同意</span><span>选择</span></div>
-       <div><span>拒绝</span><span>选择</span></div>
-
-       <textarea width="100%" height="500px" placeholder="请输入审批意见!"></textarea>
-       <br/><button width="100%" height="100px" >提交 </button>
-     </div>
-
-   );
-   }
-
-});
-
-const Inbox = React.createClass({
-  render: function () {
-    return (
-
-        <div >
-          <h1>我是合格证审核</h1>
-          <div onClick={() => browserHistory.goBack()}>点我返回</div>
-        </div>
-    );
-  }
-
-});
-
-
+//NoMatch
 const NoMatch = React.createClass({
   render() {
     return <h3>没有匹配的路径</h3>
@@ -368,31 +500,28 @@ ReactDOM.render(
     <div>
       {
         <Router history={hashHistory} location="history">
-          <Route path="/" component={App}>
-            <IndexRoute component={Dashboard}/>
-            <Route path="inbox" component={Inbox}/>
+          <Route path="/" component={TodoApp}>
 
           </Route>
-          <Route path="about" component={About} onLeave={()=>{console.log("离开了about路由页面");}}
+          <Route path="todotab" component={TodoTab} onLeave={()=>{console.log("离开了about路由页面");}}
                  onEnter={()=>{console.log("进入about路由页面")}}>
             <IndexRoute component={DashboardAbout}/>
 
-            <Route path="message/:id" component={Message}>
-            <IndexRoute component={Dashboard}/>
-          </Route>
+            <Route path="todolist/:isdone" component={TodoList}>
+              <IndexRoute component={Dashboard}/>
+            </Route>
 
           </Route>
-          <Route path="messageinfo/:id" component={messageInfo}>
+          <Route path="todoinfo" component={TodoInfo}>
 
           </Route>
-          <Route path="messageapprove/:id" component={messageApprove}>
+          <Route path="todoapprove" component={TodoApprove}>
 
           </Route>
           <Route path="*" component={NoMatch}/>
         </Router>
 
       }
-
     </div>,
     document.getElementById('app')
 );

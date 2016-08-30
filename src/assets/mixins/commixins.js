@@ -9,7 +9,6 @@ module.exports = {
         //document.removeEventListener('DOMContentLoaded', this.attachFastClick);  
     },
     attachFastClick() {
-
         FastClick.attach(document.body);
     }
 };

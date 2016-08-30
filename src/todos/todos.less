@@ -1,66 +1,286 @@
 
 
-html,body{
+body {
+  font: 14px/1.5 tahoma,arial,'Hiragino Sans GB','Hiragino Sans GB W3','Microsoft Yahei';
+  color: #333;
+  background-color: #f7f7f7;
   height:100%;
-  background-color: darkgrey;
 }
 
-#todos{
+
+#todos-menu{
   width: 100%;
-  height:100%;
-
-
 }
-
-#todos div.menu{
-
-
+#todos-menu div.menu{
   width: 100%;
   height: 3rem;
   position: relative;
   cursor: pointer;
   background-color: white;
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
-div.menu span:before{
-
+#todos-menu div.menu span:before{
   content:"";
   display: inline-block;
-
   width: 2rem;
   height: 2rem;
   position: absolute;
-
-  left: 0;
-
+  left:1.5rem;
+  top:0.3rem;
 
 }
-div.menu_analysis span:before {
-  background: url("../assets/images/icon_analysis.png") no-repeat left top;
-  background-size: 100%;
-}
-div.menu_coa span:before{
-
-
-  background: url("../assets/images/icon_coa.png") no-repeat left top;
+#todos-menu div.menu_analysis span:before {
+  background: url("../assets/images/icon-analysis.png") no-repeat left top;
   background-size: 100%;
 
-
+}
+#todos-menu div.menu_coa span:before{
+  background: url("../assets/images/icon-coa.png") no-repeat left top;
+  background-size: 100%;
 
 }
-div.menu span{
-
+#todos-menu div.menu span{
   position: absolute;
-  padding-left: 4rem;
+  padding-left: 6rem;
+  padding-top:0.7rem;
 }
-div.menu i{
 
+#todos-menu div.menu i{
   display: inline-block;
-  background: url("../assets/images/icon_right.png") no-repeat left top;
+  background: url("../assets/images/icon-right.png") no-repeat left top;
   width: 2rem;
-  height: 100%;
+  height: 2rem;
   position: absolute;
   right: 0;
+  top:0.5rem;
 
 }
+
+#todo-list {
+  width: 100%;
+}
+
+#todo-list ul.tab{
+  width: 100%;
+  display: inline-block;
+  list-style: none;
+  height: 3rem;
+  background-color: white;
+  position: fixed;
+  top:0;
+  line-height: 3rem;
+  text-align: center;
+}
+
+#todo-list ul.tab li{
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+  border: 0.2rem solid #5682b2;
+  height: 100%;
+  border-top: hidden;
+  border-bottom-color: #c1c1c1;
+  position:relative;
+}
+
+#todo-list ul.tab li i{
+  position: absolute;
+  top:0.75rem;
+  left: 20%;
+  content: '';
+  background: url("../assets/images/icon-todo.png") no-repeat left top;
+  background-size: 100%;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-block;
+
+}
+#todo-list ul.tab li:first-child{
+  border-left: hidden;
+  border-right: hidden;
+
+}
+#todo-list ul.tab li:last-child{
+  border-left-color: #edf0f2;
+  border-left-width: 0.1rem;
+  border-right: hidden;
+}
+
+#todo-list ul.tab .active{
+  border-bottom-color: #5682b2;
+  color: #5682b2;
+}
+
+
+#todo-list .link-item {
+  width: 100%;
+  background-color: white;
+  color:#828282;
+  margin-top: 1rem;
+}
+
+/*公共的数据区域*/
+#list-data .title{
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 1.0rem;
+  width: 100%;
+  height:2.4rem;
+  line-height: 2.4rem;
+}
+
+#list-data ul.content {
+  font-size:0.8rem;
+  line-height: 1.4rem;
+}
+
+#list-data ul.content li {
+  padding: 0.1rem;
+}
+
+#list-data ul.content li span:nth-child(1),#list-data .title span:nth-child(1) {
+  margin-left:0.8rem;
+
+}
+
+#list-data ul.content li span:nth-child(2),#list-data .title span:nth-child(2)  {
+  float:right;
+  margin-right:0.8rem;
+}
+
+#wrapper {
+  position: absolute;
+  top: 3rem;
+  bottom: 2rem;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+
+#scroller {
+  position: absolute;
+  z-index: 1;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  width: 100%;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -o-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+#todo-info {
+  width: 100%;
+  color:#828282;
+}
+
+#todo-info ul{
+  list-style: none;
+}
+
+#todo-info ul li{
+  width: 100%;
+  height:2.8rem;
+  line-height: 2.8rem;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: white;
+
+}
+
+#todo-info ul span{
+
+
+}
+
+#todo-info ul span:nth-child(1){
+  margin-left:0.8rem;
+
+}
+
+#todo-info ul span:nth-child(2){
+  float: right;
+  margin-right:0.8rem;
+}
+
+
+
+#todo-approve {
+
+  width: 100%;
+  text-align: center;
+}
+
+#todo-approve .checkboxs{
+  width: 100%;
+  margin-top: 2rem;
+}
+#todo-approve .checkboxs span{
+  height:3rem;
+  line-height: 3rem;
+  display: block;
+  background-color: white;
+  text-align: left;
+  padding-left: 1rem;
+}
+#todo-approve .checkboxs span:not(:last-child){
+  border-bottom: 1px solid #e5e5e5;
+
+}
+#todo-approve .checkboxs span:after{
+  content:'';
+  display: inline-block;
+  float: right;
+  background: url("../assets/images/unchecked.png") no-repeat left top;
+  width: 1.5rem;
+  height:1.5rem;
+  background-size: 100%;
+  margin-top: 0.75rem;
+  margin-right: 1rem;
+}
+#todo-approve .checkboxs span.active:after{
+  content:'';
+  display: inline-block;
+  float: right;
+  background: url("../assets/images/check.png") no-repeat left top;
+  width: 1.5rem;
+  height:1.5rem;
+  background-size: 100%;
+  margin-top: 0.75rem;
+  margin-right: 1rem;
+}
+
+#todo-approve .textinput{
+  width: 100%;
+  height:8rem;
+  margin-top: 2rem;
+  border-style: none;
+}
+
+#todo-approve .button{
+  width: 95%;
+  height:3rem;
+  line-height: 2rem;
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  color: white;
+  border-radius: 0.3rem;
+  background-color: #5682b2;
+}
+
+
+
+
+
+
+

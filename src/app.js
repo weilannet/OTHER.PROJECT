@@ -114,7 +114,3 @@ ReactDOM.render(
     document.getElementById('app')
 );
 
-
-//const name="石国庆"
-//
-//document.getElementById("app").innerText=name;

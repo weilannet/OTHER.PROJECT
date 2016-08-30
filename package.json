@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server  --config webpack.develop.config.js --devtool eval --progress --colors --hot --content-base src",
+    "start": "webpack-dev-server  --config webpack.base.config.js --devtool eval --progress --colors --hot --content-base src",
+    "dev": "webpack --progress --colors --display-error-details --watch",
     "publish": "webpack --config webpack.publish.config -p"
   },
   "author": "",
@@ -57,5 +58,7 @@
     "webpack": "^1.12.10",
     "webpack-dev-server": "~1.14.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "iscroll": "^5.2.0"
+  }
 }

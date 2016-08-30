@@ -7,7 +7,7 @@
 * Version:1.2.2
 * ================================================================== */
 html{font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
-html,body{-webkit-user-select:none;user-select:none;}
+html,body{-webkit-user-select:none;user-select:none;overflow:scroll;overflow-x:hidden}
 html,body,div,object,iframe,applet,object,h1,h2,h3,h4,h5,h6,p,blockquote,pre,address,dl,dt,dd,ol,ul,li,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video,progress{margin:0;padding:0;border:0;vertical-align:baseline}
 a{text-decoration:none;-webkit-touch-callout:none;background-color:transparent}
 li{list-style:none}

@@ -10,7 +10,7 @@ global._ = require('lodash');
 //process.env.NODE_ENV="production";
 var VERSION = '1.0';
 var BUILD = 'publish/' + VERSION;
-var PUBLISH= `/lims/`;
+var PUBLISH= `/1.0/`;
 
 function getDefaultOptions(options) {
     return _.extend({
@@ -62,12 +62,14 @@ var config={
     // 编译之后的输出路径
     output: {
         path: path.join(__dirname, BUILD),
-        //publicPath:PUBLISH,
-        filename: '[name].js',
-        chunkFilename: '[id].chunk.js',
-        sourceMapFilename: '[file].map',
-        pathinfo: true
-        //chunkFilename: "[name].js?[hash]-[chunkhash]"
+        publicPath:PUBLISH,
+        filename: '[name].[chunkhash:8].js',
+        chunkFilename: '[id].[chunkhash:8].chunk.js'
+        //filename: '[name].js',
+        //chunkFilename: '[id].chunk.js',
+        //sourceMapFilename: '[file].map',
+        //pathinfo: true
+
     },
     module: {
         loaders: [{
@@ -90,43 +92,7 @@ var config={
             test: /\.(json)$/,
             loader: 'json'
         }]
-        //loaders: [
-        //    {
-        //        test: /\.js$/,
-        //        exclude: /(node_modules|libs)/,
-        //        loader: 'babel?presets[]=react,presets[]=es2015' // react jsx编译，可以使用es6
-        //    },
-        //    //{
-        //    //    test: /\.jsx?$/, // 用正则来匹配文件路径，这段意思是匹配 js 或者 jsx后缀名的文件
-        //    //    loader: 'babel',// 加载模块 "babel" 是 "babel-loader" 的缩写
-        //    //    query: {
-        //    //        presets: ['es2015', 'react','stage-0','stage-1','stage-2','stage-3']
-        //    //    },
-        //    //    exclude: [path.resolve(__dirname, 'node_modules')] //不需要走过滤器
-        //    //},
-        //    // 加载 CSS 需要 css-loader 和 style-loader，他们做两件不同的事情，css-loader会遍历 CSS 文件，然后找到 url() 表达式然后处理他们，style-loader 会把原来的 CSS 代码插入页面中的一个 style 标签中。
-        //    {
-        //        test: /\.css$/,
-        //        loader: ExtractTextPlugin.extract("style-loader","css-loader")
-        //    },
-        //    {
-        //        test: /\.less$/,
-        //        loader: ExtractTextPlugin.extract('css!less')
-        //    },
-        //    //{
-        //    //    test: /\.scss$/,
-        //    //    //loader: 'style!css!sass'
-        //    //    loader: ExtractTextPlugin.extract("style-loader","css-loader!sass-loader")
-        //    //},
-        //    {
-        //        test: /\.(png|jpeg|gif|jpg)$/,
-        //        loader: 'url?limit=8192&name=images/[name].[ext]'  // 如果加参数中间用？号，&号进行多个参数的连接
-        //    }
-        //    //{
-        //    //    test: /\.(png|jpeg|gif|jpg)$/,
-        //    //    loader: 'file-loader?name=images/[name].[ext]'
-        //    //}
-        //]
+
     },
     postcss: function() {
         return [autoprefixer];
@@ -163,7 +129,7 @@ var config={
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common',
-            filename: 'resources/common.js',
+            filename: 'resources/common.[chunkhash:8].js',
             chunks: ['result/result', 'message/message','todos/todos']
         }),
         new webpack.optimize.CommonsChunkPlugin({

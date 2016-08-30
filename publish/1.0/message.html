@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>react+weebpack</title>
+    <title>LIMS移动应用</title>
     <meta charset="utf-8" />
     <meta http-equiv="x-dns-prefetch-control" content="on" />
     <link rel="dns-prefetch" href="www.fxiaoke.com" />
@@ -11,28 +11,8 @@
     <meta content="telephone=no,email=no" name="format-detection">
     <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-<link href="resources/message/message.css" rel="stylesheet"></head>
+<link href="/1.0/resources/message/message.css" rel="stylesheet"></head>
 <body>
 <div id="app"></div>
-<script src="resources/vendor.js"></script><script src="resources/message/message.js"></script></body>
+<script src="/1.0/resources/vendor.js"></script><script src="/1.0/resources/message/message.252b801a.js"></script></body>
 </html>
-
-<script>
-    
-
-     $.ajax({
-             type:"GET",
-             url: "/AppService.svc/GetTreeData",
-             data: {uid:"SYSTEM"} ,
-             // type: "POST",
-             // url: "/AppService.svc/TestPost",
-             // data: JSON.stringify({name:"gaoxin",content:"great"}) ,
-             dataType: "json",
-             success: function(data){
-                 var result= JSON.parse(data)
-                 var test= JSON.parse(result.data[1].config);
-                 console.log(test);
-                
-            }
-         });
-</script>

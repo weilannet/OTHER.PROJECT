@@ -10,17 +10,6 @@ require('./result.less');
 let React = require('react');
 let ReactDOM = require('react-dom');
 import { Router, Route, Link,IndexRoute,hashHistory,browserHistory} from 'react-router'
-//import {
-//    hashHistory, IndexRoute, Router, Route, Link, History, Redirect
-//}
-//from 'react-router';
-
-//扩展属性
-//var props = {};
-//props.foo = "石";
-//props.bar = "国";
-//<Hello foo="shi" too="guo" foo="石" bar="国"/>
-//<Hello foo="shi" too="guo" {...props}/>
 
 
 const App = React.createClass({
@@ -67,7 +56,6 @@ const Dashboard = React.createClass({
 })
 
 const Message = React.createClass({
-
   componentDidMount:function(){
     setTimeout(function(){
       browserHistory.push('/about')
@@ -83,7 +71,6 @@ const NoMatch = React.createClass({
     return <h3>没有匹配的路径</h3>
   }
 })
-
 
 ReactDOM.render(
     <div>
@@ -104,21 +91,9 @@ ReactDOM.render(
           <Route path="*" component={NoMatch}/>
         </Router>
 
-
-        //    <Message1 messages={["1","2","3"]}/>
-        //<WC/>
-        //<TodoApp/>
-        //<Hello foo="shi" too="guo" {...props}/>
-        //<Hello2/>
-        //<LinkButton/>
-        //<MyInputFocus/>
       }
 
     </div>,
     document.getElementById('app')
 );
 
-
-//const name="石国庆"
-//
-//document.getElementById("app").innerText=name;

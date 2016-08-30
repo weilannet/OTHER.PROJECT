@@ -98,10 +98,8 @@ JsAPI.prototype = {
         //  responseCallback(data);
         //});
         bridge.registerHandler(name, function (data, responseCallback) {
-          callback(data, responseCallback);
-
+           callback(data, responseCallback);
         });
-
 
       });
     } catch (e) {

@@ -24,8 +24,16 @@ module.exports = {
         jsAPI.limsCaller("pushView",params,callback);
         return this;
       },
-      setTitle:function(){
-        jsAPI.limsCaller("setTitle",params,callback);
+      popView:function(name,callback){
+        jsAPI.limsCaller("popView",name,callback);
+        return this;
+      },
+      setTitle:function(name,callback){
+        jsAPI.limsCaller("setTitle",name,callback);
+        return this;
+      },
+      getUser:function(callback){
+        jsAPI.limsCaller("getUser",'',callback);
         return this;
       }
 
@@ -37,6 +45,7 @@ module.exports = {
           jsAPI.limsregister("approveBridge",callback);
          return this;
        }
+
     }
   }
 };
