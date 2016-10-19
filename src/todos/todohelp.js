@@ -14,6 +14,10 @@ module.exports = {
   },
   setUser:function(data){
 
+    if (typeof data == "string") {
+      data = JSON.parse(data.toUpperCase());
+    }
+
     if (data) {
       LimsUser.IDENTITY = data.IDENTITY;
       LimsUser.NAME = data.NAME;
@@ -57,5 +61,18 @@ module.exports = {
     if (LimsConfig.isApp) {
       limsCaller.popView(name);
     }
+  },
+
+
+  pushView: function (pushjson, callback) {
+    limsCaller.pushView(
+        {
+          url: pushjson['url']&&pushjson['url']||'',
+          "button": pushjson['button']&&pushjson['button']||[],
+          "params": pushjson['params']&&pushjson['params']||{},
+        },
+        callback);
+
   }
+
 }

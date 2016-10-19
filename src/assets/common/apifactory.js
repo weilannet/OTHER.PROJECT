@@ -15,6 +15,29 @@ function JsAPI(init) {
   this.sends = [];
 }
 
+//判断访问终端
+var browser = {
+  versions: function () {
+    var u = navigator.userAgent, app = navigator.appVersion;
+    return {
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,//火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+      iPad: u.indexOf('iPad') > -1, //是否iPad
+      webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增）
+      qq: u.match(/\sQQ/i) == " qq" //是否QQ
+    };
+  }(),
+  language: (navigator.browserLanguage || navigator.language).toLowerCase()
+}
+
+
 JsAPI.prototype = {
   destroy: function () {
     this.events = null;
@@ -24,50 +47,46 @@ JsAPI.prototype = {
   doAndInit: function (callback) {
     var me = this;
     if (WebViewJavascriptBridge) {
+
       !window.WebViewJavascriptBridgeInited && WebViewJavascriptBridge.init(function (message, responseCallback) {
-        me.init && me.init(message, responseCallback);
+        responseCallback && responseCallback('init success from js');
+
       });
       if (!window.WebViewJavascriptBridgeInited) {
-        window.WebViewJavascriptBridgeInited = true;
+        me.inited = window.WebViewJavascriptBridgeInited = true;
       }
       callback(WebViewJavascriptBridge);
     }
   },
   connectWebViewJavascriptBridge: function (callback) {
-    //网上安卓方案
-    //if (window.WebViewJavascriptBridge) {
-    //  callback(WebViewJavascriptBridge)
-    //} else {
-    //  document.addEventListener(
-    //      'WebViewJavascriptBridgeReady'
-    //      , function() {
-    //        callback(WebViewJavascriptBridge)
-    //      },
-    //      false
-    //  );
-    //}
-    //原始方案
-    //var me = this;
-    //if (window.WebViewJavascriptBridge) {
-    //  me.doAndInit(callback);
-    //  me.inited = window.WebViewJavascriptBridgeInited = true;
-    //} else if (!me.inited) {
-    //  !window.WebViewJavascriptBridgeEventAdded && document.addEventListener('WebViewJavascriptBridgeReady', function () {
-    //    me.doAndInit(callback);
-    //  }, false);
-    //  me.inited = true;
-    //  window.WebViewJavascriptBridgeEventAdded = true;
-    //}
-    //return this;
 
-    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
-    if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
-    window.WVJBCallbacks = [callback];
-    var WVJBIframe = document.createElement('iframe');
-    WVJBIframe.style.display = 'none';
-    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
-    document.documentElement.appendChild(WVJBIframe);
-    setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+    if (!browser.versions.android) {
+      if (window.WebViewJavascriptBridge) {
+        return callback(WebViewJavascriptBridge);
+      }
+      if (window.WVJBCallbacks) {
+        return window.WVJBCallbacks.push(callback);
+      }
+      window.WVJBCallbacks = [callback];
+      var WVJBIframe = document.createElement('iframe');
+      WVJBIframe.style.display = 'none';
+      WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+      document.documentElement.appendChild(WVJBIframe);
+      setTimeout(function () {
+        document.documentElement.removeChild(WVJBIframe)
+      }, 0);
+      return this;
+    }
+    //原始方案
+    var me = this;
+    if (window.WebViewJavascriptBridge) {
+      me.doAndInit(callback);
+    } else {
+      document.addEventListener('WebViewJavascriptBridgeReady', function () {
+        me.doAndInit(callback);
+      }, false);
+    }
+    return this;
   },
   //H5发送消息给原生
   limsCaller: function (name, params, callback) {
@@ -89,16 +108,9 @@ JsAPI.prototype = {
     var me = this;
     try {
       me.connectWebViewJavascriptBridge(function (bridge) {
-        //bridge.init(function(message, responseCallback) {
-        //  console.log('JS got a message', message);
-        //  var data = {
-        //    'Javascript Responds': 'Wee!'
-        //  };
-        //  console.log('JS responding with', data);
-        //  responseCallback(data);
-        //});
         bridge.registerHandler(name, function (data, responseCallback) {
-           callback(data, responseCallback);
+
+          callback(data, responseCallback);
         });
 
       });
@@ -150,18 +162,3 @@ JsAPI.prototype = {
   }
 };
 module.exports = JsAPI;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

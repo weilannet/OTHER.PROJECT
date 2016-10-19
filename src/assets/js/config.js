@@ -1,4 +1,4 @@
-let limsRegister = require('assets/common/limsapi').limsRegister();
+
 ;(function (win, config) {
   //var win = window,
   //	IBSS = win.IBSS;
@@ -31,7 +31,6 @@ let limsRegister = require('assets/common/limsapi').limsRegister();
   if (config.isApp) {
     LimsUser.IDENTITY='';
     LimsUser.NAME='';
-
   }
 
   //var baseObj = {

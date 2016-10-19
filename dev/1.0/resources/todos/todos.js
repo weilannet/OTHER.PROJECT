@@ -64,7 +64,6 @@ webpackJsonp([2,4],{
 	var ReactDOM = __webpack_require__(/*! react-dom */ 38);
 	
 	
-	var limsCaller = __webpack_require__(/*! assets/common/limsapi */ 253).limsCaller();
 	var limsRegister = __webpack_require__(/*! assets/common/limsapi */ 253).limsRegister();
 	
 	__webpack_require__(/*! assets/js/util */ 255);
@@ -85,16 +84,17 @@ webpackJsonp([2,4],{
 	};
 	
 	//审核主页面
-	var TodoApp = new React.createClass({
+	var TodoApp = React.createClass({
+	  displayName: 'TodoApp',
+	
 	  contextTypes: {
 	    router: React.PropTypes.object.isRequired
 	  },
 	  onJsApi: function onJsApi(to) {
-	
 	    //H5页面按钮调用原生
 	    var _url = TodoHelp.getURL(to);
 	    console.log(_url);
-	    limsCaller.pushView({ url: _url }, function () {});
+	    TodoHelp.pushView({ url: _url }, function () {});
 	  },
 	  render: function render() {
 	    //console.log(this.props.children);
@@ -135,7 +135,6 @@ webpackJsonp([2,4],{
 	  },
 	
 	  tabClick: function tabClick(sign) {
-	
 	    //sign为0是待办，1是已办
 	    var type = this.props.location.query.type;
 	
@@ -180,7 +179,8 @@ webpackJsonp([2,4],{
 	      todoType: 0,
 	      pageindex: this.defaults.pageindex,
 	      y: 0,
-	      isScrolling: false
+	      isScrolling: false,
+	      loadtip: ''
 	    };
 	  },
 	
@@ -232,11 +232,11 @@ webpackJsonp([2,4],{
 	      data: params,
 	      type: 'get',
 	      success: function success(data) {
-	        debugger;
+	
 	        if (data['msgcode']) {
 	          util.hidLoading();
 	
-	          params.type == 1 ? that.setState({ todoDone: params.isDone, data_analysis: !that.init.refresh ? data['data']['fields'] : _this2.state.data_analysis.concat(data['data']['fields']) }) : that.setState({ todoDone: params.isDone, data_coa: !that.init.refresh ? data['data']['fields'] : _this2.state.data_coa.concat(data['data']['fields']) });
+	          params.type == 1 ? that.setState({ loadtip: false, todoDone: params.isDone, data_analysis: !that.init.refresh ? data['data']['fields'] : _this2.state.data_analysis.concat(data['data']['fields']) }) : that.setState({ loadtip: false, todoDone: params.isDone, data_coa: !that.init.refresh ? data['data']['fields'] : _this2.state.data_coa.concat(data['data']['fields']) });
 	        }
 	        that.init.refresh = false;
 	        that.init.downreload = false;
@@ -276,7 +276,7 @@ webpackJsonp([2,4],{
 	    if (this.state.todoDone) {
 	      _json['button'].length = 0;
 	    }
-	    limsCaller.pushView(_json, function (response) {});
+	    TodoHelp.pushView(_json, function (response) {});
 	  },
 	  backFunction: function backFunction() {
 	    //browserHistory.goBack();
@@ -286,12 +286,11 @@ webpackJsonp([2,4],{
 	    //this.setState({isScrolling: true})
 	    //console.log(`start:${iScrollInstance.y}`);
 	    var me = iScrollInstance;
-	
 	    this.init.scrollStartPos = me.y;
 	  },
 	  onScrollEnd: function onScrollEnd(iScrollInstance) {
 	    var me = iScrollInstance;
-	    debugger;
+	
 	    if (this.init.downreload || this.init.upreload) {
 	
 	      if (this.init.downreload) {
@@ -303,6 +302,8 @@ webpackJsonp([2,4],{
 	        this.init.refresh = false;
 	      }
 	      this.queryList(this.defaults);
+	      me.scroller.querySelector('.upreload').innerHTML = '上拉可加载更多数据';
+	      me.scroller.querySelector('.downfresh').innerHTML = '下拉刷新';
 	    }
 	
 	    //this.setState({isScrolling: false, y: iScrollInstance.y})
@@ -320,15 +321,16 @@ webpackJsonp([2,4],{
 	    var me = iScrollInstance;
 	
 	    if (me.y < me.maxScrollY - 50) {
-	      //alert('刷');
 	      this.init.downreload = true;
+	      me.scroller.querySelector('.upreload').innerHTML = '松手加载数据';
 	    }
 	    if (me.y > 50) {
-	      //alert('刷');
+	      console.log('up');
 	      this.init.upreload = true;
+	      me.scroller.querySelector('.downfresh').innerHTML = '松手刷新数据';
 	    }
 	
-	    console.log('onScroll:' + iScrollInstance.y);
+	    //console.log(`onScroll:${iScrollInstance.y}`);
 	  },
 	  render: function render() {
 	    var _this3 = this;
@@ -365,8 +367,18 @@ webpackJsonp([2,4],{
 	        React.createElement(
 	          'div',
 	          { id: 'scroller' },
+	          React.createElement(
+	            'div',
+	            { className: 'downfresh' },
+	            '下拉刷新'
+	          ),
 	          (this.state.todoType == 1 || this.state.todoType == 0) && this.state.data_analysis && this.state.data_analysis.map(createItemAnaysis),
-	          (this.state.todoType == 2 || this.state.todoType == 0) && this.state.data_coa && this.state.data_coa.map(createItemCoa)
+	          (this.state.todoType == 2 || this.state.todoType == 0) && this.state.data_coa && this.state.data_coa.map(createItemCoa),
+	          React.createElement(
+	            'div',
+	            { className: 'upreload' },
+	            '上拉可加载更多数据'
+	          )
 	        )
 	      )
 	    );
@@ -384,19 +396,21 @@ webpackJsonp([2,4],{
 	    var _url = TodoHelp.getURL({ pathname: '/todoapprove', query: query });
 	
 	    console.log(_url);
-	    limsCaller.pushView({ url: _url }, function (response) {});
+	    TodoHelp.pushView({ url: _url }, function (response) {});
 	  },
 	  componentWillMount: function componentWillMount() {
 	
 	    //如果是app模式则注册JS桥
-	    //alert(this.props.onJsApi);
 	    if (LimsConfig.isApp) {
 	      TodoHelp.setTitle('详细数据');
 	      //拿到LOCATION,调用JS桥推送location页面
 	      var _this = this;
 	      limsRegister.approveBridge(function (data, responseCallback) {
+	        alert(data);
 	        //推审核的页面
-	
+	        //if (typeof data == "string") {
+	        //  data = JSON.parse(data);
+	        //}
 	        _this.onAppApi(data);
 	      });
 	    }
@@ -409,6 +423,8 @@ webpackJsonp([2,4],{
 	    var _props$location$query = this.props.location.query;
 	    var data = _props$location$query.data;
 	    var type = _props$location$query.type;
+	
+	    debugger;
 	
 	    var result = JSON.parse(decodeURIComponent(data));
 	    switch (parseInt(type)) {
@@ -538,7 +554,6 @@ webpackJsonp([2,4],{
 	            util.showTip('提交成功!1s后跳转');
 	            setTimeout(function () {
 	              TodoHelp.popView('message');
-	              //alert(that.defaults.sign);
 	              //sign为0是待办，1是已办,此处判断进入消息管理
 	              //that.context.router.push(
 	              //    {
@@ -3334,7 +3349,7 @@ webpackJsonp([2,4],{
 	            _react2.default.createElement('i', null)
 	          )
 	        ),
-	        _react2.default.createElement(
+	        !LimsConfig.isApp ? _react2.default.createElement(
 	          LimsLink,
 	          { className: 'link-item',
 	            onJsApi: this.onJsApi,
@@ -3349,7 +3364,7 @@ webpackJsonp([2,4],{
 	            ),
 	            _react2.default.createElement('i', null)
 	          )
-	        )
+	        ) : ''
 	      );
 	    }
 	  }]);
@@ -3703,7 +3718,7 @@ webpackJsonp([2,4],{
 	        ),
 	        !LimsConfig.isApp ? _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: { pathname: '/todoapprove', query: { type: 1, data: encodeURIComponent(JSON.stringify(this.props.data)) } } },
+	          { to: { pathname: '/todoapprove', query: { type: 1, data: JSON.stringify(this.props.data) } } },
 	          '点我进入审核'
 	        ) : ''
 	      );
@@ -3895,7 +3910,7 @@ webpackJsonp([2,4],{
 	        ),
 	        !LimsConfig.isApp ? _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: { pathname: '/todoapprove', query: { type: 2, data: encodeURIComponent(JSON.stringify(this.props.data)) } } },
+	          { to: { pathname: '/todoapprove', query: { type: 2, data: this.props.data } } },
 	          '点我进入审核'
 	        ) : ''
 	      );
@@ -4110,6 +4125,29 @@ webpackJsonp([2,4],{
 	  this.sends = [];
 	}
 	
+	//判断访问终端
+	var browser = {
+	  versions: function () {
+	    var u = navigator.userAgent,
+	        app = navigator.appVersion;
+	    return {
+	      trident: u.indexOf('Trident') > -1, //IE内核
+	      presto: u.indexOf('Presto') > -1, //opera内核
+	      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+	      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+	      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+	      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+	      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+	      iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+	      iPad: u.indexOf('iPad') > -1, //是否iPad
+	      webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+	      weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增）
+	      qq: u.match(/\sQQ/i) == " qq" //是否QQ
+	    };
+	  }(),
+	  language: (navigator.browserLanguage || navigator.language).toLowerCase()
+	};
+	
 	JsAPI.prototype = {
 	  destroy: function destroy() {
 	    this.events = null;
@@ -4119,56 +4157,45 @@ webpackJsonp([2,4],{
 	  doAndInit: function doAndInit(callback) {
 	    var me = this;
 	    if (WebViewJavascriptBridge) {
+	
 	      !window.WebViewJavascriptBridgeInited && WebViewJavascriptBridge.init(function (message, responseCallback) {
-	        me.init && me.init(message, responseCallback);
+	        responseCallback && responseCallback('init success from js');
 	      });
 	      if (!window.WebViewJavascriptBridgeInited) {
-	        window.WebViewJavascriptBridgeInited = true;
+	        me.inited = window.WebViewJavascriptBridgeInited = true;
 	      }
 	      callback(WebViewJavascriptBridge);
 	    }
 	  },
 	  connectWebViewJavascriptBridge: function connectWebViewJavascriptBridge(callback) {
-	    //网上安卓方案
-	    //if (window.WebViewJavascriptBridge) {
-	    //  callback(WebViewJavascriptBridge)
-	    //} else {
-	    //  document.addEventListener(
-	    //      'WebViewJavascriptBridgeReady'
-	    //      , function() {
-	    //        callback(WebViewJavascriptBridge)
-	    //      },
-	    //      false
-	    //  );
-	    //}
-	    //原始方案
-	    //var me = this;
-	    //if (window.WebViewJavascriptBridge) {
-	    //  me.doAndInit(callback);
-	    //  me.inited = window.WebViewJavascriptBridgeInited = true;
-	    //} else if (!me.inited) {
-	    //  !window.WebViewJavascriptBridgeEventAdded && document.addEventListener('WebViewJavascriptBridgeReady', function () {
-	    //    me.doAndInit(callback);
-	    //  }, false);
-	    //  me.inited = true;
-	    //  window.WebViewJavascriptBridgeEventAdded = true;
-	    //}
-	    //return this;
 	
+	    if (!browser.versions.android) {
+	      if (window.WebViewJavascriptBridge) {
+	        return callback(WebViewJavascriptBridge);
+	      }
+	      if (window.WVJBCallbacks) {
+	        return window.WVJBCallbacks.push(callback);
+	      }
+	      window.WVJBCallbacks = [callback];
+	      var WVJBIframe = document.createElement('iframe');
+	      WVJBIframe.style.display = 'none';
+	      WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+	      document.documentElement.appendChild(WVJBIframe);
+	      setTimeout(function () {
+	        document.documentElement.removeChild(WVJBIframe);
+	      }, 0);
+	      return this;
+	    }
+	    //原始方案
+	    var me = this;
 	    if (window.WebViewJavascriptBridge) {
-	      return callback(WebViewJavascriptBridge);
+	      me.doAndInit(callback);
+	    } else {
+	      document.addEventListener('WebViewJavascriptBridgeReady', function () {
+	        me.doAndInit(callback);
+	      }, false);
 	    }
-	    if (window.WVJBCallbacks) {
-	      return window.WVJBCallbacks.push(callback);
-	    }
-	    window.WVJBCallbacks = [callback];
-	    var WVJBIframe = document.createElement('iframe');
-	    WVJBIframe.style.display = 'none';
-	    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
-	    document.documentElement.appendChild(WVJBIframe);
-	    setTimeout(function () {
-	      document.documentElement.removeChild(WVJBIframe);
-	    }, 0);
+	    return this;
 	  },
 	  //H5发送消息给原生
 	  limsCaller: function limsCaller(name, params, callback) {
@@ -4189,15 +4216,8 @@ webpackJsonp([2,4],{
 	    var me = this;
 	    try {
 	      me.connectWebViewJavascriptBridge(function (bridge) {
-	        //bridge.init(function(message, responseCallback) {
-	        //  console.log('JS got a message', message);
-	        //  var data = {
-	        //    'Javascript Responds': 'Wee!'
-	        //  };
-	        //  console.log('JS responding with', data);
-	        //  responseCallback(data);
-	        //});
 	        bridge.registerHandler(name, function (data, responseCallback) {
+	
 	          callback(data, responseCallback);
 	        });
 	      });
@@ -4557,11 +4577,10 @@ webpackJsonp([2,4],{
 /*!*********************************!*\
   !*** ./src/assets/js/config.js ***!
   \*********************************/
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 	
-	var limsRegister = __webpack_require__(/*! assets/common/limsapi */ 253).limsRegister();
 	;(function (win, config) {
 	  //var win = window,
 	  //	IBSS = win.IBSS;
@@ -4662,7 +4681,7 @@ webpackJsonp([2,4],{
   \*******************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	/**
 	 * Created by gaoxin on 2016/8/26.
@@ -4678,6 +4697,10 @@ webpackJsonp([2,4],{
 	    }
 	  },
 	  setUser: function setUser(data) {
+	
+	    if (typeof data == "string") {
+	      data = JSON.parse(data.toUpperCase());
+	    }
 	
 	    if (data) {
 	      LimsUser.IDENTITY = data.IDENTITY;
@@ -4704,11 +4727,11 @@ webpackJsonp([2,4],{
 	
 	    //如果存在search属性，则是传入link的query对象
 	    if (to && to.search) {
-	      return LimsConfig.host + 'todos.html#' + to.pathname + to.search;
+	      return LimsConfig.host + "todos.html#" + to.pathname + to.search;
 	    }
 	    //自己解析参数，拼成URL
 	    var _query = paramUrl(to.query);
-	    return LimsConfig.host + 'todos.html#' + to.pathname + '?' + _query;
+	    return LimsConfig.host + "todos.html#" + to.pathname + "?" + _query;
 	  },
 	
 	  setTitle: function setTitle(name) {
@@ -4721,7 +4744,16 @@ webpackJsonp([2,4],{
 	    if (LimsConfig.isApp) {
 	      limsCaller.popView(name);
 	    }
+	  },
+	
+	  pushView: function pushView(pushjson, callback) {
+	    limsCaller.pushView({
+	      url: pushjson['url'] && pushjson['url'] || '',
+	      "button": pushjson['button'] && pushjson['button'] || [],
+	      "params": pushjson['params'] && pushjson['params'] || {}
+	    }, callback);
 	  }
+	
 	};
 
 /***/ },

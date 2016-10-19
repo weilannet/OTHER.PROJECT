@@ -11,7 +11,7 @@ let ReactDOM = require('react-dom');
 import { Router, Route, Link,IndexRoute,hashHistory,browserHistory} from 'react-router'
 import iScroll from 'iscroll'
 
-let limsCaller = require('assets/common/limsapi').limsCaller();
+
 let limsRegister = require('assets/common/limsapi').limsRegister();
 
 require('assets/js/util');
@@ -32,8 +32,6 @@ import AnalysisApprove from './ref/AnalysisApprove';
 import CoaInfo from './ref/CoaInfo';
 import CoaApprove from './ref/CoaApprove';
 
-
-
 const iScrollOptions = {
   mouseWheel: true,
   scrollbars: true,
@@ -43,16 +41,15 @@ const iScrollOptions = {
 }
 
 //审核主页面
-const TodoApp = new React.createClass({
+const TodoApp = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
   onJsApi: function (to) {
-
     //H5页面按钮调用原生
     let _url = TodoHelp.getURL(to);
     console.log(_url);
-    limsCaller.pushView({url: _url}, function () {
+    TodoHelp.pushView({url: _url}, function () {
     });
   },
   render: function () {
@@ -96,7 +93,6 @@ const TodoTab = React.createClass({
       },
 
       tabClick: function (sign) {
-
         //sign为0是待办，1是已办
         let { type }=this.props.location.query;
         this.context.type = type;
@@ -142,7 +138,8 @@ const TodoList = React.createClass({
       todoType: 0,
       pageindex: this.defaults.pageindex,
       y: 0,
-      isScrolling: false
+      isScrolling: false,
+      loadtip:''
     };
   },
   contextTypes: {
@@ -197,8 +194,8 @@ const TodoList = React.createClass({
           util.hidLoading();
 
           params.type==1
-              ? that.setState({todoDone:params.isDone,data_analysis: (!that.init.refresh?data['data']['fields']:this.state.data_analysis.concat(data['data']['fields']))})
-              : that.setState({todoDone:params.isDone,data_coa: (!that.init.refresh?data['data']['fields']:this.state.data_coa.concat(data['data']['fields']))});
+              ? that.setState({loadtip:false,todoDone:params.isDone,data_analysis: (!that.init.refresh?data['data']['fields']:this.state.data_analysis.concat(data['data']['fields']))})
+              : that.setState({loadtip:false,todoDone:params.isDone,data_coa: (!that.init.refresh?data['data']['fields']:this.state.data_coa.concat(data['data']['fields']))});
         }
         that.init.refresh=false;
         that.init.downreload=false;
@@ -244,7 +241,7 @@ const TodoList = React.createClass({
     if (this.state.todoDone){
       _json['button'].length=0;
     }
-    limsCaller.pushView(_json, function (response) {
+    TodoHelp.pushView(_json, function (response) {
     });
 
   },
@@ -256,7 +253,6 @@ const TodoList = React.createClass({
     //this.setState({isScrolling: true})
     //console.log(`start:${iScrollInstance.y}`);
     var me= iScrollInstance;
-
     this.init.scrollStartPos=me.y;
 
   },
@@ -268,12 +264,16 @@ const TodoList = React.createClass({
       if (this.init.downreload){
         this.defaults.pageindex++;
         this.init.refresh = true;
+
       }
       if (this.init.upreload){
         this.defaults.pageindex=1;
         this.init.refresh = false;
+
       }
       this.queryList(this.defaults);
+      me.scroller.querySelector('.upreload').innerHTML= '上拉可加载更多数据'
+      me.scroller.querySelector('.downfresh').innerHTML= '下拉刷新'
     }
 
     //this.setState({isScrolling: false, y: iScrollInstance.y})
@@ -291,15 +291,16 @@ const TodoList = React.createClass({
     var me= iScrollInstance;
 
     if (me.y < me.maxScrollY-50){
-      //alert('刷');
       this.init.downreload=true;
+      me.scroller.querySelector('.upreload').innerHTML= '松手加载数据'
     }
     if (me.y > 50){
-      //alert('刷');
+      console.log('up');
       this.init.upreload=true;
+      me.scroller.querySelector('.downfresh').innerHTML= '松手刷新数据'
     }
 
-    console.log(`onScroll:${iScrollInstance.y}`);
+    //console.log(`onScroll:${iScrollInstance.y}`);
   },
   render: function () {
 
@@ -322,18 +323,22 @@ const TodoList = React.createClass({
     };
 
     return (
-        <div id="wrapper">
+        <div id="wrapper" >
+
           <ReactIScroll iScroll={iScroll}
                         options={iScrollOptions}
                         onScrollStart={this.onScrollStart}
                         onScrollEnd={this.onScrollEnd}
                         onRefresh={this.onScrollRefresh}
                         onScroll={this.onScroll}>
+
           <div id="scroller">
+            <div className="downfresh">下拉刷新</div>
             { (this.state.todoType==1||this.state.todoType==0) &&this.state.data_analysis && this.state.data_analysis.map(createItemAnaysis)}
             { (this.state.todoType==2||this.state.todoType==0) &&this.state.data_coa && this.state.data_coa.map(createItemCoa)}
-
+            <div className="upreload">上拉可加载更多数据</div>
           </div>
+
           </ReactIScroll>
 
         </div>
@@ -351,21 +356,24 @@ const TodoInfo = React.createClass({
     let _url = TodoHelp.getURL({pathname: '/todoapprove', query: query});
 
     console.log(_url);
-    limsCaller.pushView({url: _url}, function (response) {
+    TodoHelp.pushView({url: _url}, function (response) {
     });
 
   },
   componentWillMount: function () {
 
     //如果是app模式则注册JS桥
-    //alert(this.props.onJsApi);
     if (LimsConfig.isApp) {
       TodoHelp.setTitle('详细数据');
       //拿到LOCATION,调用JS桥推送location页面
       var _this = this;
       limsRegister.approveBridge(function (data, responseCallback) {
+        //responseCallback('6666');
         //推审核的页面
-
+        if (typeof data == "string") {
+          data = JSON.parse(data);
+          data['data'] = encodeURIComponent(JSON.stringify(data['data']));
+        }
         _this.onAppApi(data);
       });
     }
@@ -376,8 +384,8 @@ const TodoInfo = React.createClass({
     currentInfo: React.PropTypes.object
   },
   render: function () {
-
     let {data,type}=this.props.location.query;
+
     let result = JSON.parse(decodeURIComponent(data));
     switch (parseInt(type)) {
       case 1:
@@ -470,7 +478,6 @@ const TodoApprove = React.createClass({
             util.showTip('提交成功!1s后跳转');
             setTimeout(function () {
               TodoHelp.popView('message');
-              //alert(that.defaults.sign);
               //sign为0是待办，1是已办,此处判断进入消息管理
               //that.context.router.push(
               //    {
