@@ -390,11 +390,13 @@ webpackJsonp([2,4],{
 	var TodoInfo = React.createClass({
 	  displayName: 'TodoInfo',
 	
-	
+	  defaults: {
+	    recordkey: ''
+	  },
 	  onAppApi: function onAppApi(query) {
 	    //H5页面按钮调用原生
 	    var _url = TodoHelp.getURL({ pathname: '/todoapprove', query: query });
-	
+	    alert(query);
 	    console.log(_url);
 	    TodoHelp.pushView({ url: _url }, function (response) {});
 	  },
@@ -406,11 +408,13 @@ webpackJsonp([2,4],{
 	      //拿到LOCATION,调用JS桥推送location页面
 	      var _this = this;
 	      limsRegister.approveBridge(function (data, responseCallback) {
-	        alert(data);
+	        //responseCallback('6666');
 	        //推审核的页面
-	        //if (typeof data == "string") {
-	        //  data = JSON.parse(data);
-	        //}
+	        if (typeof data == "string") {
+	          data = JSON.parse(data);
+	          data['data'] = this.defaults.recordkey;
+	        }
+	        //alert(this.defaults.recordkey);
 	        _this.onAppApi(data);
 	      });
 	    }
@@ -424,15 +428,41 @@ webpackJsonp([2,4],{
 	    var data = _props$location$query.data;
 	    var type = _props$location$query.type;
 	
-	    debugger;
-	
 	    var result = JSON.parse(decodeURIComponent(data));
+	    var _iteratorNormalCompletion = true;
+	    var _didIteratorError = false;
+	    var _iteratorError = undefined;
+	
+	    try {
+	      for (var _iterator = result[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	        var item = _step.value;
+	
+	        if (item['id'] == 'IDENTITY' || item['id'] == 'ID') {
+	          this.defaults.recordkey = item['value'];
+	          break;
+	        }
+	      }
+	    } catch (err) {
+	      _didIteratorError = true;
+	      _iteratorError = err;
+	    } finally {
+	      try {
+	        if (!_iteratorNormalCompletion && _iterator.return) {
+	          _iterator.return();
+	        }
+	      } finally {
+	        if (_didIteratorError) {
+	          throw _iteratorError;
+	        }
+	      }
+	    }
+	
 	    switch (parseInt(type)) {
 	      case 1:
 	        return React.createElement(
 	          'div',
 	          null,
-	          React.createElement(_AnalysisInfo2.default, { data: result }),
+	          React.createElement(_AnalysisInfo2.default, { data: result, recordkey: this.defaults.recordkey }),
 	          !LimsConfig.isApp ? React.createElement(
 	            'div',
 	            { onClick: function onClick() {
@@ -446,7 +476,7 @@ webpackJsonp([2,4],{
 	        return React.createElement(
 	          'div',
 	          null,
-	          React.createElement(_CoaInfo2.default, { data: result }),
+	          React.createElement(_CoaInfo2.default, { data: result, recordkey: this.defaults.recordkey }),
 	          !LimsConfig.isApp ? React.createElement(
 	            'div',
 	            { onClick: function onClick() {
@@ -488,41 +518,21 @@ webpackJsonp([2,4],{
 	    router: React.PropTypes.object.isRequired
 	  },
 	  componentWillMount: function componentWillMount() {
+	    //data修改为ID，因为安卓传参不兼容 by xin.gao@2016.10.24
 	    var _props$location$query2 = this.props.location.query;
 	    var data = _props$location$query2.data;
 	    var type = _props$location$query2.type;
 	    var sign = _props$location$query2.sign;
+	    //var result = JSON.parse(decodeURIComponent(data));
+	    //
+	    //for (var item of result) {
+	    //  if (item['id']=='IDENTITY' || item['id']=='ID'){
+	    //    this.defaults.recordkey=item['value'];
+	    //    break;
+	    //  }
+	    //}
 	
-	    var result = JSON.parse(decodeURIComponent(data));
-	
-	    var _iteratorNormalCompletion = true;
-	    var _didIteratorError = false;
-	    var _iteratorError = undefined;
-	
-	    try {
-	      for (var _iterator = result[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	        var item = _step.value;
-	
-	        if (item['id'] == 'IDENTITY' || item['id'] == 'ID') {
-	          this.defaults.recordkey = item['value'];
-	          break;
-	        }
-	      }
-	    } catch (err) {
-	      _didIteratorError = true;
-	      _iteratorError = err;
-	    } finally {
-	      try {
-	        if (!_iteratorNormalCompletion && _iterator.return) {
-	          _iterator.return();
-	        }
-	      } finally {
-	        if (_didIteratorError) {
-	          throw _iteratorError;
-	        }
-	      }
-	    }
-	
+	    this.defaults.recordkey = data;
 	    this.defaults.type = type;
 	    this.defaults.sign = sign;
 	    TodoHelp.setTitle(type == 1 ? '委托单号' + this.defaults.recordkey : '样品编号' + this.defaults.recordkey);
@@ -3718,7 +3728,7 @@ webpackJsonp([2,4],{
 	        ),
 	        !LimsConfig.isApp ? _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: { pathname: '/todoapprove', query: { type: 1, data: JSON.stringify(this.props.data) } } },
+	          { to: { pathname: '/todoapprove', query: { type: 1, data: this.props.recordkey } } },
 	          '点我进入审核'
 	        ) : ''
 	      );
@@ -3910,7 +3920,7 @@ webpackJsonp([2,4],{
 	        ),
 	        !LimsConfig.isApp ? _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: { pathname: '/todoapprove', query: { type: 2, data: this.props.data } } },
+	          { to: { pathname: '/todoapprove', query: { type: 2, data: this.props.recordkey } } },
 	          '点我进入审核'
 	        ) : ''
 	      );

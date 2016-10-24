@@ -35,7 +35,7 @@ export default class CoaInfo extends Component {
           <ul>
             { this.props.data.map(createItem)}
           </ul>
-          { !LimsConfig.isApp?<Link to={{ pathname: '/todoapprove', query:{type:2,data:this.props.data}}}>点我进入审核</Link>:'' }
+          { !LimsConfig.isApp?<Link to={{ pathname: '/todoapprove', query:{type:2,data:this.props.recordkey}}}>点我进入审核</Link>:'' }
 
         </div>
 

@@ -306,6 +306,8 @@ const TodoList = React.createClass({
 
     //根据params.id不同，请求不同list
     let createItemAnaysis = (item, index) => {
+
+
       return (
           <LimsLink className="link-item" onJsApi={this.onJsApi}
                     to={{ pathname: '/todoinfo', query:{sign:this.state.todoType, type:1,data:encodeURIComponent(JSON.stringify(item&&item['fieldList']))}}}>
@@ -314,6 +316,8 @@ const TodoList = React.createClass({
       );
     };
     let createItemCoa = (item, index) => {
+
+
       return (
           <LimsLink className="link-item" onJsApi={this.onJsApi}
                     to={{ pathname: '/todoinfo', query:{sign:this.state.todoType, type:2,data:encodeURIComponent(JSON.stringify(item&&item['fieldList']))}}}>
@@ -350,12 +354,12 @@ const TodoList = React.createClass({
 
 //TabInfo
 const TodoInfo = React.createClass({
-
+  defaults : {
+    recordkey: ''
+  },
   onAppApi: function (query) {
     //H5页面按钮调用原生
     let _url = TodoHelp.getURL({pathname: '/todoapprove', query: query});
-
-    console.log(_url);
     TodoHelp.pushView({url: _url}, function (response) {
     });
 
@@ -372,8 +376,9 @@ const TodoInfo = React.createClass({
         //推审核的页面
         if (typeof data == "string") {
           data = JSON.parse(data);
-          data['data'] = encodeURIComponent(JSON.stringify(data['data']));
         }
+
+        data['data'] = _this.defaults.recordkey;
         _this.onAppApi(data);
       });
     }
@@ -384,14 +389,20 @@ const TodoInfo = React.createClass({
     currentInfo: React.PropTypes.object
   },
   render: function () {
-    let {data,type}=this.props.location.query;
-
+    let {data,type}= this.props.location.query;
     let result = JSON.parse(decodeURIComponent(data));
+    for (var item of result) {
+      if (item['id']=='IDENTITY' || item['id']=='ID'){
+        this.defaults.recordkey=item['value'];
+        break;
+      }
+    }
+
     switch (parseInt(type)) {
       case 1:
         return (
             <div>
-              <AnalysisInfo data={ result }></AnalysisInfo>
+              <AnalysisInfo data={ result } recordkey= { this.defaults.recordkey }></AnalysisInfo>
               {!LimsConfig.isApp? <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>:''}
 
             </div>
@@ -400,7 +411,7 @@ const TodoInfo = React.createClass({
       case 2:
         return (
             <div>
-              <CoaInfo data={ result }></CoaInfo>
+              <CoaInfo data={ result } recordkey= { this.defaults.recordkey }></CoaInfo>
               {!LimsConfig.isApp? <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>:''}
             </div>
         );
@@ -436,16 +447,9 @@ const TodoApprove = React.createClass({
     router: React.PropTypes.object.isRequired
   },
   componentWillMount: function () {
-
+    //data修改为ID，因为安卓传参不兼容 by xin.gao@2016.10.24
     let {data,type,sign}=this.props.location.query;
-    var result = JSON.parse(decodeURIComponent(data));
-
-    for (var item of result) {
-      if (item['id']=='IDENTITY' || item['id']=='ID'){
-        this.defaults.recordkey=item['value'];
-        break;
-      }
-    }
+    this.defaults.recordkey = data;
     this.defaults.type= type;
     this.defaults.sign= sign;
     TodoHelp.setTitle(type==1?`委托单号${this.defaults.recordkey}`:`样品编号${this.defaults.recordkey}`);
@@ -460,7 +464,6 @@ const TodoApprove = React.createClass({
     let posturl=this.defaults.type==1?'CheckAnalysis':'CheckCoa';
     let postData = {action, text, recordkey, uname , uid};
 
-    var that= this;
     TodoHelp.getUser(function(data){
       TodoHelp.setUser(data);
 
@@ -496,13 +499,6 @@ const TodoApprove = React.createClass({
         }
       }, false);
     });
-
-
-
-
-
-
-
   },
   render(){
     let {type}=this.props.location.query;

@@ -5,52 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16f4a28d-5f17-4ee4-9052-6c971829a841" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dev/bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/common.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/message/message.252b801a.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/message/message.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/result/result.5c4078d7.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/result/result.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.062d4ae0.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.1ec7675b.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.889d949b.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.c78aed7c.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/assets/images/icon_analysis.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/assets/images/icon_coa.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/assets/images/icon_right.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/result/result.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/todos/ref/AnalysisCheck.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/todos/ref/AnalysisCheck.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/todos/ref/AnalysisCheck.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/todos/ref/AnalysisInfo.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/todos/ref/AnalysisInfo.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/todos/ref/LimsTab.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/todos/ref/LimsTab.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/todos/ref/TodoMenu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/todos/ref/TodoMenu.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/todos/ref/ViewAnalysis.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/todos/ref/ViewAnalysis.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/todos/ref/ViewCoa.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/todos/ref/todohelp.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/todos/todos.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tsconfig.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.07e817cb.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.0b5c9a5e.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.17eaaca3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.257fa091.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.2915653d.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.3bbb4f64.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.53aaba09.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.59fa5789.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.5c59c3ef.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.6846128c.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.71cba2d1.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.787a3180.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.931c4f28.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.a0137d2e.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.a4a73fe9.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.a9a05a4b.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.b765705b.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.bcbea849.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.d6cef17d.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/1.0/resources/todos/todos.css" afterPath="$PROJECT_DIR$/dev/1.0/resources/todos/todos.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/1.0/resources/todos/todos.js" afterPath="$PROJECT_DIR$/dev/1.0/resources/todos/todos.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/1.0/resources/todos/todos.js.map" afterPath="$PROJECT_DIR$/dev/1.0/resources/todos/todos.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/1.0/resources/vendor.js.map" afterPath="$PROJECT_DIR$/dev/1.0/resources/vendor.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.css" afterPath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/publish/1.0/resources/vendor.js" afterPath="$PROJECT_DIR$/publish/1.0/resources/vendor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/publish/1.0/todos.html" afterPath="$PROJECT_DIR$/publish/1.0/todos.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/common/apifactory.js" afterPath="$PROJECT_DIR$/src/assets/common/apifactory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/js/config.js" afterPath="$PROJECT_DIR$/src/assets/js/config.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/todos/ref/AnalysisInfo.js" afterPath="$PROJECT_DIR$/src/todos/ref/AnalysisInfo.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/todos/ref/CoaInfo.js" afterPath="$PROJECT_DIR$/src/todos/ref/CoaInfo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/todos/ref/TodoMenu.js" afterPath="$PROJECT_DIR$/src/todos/ref/TodoMenu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/todos/todohelp.js" afterPath="$PROJECT_DIR$/src/todos/todohelp.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/todos/todos.js" afterPath="$PROJECT_DIR$/src/todos/todos.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/todos/todos.less" afterPath="$PROJECT_DIR$/src/todos/todos.less" />
     </list>
     <ignored path="webpack.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,72 +56,32 @@
       <file leaf-file-name="todos.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/todos/todos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35355648">
-              <caret line="354" column="16" selection-start-line="354" selection-start-column="16" selection-end-line="354" selection-end-column="16" />
+            <state vertical-scroll-proportion="-0.96039605">
+              <caret line="324" column="17" selection-start-line="324" selection-start-column="17" selection-end-line="324" selection-end-column="17" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
-                <marker date="1476786288198" expanded="true" signature="13306:13501" placeholder="..." />
-                <marker date="1476786288198" expanded="true" signature="13576:13761" placeholder="..." />
-                <marker date="1476786288198" expanded="true" signature="14164:14907" placeholder="..." />
-                <marker date="1476786288198" expanded="true" signature="14230:14887" placeholder="..." />
-                <marker date="1476786288198" expanded="true" signature="14277:14297" placeholder="..." />
-                <marker date="1476786288198" expanded="true" signature="14363:14665" placeholder="..." />
-                <marker date="1476786288198" expanded="true" signature="14508:14657" placeholder="..." />
-                <marker date="1476786288198" expanded="true" signature="14574:14645" placeholder="..." />
-                <marker date="1476786288198" expanded="true" signature="14624:14637" placeholder="..." />
-                <marker date="1476786288198" expanded="true" signature="14720:14740" placeholder="..." />
-                <marker date="1476786288198" expanded="true" signature="14801:14821" placeholder="..." />
-                <marker date="1476786288198" expanded="true" signature="14869:14878" placeholder="..." />
+                <marker date="1477293359046" expanded="true" signature="13377:13572" placeholder="..." />
+                <marker date="1477293359046" expanded="true" signature="13647:13832" placeholder="..." />
+                <marker date="1477293359046" expanded="true" signature="14235:14978" placeholder="..." />
+                <marker date="1477293359046" expanded="true" signature="14301:14958" placeholder="..." />
+                <marker date="1477293359046" expanded="true" signature="14348:14368" placeholder="..." />
+                <marker date="1477293359046" expanded="true" signature="14434:14736" placeholder="..." />
+                <marker date="1477293359046" expanded="true" signature="14579:14728" placeholder="..." />
+                <marker date="1477293359046" expanded="true" signature="14645:14716" placeholder="..." />
+                <marker date="1477293359046" expanded="true" signature="14695:14708" placeholder="..." />
+                <marker date="1477293359046" expanded="true" signature="14791:14811" placeholder="..." />
+                <marker date="1477293359046" expanded="true" signature="14872:14892" placeholder="..." />
+                <marker date="1477293359046" expanded="true" signature="14940:14949" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/assets/js/config.js">
+      <file leaf-file-name="CoaApprove.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/todos/ref/CoaApprove.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoaInfo.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/todos/ref/CoaInfo.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="102" selection-start-line="37" selection-start-column="102" selection-end-line="37" selection-end-column="102" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TodoMenu.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/todos/ref/TodoMenu.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnalysisInfo.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/todos/ref/AnalysisInfo.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="119" selection-start-line="34" selection-start-column="88" selection-end-line="34" selection-end-column="119" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="webpack.develop.config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webpack.develop.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="55" selection-start-line="59" selection-start-column="55" selection-end-line="59" selection-end-column="55" />
+              <caret line="46" column="66" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -155,21 +97,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="todohelp.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/todos/todohelp.js">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="34" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="34" />
+              <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="todos.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/todos/todos.less">
+      <file leaf-file-name="CoaInfo.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/todos/ref/CoaInfo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.7586207">
-              <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="37" column="107" selection-start-line="37" selection-start-column="107" selection-end-line="37" selection-end-column="107" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="zepto.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/assets/js/libs/zepto.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="883" column="0" selection-start-line="883" selection-start-column="0" selection-end-line="884" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/assets/js/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="webpack.develop.config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webpack.develop.config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="59" column="55" selection-start-line="59" selection-start-column="55" selection-end-line="59" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnalysisInfo.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/todos/ref/AnalysisInfo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="34" column="108" selection-start-line="34" selection-start-column="108" selection-end-line="34" selection-end-column="108" />
               <folding />
             </state>
           </provider>
@@ -271,7 +253,7 @@
     </gulpfiles>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
+    <option name="x" value="-6" />
     <option name="width" value="1612" />
     <option name="height" value="867" />
   </component>
@@ -306,6 +288,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -563,7 +546,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -689,27 +671,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1612" height="867" extended-state="0" />
-    <editor active="false" />
+    <frame x="-6" y="0" width="1612" height="867" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16709022" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16836086" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32744566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32841823" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32744566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3092643" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13839892" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14209116" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3256445" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14209116" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -730,6 +712,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/amazeui-react/lib/Badge.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -842,13 +832,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/js/react-iscroll.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webpack.publish.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -916,7 +899,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="92" selection-start-line="48" selection-start-column="92" selection-end-line="48" selection-end-column="92" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -924,7 +906,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -932,7 +913,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="24" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -940,7 +920,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -948,7 +927,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="52" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -956,23 +934,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="292" column="13" selection-start-line="292" selection-start-column="13" selection-end-line="292" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/js/libs/zepto.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="883" column="0" selection-start-line="883" selection-start-column="0" selection-end-line="884" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/todos/ref/CoaApprove.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="66" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -980,7 +941,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -988,7 +948,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -996,24 +955,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4108" column="47" selection-start-line="4108" selection-start-column="47" selection-end-line="4108" selection-end-column="47" />
-          <folding>
-            <marker date="1476784051116" expanded="true" signature="22:27" placeholder="/*...*/" />
-            <marker date="1476784051116" expanded="true" signature="31:131" placeholder="/*...*/" />
-            <marker date="1476784051116" expanded="true" signature="132:137" placeholder="/*...*/" />
-            <marker date="1476784051116" expanded="true" signature="185:1994" placeholder="{...}" />
-            <marker date="1476784051116" expanded="true" signature="245:264" placeholder="/*...*/" />
-            <marker date="1476784051116" expanded="true" signature="309:323" placeholder="/*...*/" />
-            <marker date="1476784051116" expanded="true" signature="426:457" placeholder="/*...*/" />
-            <marker date="1476784051116" expanded="true" signature="565:585" placeholder="/*...*/" />
-            <marker date="1476784051116" expanded="true" signature="684:705" placeholder="/*...*/" />
-            <marker date="1476784051116" expanded="true" signature="810:835" placeholder="/*...*/" />
-            <marker date="1476784051116" expanded="true" signature="1066:1091" placeholder="/*...*/" />
-            <marker date="1476784051116" expanded="true" signature="1207:1235" placeholder="/*...*/" />
-            <marker date="1476784051116" expanded="true" signature="1470:1493" placeholder="/*...*/" />
-            <marker date="1476784051116" expanded="true" signature="1729:1758" placeholder="/*...*/" />
-            <marker date="1476784051116" expanded="true" signature="1786:1817" placeholder="/*...*/" />
-            <marker date="1476784051116" expanded="true" signature="1959:1975" placeholder="/*...*/" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1021,7 +962,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="112" column="41" selection-start-line="112" selection-start-column="25" selection-end-line="112" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1029,39 +969,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="44" column="43" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.827586">
-          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="51" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/todos/todos.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7586207">
-          <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.develop.config.js">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="55" selection-start-line="59" selection-start-column="55" selection-end-line="59" selection-end-column="55" />
-          <folding />
+          <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1069,6 +983,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/todos/todohelp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="34" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/js/react-iscroll.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="45" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/js/libs/zepto.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="883" column="0" selection-start-line="883" selection-start-column="0" selection-end-line="884" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -1081,10 +1017,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.develop.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="55" selection-start-line="59" selection-start-column="55" selection-end-line="59" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="51" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/todos/ref/CoaApprove.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="66" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/todos/ref/CoaInfo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="102" selection-start-line="37" selection-start-column="102" selection-end-line="37" selection-end-column="102" />
+          <caret line="37" column="107" selection-start-line="37" selection-start-column="107" selection-end-line="37" selection-end-column="107" />
           <folding />
         </state>
       </provider>
@@ -1092,7 +1060,7 @@
     <entry file="file://$PROJECT_DIR$/src/todos/ref/AnalysisInfo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="119" selection-start-line="34" selection-start-column="88" selection-end-line="34" selection-end-column="119" />
+          <caret line="34" column="108" selection-start-line="34" selection-start-column="108" selection-end-line="34" selection-end-column="108" />
           <folding />
         </state>
       </provider>
@@ -1100,37 +1068,29 @@
     <entry file="file://$PROJECT_DIR$/src/assets/js/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/todos/todohelp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="34" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="34" />
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/todos/todos.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35355648">
-          <caret line="354" column="16" selection-start-line="354" selection-start-column="16" selection-end-line="354" selection-end-column="16" />
+        <state vertical-scroll-proportion="-0.96039605">
+          <caret line="324" column="17" selection-start-line="324" selection-start-column="17" selection-end-line="324" selection-end-column="17" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
-            <marker date="1476786288198" expanded="true" signature="13306:13501" placeholder="..." />
-            <marker date="1476786288198" expanded="true" signature="13576:13761" placeholder="..." />
-            <marker date="1476786288198" expanded="true" signature="14164:14907" placeholder="..." />
-            <marker date="1476786288198" expanded="true" signature="14230:14887" placeholder="..." />
-            <marker date="1476786288198" expanded="true" signature="14277:14297" placeholder="..." />
-            <marker date="1476786288198" expanded="true" signature="14363:14665" placeholder="..." />
-            <marker date="1476786288198" expanded="true" signature="14508:14657" placeholder="..." />
-            <marker date="1476786288198" expanded="true" signature="14574:14645" placeholder="..." />
-            <marker date="1476786288198" expanded="true" signature="14624:14637" placeholder="..." />
-            <marker date="1476786288198" expanded="true" signature="14720:14740" placeholder="..." />
-            <marker date="1476786288198" expanded="true" signature="14801:14821" placeholder="..." />
-            <marker date="1476786288198" expanded="true" signature="14869:14878" placeholder="..." />
+            <marker date="1477293359046" expanded="true" signature="13377:13572" placeholder="..." />
+            <marker date="1477293359046" expanded="true" signature="13647:13832" placeholder="..." />
+            <marker date="1477293359046" expanded="true" signature="14235:14978" placeholder="..." />
+            <marker date="1477293359046" expanded="true" signature="14301:14958" placeholder="..." />
+            <marker date="1477293359046" expanded="true" signature="14348:14368" placeholder="..." />
+            <marker date="1477293359046" expanded="true" signature="14434:14736" placeholder="..." />
+            <marker date="1477293359046" expanded="true" signature="14579:14728" placeholder="..." />
+            <marker date="1477293359046" expanded="true" signature="14645:14716" placeholder="..." />
+            <marker date="1477293359046" expanded="true" signature="14695:14708" placeholder="..." />
+            <marker date="1477293359046" expanded="true" signature="14791:14811" placeholder="..." />
+            <marker date="1477293359046" expanded="true" signature="14872:14892" placeholder="..." />
+            <marker date="1477293359046" expanded="true" signature="14940:14949" placeholder="..." />
           </folding>
         </state>
       </provider>
