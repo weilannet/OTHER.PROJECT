@@ -439,13 +439,19 @@ const TodoApprove = React.createClass({
 
     let {data,type,sign}=this.props.location.query;
     var result = JSON.parse(decodeURIComponent(data));
-
-    for (var item of result) {
+    var _this = this;
+    result.forEach(function(item) {
       if (item['id']=='IDENTITY' || item['id']=='ID'){
-        this.defaults.recordkey=item['value'];
-        break;
+        _this.defaults.recordkey=item['value'];
       }
-    }
+    });
+    // andriod bug
+    //for (var item of result) {
+    //  if (item['id']=='IDENTITY' || item['id']=='ID'){
+    //    this.defaults.recordkey=item['value'];
+    //    break;
+    //  }
+    //}
     this.defaults.type= type;
     this.defaults.sign= sign;
     TodoHelp.setTitle(type==1?`委托单号${this.defaults.recordkey}`:`样品编号${this.defaults.recordkey}`);
