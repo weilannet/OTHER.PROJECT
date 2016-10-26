@@ -44,7 +44,11 @@ module.exports = {
        approveBridge:function(callback){
           jsAPI.limsregister("approveBridge",callback);
          return this;
-       }
+       },
+       todoInfoBridge:function(callback){
+        jsAPI.limsregister("todoInfoBridge",callback);
+        return this;
+      }
 
     }
   }

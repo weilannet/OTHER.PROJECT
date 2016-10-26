@@ -260,8 +260,8 @@ webpackJsonp([2,4],{
 	    }
 	  },
 	  onJsApi: function onJsApi(to) {
-	    var _url = TodoHelp.getURL(to);
-	    console.log(_url);
+	    var pathObject = { pathname: to.pathname };
+	    var _url = TodoHelp.getURL(pathObject);
 	
 	    var _json = {
 	      url: _url,
@@ -277,10 +277,6 @@ webpackJsonp([2,4],{
 	      _json['button'].length = 0;
 	    }
 	    TodoHelp.pushView(_json, function (response) {});
-	  },
-	  backFunction: function backFunction() {
-	    //browserHistory.goBack();
-	    this.context.router.replace('/');
 	  },
 	  onScrollStart: function onScrollStart(iScrollInstance) {
 	    //this.setState({isScrolling: true})
@@ -393,11 +389,16 @@ webpackJsonp([2,4],{
 	  defaults: {
 	    recordkey: ''
 	  },
+	  getInitialState: function getInitialState() {
+	    return {
+	      type: 0,
+	      result: null
+	    };
+	  },
+	
 	  onAppApi: function onAppApi(query) {
 	    //H5页面按钮调用原生
 	    var _url = TodoHelp.getURL({ pathname: '/todoapprove', query: query });
-	    alert(query);
-	    console.log(_url);
 	    TodoHelp.pushView({ url: _url }, function (response) {});
 	  },
 	  componentWillMount: function componentWillMount() {
@@ -408,14 +409,26 @@ webpackJsonp([2,4],{
 	      //拿到LOCATION,调用JS桥推送location页面
 	      var _this = this;
 	      limsRegister.approveBridge(function (data, responseCallback) {
-	        //responseCallback('6666');
+	
 	        //推审核的页面
 	        if (typeof data == "string") {
 	          data = JSON.parse(data);
-	          data['data'] = this.defaults.recordkey;
 	        }
-	        //alert(this.defaults.recordkey);
+	        data['data'] = _this.defaults.recordkey;
 	        _this.onAppApi(data);
+	      });
+	
+	      limsRegister.todoInfoBridge(function (data, responseCallback) {
+	        responseCallback(data);
+	        //推审核的页面
+	
+	        if (typeof data == "string") {
+	          data = JSON.parse(data);
+	        }
+	        //_this.defaults.result = data['data'];
+	        //alert( _this.defaults.result);
+	        //_this.defaults.type = data['type'];
+	        this.setState({ result: data['data'], type: data['type'] });
 	      });
 	    }
 	  },
@@ -424,11 +437,21 @@ webpackJsonp([2,4],{
 	    currentInfo: React.PropTypes.object
 	  },
 	  render: function render() {
+	    alert(this.state.type);
 	    var _props$location$query = this.props.location.query;
 	    var data = _props$location$query.data;
 	    var type = _props$location$query.type;
+	    //为安卓机做兼容，如果为null，则走特殊的JS桥
+	    //debugger
 	
-	    var result = JSON.parse(decodeURIComponent(data));
+	    if (this.state.result) {
+	      data = this.state.result;
+	      type = this.state.type;
+	    }
+	
+	    //var data = '%5B%7B%22id%22%3A%22IDENTITY%22%2C%22text%22%3A%22%E5%A7%94%E6%89%98%E5%8D%95%E5%8F%B7%22%2C%22value%22%3A%2239784%22%2C%22is_main%22%3A1%2C%22is_show%22%3A1%7D%2C%7B%22id%22%3A%22DELEGATOR_DATE%22%2C%22text%22%3A%22%E5%A7%94%E6%89%98%E6%97%B6%E9%97%B4%22%2C%22value%22%3A%222015%2F12%2F4%2017%3A36%3A20%22%2C%22is_main%22%3A1%2C%22is_show%22%3A1%7D%2C%7B%22id%22%3A%22DELEGATOR_NAME%22%2C%22text%22%3A%22%E5%A7%94%E6%89%98%E4%BA%BA%22%2C%22value%22%3A%22SYSTEM%22%2C%22is_main%22%3A1%2C%22is_show%22%3A1%7D%2C%7B%22id%22%3A%22ORDER_NUM%22%2C%22text%22%3A%22ORDER_NUM%22%2C%22value%22%3A%22%20%20%20%20%20%20%20%20%202%22%2C%22is_main%22%3A0%2C%22is_show%22%3A0%7D%2C%7B%22id%22%3A%22LO_NAME%22%2C%22text%22%3A%22%E8%A3%85%E7%BD%AE%22%2C%22value%22%3A%2222%E7%BD%90%E5%8C%BA%22%2C%22is_main%22%3A1%2C%22is_show%22%3A1%7D%2C%7B%22id%22%3A%22SP_NAME%22%2C%22text%22%3A%22%E9%87%87%E6%A0%B7%E7%82%B9%22%2C%22value%22%3A%222201%E7%BD%90%22%2C%22is_main%22%3A1%2C%22is_show%22%3A1%7D%2C%7B%22id%22%3A%22SAMPLE_NAME%22%2C%22text%22%3A%22%E6%A0%B7%E5%93%81%E5%90%8D%E7%A7%B0%22%2C%22value%22%3A%22%22%2C%22is_main%22%3A0%2C%22is_show%22%3A1%7D%2C%7B%22id%22%3A%22ANALYSIS_TYPE%22%2C%22text%22%3A%22%E5%88%86%E6%9E%90%E7%B1%BB%E5%9E%8B%22%2C%22value%22%3A%22%E6%AF%94%E5%AF%B9%E6%A0%B7%E5%93%81%22%2C%22is_main%22%3A0%2C%22is_show%22%3A1%7D%2C%7B%22id%22%3A%22ANALYSIS_ITEM%22%2C%22text%22%3A%22%E5%88%86%E6%9E%90%E9%A1%B9%E7%9B%AE%22%2C%22value%22%3A%22%22%2C%22is_main%22%3A0%2C%22is_show%22%3A1%7D%5D'
+	    //var type=1;
+	    var result = data && JSON.parse(decodeURIComponent(data)) || [];
 	    var _iteratorNormalCompletion = true;
 	    var _didIteratorError = false;
 	    var _iteratorError = undefined;
@@ -487,6 +510,11 @@ webpackJsonp([2,4],{
 	        );
 	        break;
 	      default:
+	        return React.createElement(
+	          'div',
+	          null,
+	          '暂无数据'
+	        );
 	        break;
 	
 	    }
@@ -523,14 +551,6 @@ webpackJsonp([2,4],{
 	    var data = _props$location$query2.data;
 	    var type = _props$location$query2.type;
 	    var sign = _props$location$query2.sign;
-	    //var result = JSON.parse(decodeURIComponent(data));
-	    //
-	    //for (var item of result) {
-	    //  if (item['id']=='IDENTITY' || item['id']=='ID'){
-	    //    this.defaults.recordkey=item['value'];
-	    //    break;
-	    //  }
-	    //}
 	
 	    this.defaults.recordkey = data;
 	    this.defaults.type = type;
@@ -546,7 +566,6 @@ webpackJsonp([2,4],{
 	    var posturl = this.defaults.type == 1 ? 'CheckAnalysis' : 'CheckCoa';
 	    var postData = { action: action, text: text, recordkey: recordkey, uname: uname, uid: uid };
 	
-	    var that = this;
 	    TodoHelp.getUser(function (data) {
 	      TodoHelp.setUser(data);
 	
@@ -4102,6 +4121,10 @@ webpackJsonp([2,4],{
 	    return {
 	      approveBridge: function approveBridge(callback) {
 	        jsAPI.limsregister("approveBridge", callback);
+	        return this;
+	      },
+	      todoInfoBridge: function todoInfoBridge(callback) {
+	        jsAPI.limsregister("todoInfoBridge", callback);
 	        return this;
 	      }
 	

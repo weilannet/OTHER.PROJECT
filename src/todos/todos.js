@@ -223,8 +223,12 @@ const TodoList = React.createClass({
 
   },
   onJsApi: function (to) {
+    //此处为安卓兼容
     let _url = TodoHelp.getURL(to);
-    console.log(_url);
+    if (window.__browser.versions.android) {
+      var _newpath = { pathname:to.pathname };
+      _url = TodoHelp.getURL(_newpath);
+    }
 
     let _json = {
       url: _url,
@@ -244,10 +248,6 @@ const TodoList = React.createClass({
     TodoHelp.pushView(_json, function (response) {
     });
 
-  },
-  backFunction: function () {
-    //browserHistory.goBack();
-    this.context.router.replace('/');
   },
   onScrollStart:function(iScrollInstance){
     //this.setState({isScrolling: true})
@@ -306,8 +306,6 @@ const TodoList = React.createClass({
 
     //根据params.id不同，请求不同list
     let createItemAnaysis = (item, index) => {
-
-
       return (
           <LimsLink className="link-item" onJsApi={this.onJsApi}
                     to={{ pathname: '/todoinfo', query:{sign:this.state.todoType, type:1,data:encodeURIComponent(JSON.stringify(item&&item['fieldList']))}}}>
@@ -316,8 +314,6 @@ const TodoList = React.createClass({
       );
     };
     let createItemCoa = (item, index) => {
-
-
       return (
           <LimsLink className="link-item" onJsApi={this.onJsApi}
                     to={{ pathname: '/todoinfo', query:{sign:this.state.todoType, type:2,data:encodeURIComponent(JSON.stringify(item&&item['fieldList']))}}}>
@@ -328,7 +324,6 @@ const TodoList = React.createClass({
 
     return (
         <div id="wrapper" >
-
           <ReactIScroll iScroll={iScroll}
                         options={iScrollOptions}
                         onScrollStart={this.onScrollStart}
@@ -357,6 +352,12 @@ const TodoInfo = React.createClass({
   defaults : {
     recordkey: ''
   },
+  getInitialState(){
+    return {
+      type: 0,
+      result: null
+    };
+  },
   onAppApi: function (query) {
     //H5页面按钮调用原生
     let _url = TodoHelp.getURL({pathname: '/todoapprove', query: query});
@@ -372,14 +373,20 @@ const TodoInfo = React.createClass({
       //拿到LOCATION,调用JS桥推送location页面
       var _this = this;
       limsRegister.approveBridge(function (data, responseCallback) {
-        //responseCallback('6666');
         //推审核的页面
         if (typeof data == "string") {
           data = JSON.parse(data);
         }
-
         data['data'] = _this.defaults.recordkey;
         _this.onAppApi(data);
+      });
+
+      limsRegister.todoInfoBridge(function (data, responseCallback) {
+        //responseCallback(data['data']);
+        if (typeof data == "string") {
+          data = JSON.parse(data);
+        }
+        _this.setState({result: data['data'], type: data['type']});
       });
     }
   },
@@ -389,34 +396,44 @@ const TodoInfo = React.createClass({
     currentInfo: React.PropTypes.object
   },
   render: function () {
+
     let {data,type}= this.props.location.query;
-    let result = JSON.parse(decodeURIComponent(data));
-    for (var item of result) {
+    //为安卓机做兼容，如果为null，则走特殊的JS桥
+    data = data && JSON.parse(decodeURIComponent(data)) || [];
+    if (this.state.result) {
+      data = this.state.result;
+      type = this.state.type;
+    }
+    //var data = '%5B%7B%22id%22%3A%22IDENTITY%22%2C%22text%22%3A%22%E5%A7%94%E6%89%98%E5%8D%95%E5%8F%B7%22%2C%22value%22%3A%2239784%22%2C%22is_main%22%3A1%2C%22is_show%22%3A1%7D%2C%7B%22id%22%3A%22DELEGATOR_DATE%22%2C%22text%22%3A%22%E5%A7%94%E6%89%98%E6%97%B6%E9%97%B4%22%2C%22value%22%3A%222015%2F12%2F4%2017%3A36%3A20%22%2C%22is_main%22%3A1%2C%22is_show%22%3A1%7D%2C%7B%22id%22%3A%22DELEGATOR_NAME%22%2C%22text%22%3A%22%E5%A7%94%E6%89%98%E4%BA%BA%22%2C%22value%22%3A%22SYSTEM%22%2C%22is_main%22%3A1%2C%22is_show%22%3A1%7D%2C%7B%22id%22%3A%22ORDER_NUM%22%2C%22text%22%3A%22ORDER_NUM%22%2C%22value%22%3A%22%20%20%20%20%20%20%20%20%202%22%2C%22is_main%22%3A0%2C%22is_show%22%3A0%7D%2C%7B%22id%22%3A%22LO_NAME%22%2C%22text%22%3A%22%E8%A3%85%E7%BD%AE%22%2C%22value%22%3A%2222%E7%BD%90%E5%8C%BA%22%2C%22is_main%22%3A1%2C%22is_show%22%3A1%7D%2C%7B%22id%22%3A%22SP_NAME%22%2C%22text%22%3A%22%E9%87%87%E6%A0%B7%E7%82%B9%22%2C%22value%22%3A%222201%E7%BD%90%22%2C%22is_main%22%3A1%2C%22is_show%22%3A1%7D%2C%7B%22id%22%3A%22SAMPLE_NAME%22%2C%22text%22%3A%22%E6%A0%B7%E5%93%81%E5%90%8D%E7%A7%B0%22%2C%22value%22%3A%22%22%2C%22is_main%22%3A0%2C%22is_show%22%3A1%7D%2C%7B%22id%22%3A%22ANALYSIS_TYPE%22%2C%22text%22%3A%22%E5%88%86%E6%9E%90%E7%B1%BB%E5%9E%8B%22%2C%22value%22%3A%22%E6%AF%94%E5%AF%B9%E6%A0%B7%E5%93%81%22%2C%22is_main%22%3A0%2C%22is_show%22%3A1%7D%2C%7B%22id%22%3A%22ANALYSIS_ITEM%22%2C%22text%22%3A%22%E5%88%86%E6%9E%90%E9%A1%B9%E7%9B%AE%22%2C%22value%22%3A%22%22%2C%22is_main%22%3A0%2C%22is_show%22%3A1%7D%5D'
+    //var type=1;
+    for (var item of data) {
       if (item['id']=='IDENTITY' || item['id']=='ID'){
         this.defaults.recordkey=item['value'];
         break;
       }
     }
-
     switch (parseInt(type)) {
       case 1:
         return (
             <div>
-              <AnalysisInfo data={ result } recordkey= { this.defaults.recordkey }></AnalysisInfo>
+              <AnalysisInfo data={ data } recordkey= { this.defaults.recordkey }></AnalysisInfo>
               {!LimsConfig.isApp? <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>:''}
-
             </div>
         );
         break;
       case 2:
         return (
             <div>
-              <CoaInfo data={ result } recordkey= { this.defaults.recordkey }></CoaInfo>
+              <CoaInfo data={ data } recordkey= { this.defaults.recordkey }></CoaInfo>
               {!LimsConfig.isApp? <div onClick={()=>{ browserHistory.goBack() }}>点我返回</div>:''}
             </div>
         );
         break;
       default:
+        return (
+            <div>暂无数据
+            </div>
+        );
         break;
 
     }

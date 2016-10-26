@@ -5,33 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16f4a28d-5f17-4ee4-9052-6c971829a841" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.07e817cb.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.0b5c9a5e.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.17eaaca3.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.257fa091.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.2915653d.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.3bbb4f64.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.53aaba09.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.59fa5789.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.5c59c3ef.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.6846128c.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.71cba2d1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.787a3180.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.931c4f28.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.a0137d2e.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.a4a73fe9.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.a9a05a4b.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.b765705b.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.bcbea849.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.d6cef17d.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.0638c434.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.11f994bb.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.4250778c.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.6c928a0f.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.89af162a.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/publish/1.0/resources/todos/todos.9ca9b1b7.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/1.0/resources/common.js" afterPath="$PROJECT_DIR$/dev/1.0/resources/common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/1.0/resources/message/message.css" afterPath="$PROJECT_DIR$/dev/1.0/resources/message/message.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/1.0/resources/message/message.js" afterPath="$PROJECT_DIR$/dev/1.0/resources/message/message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/1.0/resources/result/result.css" afterPath="$PROJECT_DIR$/dev/1.0/resources/result/result.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/1.0/resources/result/result.js" afterPath="$PROJECT_DIR$/dev/1.0/resources/result/result.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/1.0/resources/todos/todos.css" afterPath="$PROJECT_DIR$/dev/1.0/resources/todos/todos.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/1.0/resources/todos/todos.js" afterPath="$PROJECT_DIR$/dev/1.0/resources/todos/todos.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/1.0/resources/todos/todos.js.map" afterPath="$PROJECT_DIR$/dev/1.0/resources/todos/todos.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/1.0/resources/vendor.js" afterPath="$PROJECT_DIR$/dev/1.0/resources/vendor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/1.0/resources/vendor.js.map" afterPath="$PROJECT_DIR$/dev/1.0/resources/vendor.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/publish/1.0/resources/vendor.js" afterPath="$PROJECT_DIR$/publish/1.0/resources/vendor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/publish/1.0/todos.html" afterPath="$PROJECT_DIR$/publish/1.0/todos.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/todos/ref/AnalysisInfo.js" afterPath="$PROJECT_DIR$/src/todos/ref/AnalysisInfo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/todos/ref/CoaInfo.js" afterPath="$PROJECT_DIR$/src/todos/ref/CoaInfo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/common/apifactory.js" afterPath="$PROJECT_DIR$/src/assets/common/apifactory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/common/limsapi.js" afterPath="$PROJECT_DIR$/src/assets/common/limsapi.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets/js/config.js" afterPath="$PROJECT_DIR$/src/assets/js/config.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/todos/todos.js" afterPath="$PROJECT_DIR$/src/todos/todos.js" />
     </list>
     <ignored path="webpack.iws" />
@@ -56,23 +51,339 @@
       <file leaf-file-name="todos.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/todos/todos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.96039605">
-              <caret line="324" column="17" selection-start-line="324" selection-start-column="17" selection-end-line="324" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.5311871">
+              <caret line="231" column="0" selection-start-line="231" selection-start-column="0" selection-end-line="231" selection-end-column="0" />
               <folding>
                 <element signature="e#0#42#0" expanded="false" />
-                <marker date="1477293359046" expanded="true" signature="13377:13572" placeholder="..." />
-                <marker date="1477293359046" expanded="true" signature="13647:13832" placeholder="..." />
-                <marker date="1477293359046" expanded="true" signature="14235:14978" placeholder="..." />
-                <marker date="1477293359046" expanded="true" signature="14301:14958" placeholder="..." />
-                <marker date="1477293359046" expanded="true" signature="14348:14368" placeholder="..." />
-                <marker date="1477293359046" expanded="true" signature="14434:14736" placeholder="..." />
-                <marker date="1477293359046" expanded="true" signature="14579:14728" placeholder="..." />
-                <marker date="1477293359046" expanded="true" signature="14645:14716" placeholder="..." />
-                <marker date="1477293359046" expanded="true" signature="14695:14708" placeholder="..." />
-                <marker date="1477293359046" expanded="true" signature="14791:14811" placeholder="..." />
-                <marker date="1477293359046" expanded="true" signature="14872:14892" placeholder="..." />
-                <marker date="1477293359046" expanded="true" signature="14940:14949" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="limsapi.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/assets/common/limsapi.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jsapiactions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/assets/common/jsapiactions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="32" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="apifactory.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/assets/common/apifactory.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.1538463">
+              <caret line="40" column="25" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="todos.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dev/1.0/resources/todos/todos.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4125" column="10" selection-start-line="4125" selection-start-column="10" selection-end-line="4125" selection-end-column="10" />
+              <folding>
+                <marker date="1477445847197" expanded="true" signature="19:179500" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="22:27" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="31:131" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="132:137" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="185:11904" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="245:264" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="309:323" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="426:457" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="565:585" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="684:705" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="810:835" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="943:963" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="1066:1091" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="1207:1235" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="1349:1369" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="1470:1493" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="1661:1705" placeholder="/** Created by gaoxin on 2016/6/15. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="1729:1758" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="1786:1817" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="1845:1864" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="1906:1918" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="1959:1975" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="2025:2053" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="2098:2119" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="2147:2170" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="2215:2241" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="2286:2303" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="2349:2365" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="2396:2557" placeholder="{&quot;mouseWheel&quot;: true...}" />
+                <marker date="1477445847197" expanded="true" signature="2603:3101" placeholder="{&quot;displayName&quot;: 'TodoApp'...}" />
+                <marker date="1477445847197" expanded="true" signature="2651:2704" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="2739:2879" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="2910:3037" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="3148:4230" placeholder="{&quot;displayName&quot;: 'TodoTab'...}" />
+                <marker date="1477445847197" expanded="true" signature="3224:3281" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="3238:3275" placeholder="{&quot;tabStatus&quot;: 'active'...}" />
+                <marker date="1477445847197" expanded="true" signature="3302:3355" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="3412:3712" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="3495:3707" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="3753:4004" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="3888:3997" placeholder="{&quot;action&quot;: &quot;REPLACE&quot;...}" />
+                <marker date="1477445847197" expanded="true" signature="4035:4227" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="4280:11789" placeholder="{&quot;displayName&quot;: 'TodoList'...}" />
+                <marker date="1477445847197" expanded="true" signature="4321:4436" placeholder="{&quot;scrollStartPos&quot;: 0...}" />
+                <marker date="1477445847197" expanded="true" signature="4451:4507" placeholder="{&quot;pageindex&quot;: 1...}" />
+                <marker date="1477445847197" expanded="true" signature="4556:4773" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="4570:4767" placeholder="{&quot;todoDone&quot;: 0...}" />
+                <marker date="1477445847197" expanded="true" signature="4794:4847" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="4902:5133" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="5186:5419" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="5248:5412" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="5497:5811" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="5568:5591" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="5816:6102" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="6150:6194" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="6237:7069" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="6301:7055" placeholder="{&quot;url&quot;: '/AppService.svc/GetTodosData'...}" />
+                <marker date="1477445847197" expanded="true" signature="6427:7007" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="6461:6886" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="7112:7533" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="7238:7341" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="7427:7528" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="7568:8002" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="7683:7844" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="7720:7810" placeholder="[...]" />
+                <marker date="1477445847197" expanded="true" signature="7721:7809" placeholder="{&quot;text&quot;: &quot;审核&quot;...}" />
+                <marker date="1477445847197" expanded="true" signature="7899:7942" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="8062:8229" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="8069:8155" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="8285:8910" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="8373:8790" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="8410:8491" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="8523:8607" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="8798:8905" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="8974:9186" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="9107:9181" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="9236:9637" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="9307:9419" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="9440:9577" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="9668:11784" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="9795:10246" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="9860:10071" placeholder="{&quot;className&quot;: 'link-item'...}" />
+                <marker date="1477445847197" expanded="true" signature="10309:10755" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="10374:10585" placeholder="{&quot;className&quot;: 'link-item'...}" />
+                <marker date="1477445847197" expanded="true" signature="10902:11136" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="11839:11904" placeholder="{&quot;displayName&quot;: 'TodoInfo'...}" />
+                <marker date="1477445847197" expanded="true" signature="11884:11904" placeholder="{&quot;recordkey&quot;: ''...}" />
+                <marker date="1477445847197" expanded="true" signature="148325:150252" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="148325:150318" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="148408:148452" placeholder="/** @type {Object} ...*/" />
+                <marker date="1477445847197" expanded="true" signature="148671:148756" placeholder="{&quot;latitude&quot;: ''...}" />
+                <marker date="1477445847197" expanded="true" signature="148788:148848" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="148854:150249" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="150311:150316" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="150321:150326" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="150332:150441" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="150442:150447" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="150495:152343" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="150516:150560" placeholder="/** Created by gaoxin on 2016/8/26. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="150599:150627" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="150667:152333" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="150708:150828" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="150737:150782" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="150788:150823" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="150865:151226" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="150903:150957" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="150975:151221" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="151259:151807" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="151307:151523" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="151383:151484" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="151421:151475" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="151589:151670" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="151848:151924" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="151877:151919" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="151963:152038" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="151992:152033" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="152093:152328" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="152120:152311" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="152336:152341" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="152346:152351" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="152357:152487" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="152488:152493" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="152541:179497" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="152593:179483" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="152615:152858" placeholder="/** @preserve FastClick: polyfill to remove click delays on browsers with touch UIs. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="152863:152897" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="152900:152930" placeholder="/*...*/" />
+                <marker date="1477445847197" expanded="true" signature="152937:153156" placeholder="/** Instantiate fast-clicking listeners on the specified layer. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="153194:157167" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="153250:153336" placeholder="/** Whether a click is currently being tracked. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="153375:153459" placeholder="/** Timestamp for when click tracking started. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="153499:153584" placeholder="/** The element being tracked for a click. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="153622:153698" placeholder="/** X-coordinate of touch start event. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="153731:153807" placeholder="/** Y-coordinate of touch start event. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="153840:153936" placeholder="/** ID of the last touch, retrieved from Touch.identifier. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="153977:154078" placeholder="/** Touchmove boundary, beyond which a click will be cancelled. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="154139:154202" placeholder="/** The FastClick layer. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="154231:154333" placeholder="/** The minimum time between tap(touchstart and touchend) events ...*/" />
+                <marker date="1477445847197" expanded="true" signature="154383:154451" placeholder="/** The maximum time for a tap ...*/" />
+                <marker date="1477445847197" expanded="true" signature="154537:154555" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="154662:154736" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="154918:154986" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="155053:155240" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="155568:155811" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="155862:156563" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="155930:156155" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="156010:156087" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="156093:156149" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="156222:156557" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="156299:156489" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="156387:156470" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="156427:156462" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="156495:156551" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="156569:156790" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="156835:157163" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="156843:157007" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="157092:157123" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="157172:157281" placeholder="/** Windows Phone 8.1 fakes user agent string to look like Android and iPhone. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="157366:157433" placeholder="/** Android requires exceptions. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="157533:157596" placeholder="/** iOS requires exceptions. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="157692:157779" placeholder="/** iOS 4 requires an exception for select elements. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="157867:157968" placeholder="/** iOS 6.0-7. requires the target element to be manually derived ...*/" />
+                <marker date="1477445847197" expanded="true" signature="158064:158134" placeholder="/** BlackBerry requires exceptions. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="158209:158420" placeholder="/** Determine whether a given element requires a native click. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="158473:159107" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="158517:159048" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="158668:158693" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="158872:158897" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="159115:159388" placeholder="/** Determine whether a given element requires a call to focus to simulate click into element. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="159441:159932" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="159485:159928" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="159613:159751" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="159940:160078" placeholder="/** Send a click event to the specified element. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="160144:160860" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="160369:160410" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="160931:161152" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="161097:161127" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="161160:161217" placeholder="/** @param {EventTarget|Element} targetElement ...*/" />
+                <marker date="1477445847197" expanded="true" signature="161272:161984" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="161841:161941" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="161947:161980" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="161992:162160" placeholder="/** Check whether the given target element is a child of a scrollable layer and if so, set a flag on it. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="162228:163017" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="162328:162483" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="162547:162861" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="162591:162833" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="162659:162775" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="163025:163110" placeholder="/** @param {EventTarget} targetElement ...*/" />
+                <marker date="1477445847197" expanded="true" signature="163189:163421" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="163351:163392" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="163429:163553" placeholder="/** On touch start, record the position and scroll offset. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="163607:166256" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="163817:163840" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="163971:165885" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="164135:164160" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="164186:165880" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="164195:165071" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="165148:165206" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="165266:165829" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="166200:166234" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="166264:166436" placeholder="/** Based on a touchmove event object, check whether the touch has moved past a boundary since it started. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="166491:166727" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="166681:166704" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="166735:166830" placeholder="/** Update the last position. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="166883:167197" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="166913:166936" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="167106:167175" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="167205:167375" placeholder="/** Attempt to find the labelled control for the given label element. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="167435:168107" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="167556:167595" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="167724:167788" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="168115:168247" placeholder="/** On touch end, determine whether to send a click event at once. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="168299:171936" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="168442:168465" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="168591:168647" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="168720:168743" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="169006:169331" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="169365:169738" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="169831:170037" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="169903:170032" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="169963:169991" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="170079:171157" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="170087:170547" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="170673:170731" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="170813:171011" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="171064:171132" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="171197:171592" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="171205:171417" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="171562:171587" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="171598:171796" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="171837:171913" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="171944:172026" placeholder="/** On touch cancel, stop tracking the click. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="172076:172142" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="172150:172269" placeholder="/** Determine mouse events which should be permitted. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="172318:173511" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="172446:172469" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="172506:172529" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="172647:172670" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="172676:172894" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="172964:173408" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="173096:173142" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="173148:173300" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="173519:173828" placeholder="/** On actual clicks, determine whether this is a touch-generated click, a click action occurring ...*/" />
+                <marker date="1477445847197" expanded="true" signature="173877:175018" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="174188:174274" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="174624:174647" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="174881:174918" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="175026:175106" placeholder="/** Remove all FastClick's event listeners. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="175150:175742" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="175205:175401" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="175750:175855" placeholder="/** Check whether FastClick is needed. ...*/" />
+                <marker date="1477445847197" expanded="true" signature="175896:178707" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="176103:176126" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="176279:176897" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="176308:176861" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="176402:176796" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="176557:176586" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="176760:176789" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="176867:176892" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="176929:177633" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="177019:177128" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="177194:177628" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="177288:177622" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="177407:177436" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="177586:177615" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="177829:177852" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="178015:178387" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="178357:178382" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="178393:178571" placeholder="//..." />
+                <marker date="1477445847197" expanded="true" signature="178661:178684" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="178715:178903" placeholder="/** Factory method for creating a FastClick object ...*/" />
+                <marker date="1477445847197" expanded="true" signature="178950:178996" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="179014:179293" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="179110:179138" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="179352:179436" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="179442:179480" placeholder="{...}" />
+                <marker date="1477445847197" expanded="true" signature="179490:179495" placeholder="/*...*/" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="todohelp.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/todos/todohelp.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="49" column="34" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -82,26 +393,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="46" column="66" selection-start-line="46" selection-start-column="61" selection-end-line="46" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webpack.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="54" column="51" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -117,31 +408,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="zepto.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/assets/js/libs/zepto.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="883" column="0" selection-start-line="883" selection-start-column="0" selection-end-line="884" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assets/js/config.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="webpack.develop.config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webpack.develop.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="55" selection-start-line="59" selection-start-column="55" selection-end-line="59" selection-end-column="55" />
+              <caret line="57" column="15" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -151,17 +422,7 @@
         <entry file="file://$PROJECT_DIR$/src/todos/ref/AnalysisInfo.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="108" selection-start-line="34" selection-start-column="108" selection-end-line="34" selection-end-column="108" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+              <caret line="34" column="50" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -186,7 +447,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/publish/1.0/result.html" />
         <option value="$PROJECT_DIR$/publish/1.0/message.html" />
         <option value="$PROJECT_DIR$/src/assets/common/jsapiactions.js" />
         <option value="$PROJECT_DIR$/src/components/WC.js" />
@@ -221,7 +481,6 @@
         <option value="$PROJECT_DIR$/src/todos/ref/todohelp.js" />
         <option value="$PROJECT_DIR$/src/todos/ref/AnalysisApprove.js" />
         <option value="$PROJECT_DIR$/src/todos/ref/CoaApprove.js" />
-        <option value="$PROJECT_DIR$/src/assets/common/limsapi.js" />
         <option value="$PROJECT_DIR$/src/assets/style/reset.css" />
         <option value="$PROJECT_DIR$/src/todos/ref/ViewAnalysis.js" />
         <option value="$PROJECT_DIR$/node_modules/iscroll/package.json" />
@@ -231,11 +490,13 @@
         <option value="$PROJECT_DIR$/webpack.publish.config.js" />
         <option value="$PROJECT_DIR$/src/todos/todos.less" />
         <option value="$PROJECT_DIR$/src/todos/todohelp.js" />
-        <option value="$PROJECT_DIR$/src/assets/common/apifactory.js" />
         <option value="$PROJECT_DIR$/src/todos/ref/TodoMenu.js" />
         <option value="$PROJECT_DIR$/src/todos/ref/CoaInfo.js" />
         <option value="$PROJECT_DIR$/src/todos/ref/AnalysisInfo.js" />
+        <option value="$PROJECT_DIR$/dev/1.0/resources/todos/todos.js" />
+        <option value="$PROJECT_DIR$/src/assets/common/limsapi.js" />
         <option value="$PROJECT_DIR$/src/assets/js/config.js" />
+        <option value="$PROJECT_DIR$/src/assets/common/apifactory.js" />
         <option value="$PROJECT_DIR$/src/todos/todos.js" />
       </list>
     </option>
@@ -672,26 +933,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="0" width="1612" height="867" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16836086" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1931385" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32744566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32744566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13839892" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14209116" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3256445" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14209116" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -716,7 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -888,13 +1148,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/common/jsapiactions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="32" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/todos/ref/AnalysisApprove.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -951,27 +1204,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dev/1.0/resources/todos/todos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4108" column="47" selection-start-line="4108" selection-start-column="47" selection-end-line="4108" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/common/apifactory.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="112" column="41" selection-start-line="112" selection-start-column="25" selection-end-line="112" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/common/limsapi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="43" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/todos/todos.less">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -986,14 +1218,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/todos/todohelp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="34" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/js/react-iscroll.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1005,7 +1229,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="883" column="0" selection-start-line="883" selection-start-column="0" selection-end-line="884" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1013,7 +1236,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1021,7 +1243,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="59" column="55" selection-start-line="59" selection-start-column="55" selection-end-line="59" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1057,10 +1278,320 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dev/1.0/resources/todos/todos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4125" column="10" selection-start-line="4125" selection-start-column="10" selection-end-line="4125" selection-end-column="10" />
+          <folding>
+            <marker date="1477445847197" expanded="true" signature="19:179500" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="22:27" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="31:131" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="132:137" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="185:11904" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="245:264" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="309:323" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="426:457" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="565:585" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="684:705" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="810:835" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="943:963" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="1066:1091" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="1207:1235" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="1349:1369" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="1470:1493" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="1661:1705" placeholder="/** Created by gaoxin on 2016/6/15. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="1729:1758" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="1786:1817" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="1845:1864" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="1906:1918" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="1959:1975" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="2025:2053" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="2098:2119" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="2147:2170" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="2215:2241" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="2286:2303" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="2349:2365" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="2396:2557" placeholder="{&quot;mouseWheel&quot;: true...}" />
+            <marker date="1477445847197" expanded="true" signature="2603:3101" placeholder="{&quot;displayName&quot;: 'TodoApp'...}" />
+            <marker date="1477445847197" expanded="true" signature="2651:2704" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="2739:2879" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="2910:3037" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="3148:4230" placeholder="{&quot;displayName&quot;: 'TodoTab'...}" />
+            <marker date="1477445847197" expanded="true" signature="3224:3281" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="3238:3275" placeholder="{&quot;tabStatus&quot;: 'active'...}" />
+            <marker date="1477445847197" expanded="true" signature="3302:3355" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="3412:3712" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="3495:3707" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="3753:4004" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="3888:3997" placeholder="{&quot;action&quot;: &quot;REPLACE&quot;...}" />
+            <marker date="1477445847197" expanded="true" signature="4035:4227" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="4280:11789" placeholder="{&quot;displayName&quot;: 'TodoList'...}" />
+            <marker date="1477445847197" expanded="true" signature="4321:4436" placeholder="{&quot;scrollStartPos&quot;: 0...}" />
+            <marker date="1477445847197" expanded="true" signature="4451:4507" placeholder="{&quot;pageindex&quot;: 1...}" />
+            <marker date="1477445847197" expanded="true" signature="4556:4773" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="4570:4767" placeholder="{&quot;todoDone&quot;: 0...}" />
+            <marker date="1477445847197" expanded="true" signature="4794:4847" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="4902:5133" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="5186:5419" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="5248:5412" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="5497:5811" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="5568:5591" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="5816:6102" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="6150:6194" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="6237:7069" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="6301:7055" placeholder="{&quot;url&quot;: '/AppService.svc/GetTodosData'...}" />
+            <marker date="1477445847197" expanded="true" signature="6427:7007" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="6461:6886" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="7112:7533" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="7238:7341" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="7427:7528" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="7568:8002" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="7683:7844" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="7720:7810" placeholder="[...]" />
+            <marker date="1477445847197" expanded="true" signature="7721:7809" placeholder="{&quot;text&quot;: &quot;审核&quot;...}" />
+            <marker date="1477445847197" expanded="true" signature="7899:7942" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="8062:8229" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="8069:8155" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="8285:8910" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="8373:8790" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="8410:8491" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="8523:8607" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="8798:8905" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="8974:9186" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="9107:9181" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="9236:9637" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="9307:9419" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="9440:9577" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="9668:11784" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="9795:10246" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="9860:10071" placeholder="{&quot;className&quot;: 'link-item'...}" />
+            <marker date="1477445847197" expanded="true" signature="10309:10755" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="10374:10585" placeholder="{&quot;className&quot;: 'link-item'...}" />
+            <marker date="1477445847197" expanded="true" signature="10902:11136" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="11839:11904" placeholder="{&quot;displayName&quot;: 'TodoInfo'...}" />
+            <marker date="1477445847197" expanded="true" signature="11884:11904" placeholder="{&quot;recordkey&quot;: ''...}" />
+            <marker date="1477445847197" expanded="true" signature="148325:150252" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="148325:150318" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="148408:148452" placeholder="/** @type {Object} ...*/" />
+            <marker date="1477445847197" expanded="true" signature="148671:148756" placeholder="{&quot;latitude&quot;: ''...}" />
+            <marker date="1477445847197" expanded="true" signature="148788:148848" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="148854:150249" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="150311:150316" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="150321:150326" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="150332:150441" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="150442:150447" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="150495:152343" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="150516:150560" placeholder="/** Created by gaoxin on 2016/8/26. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="150599:150627" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="150667:152333" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="150708:150828" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="150737:150782" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="150788:150823" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="150865:151226" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="150903:150957" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="150975:151221" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="151259:151807" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="151307:151523" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="151383:151484" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="151421:151475" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="151589:151670" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="151848:151924" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="151877:151919" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="151963:152038" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="151992:152033" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="152093:152328" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="152120:152311" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="152336:152341" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="152346:152351" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="152357:152487" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="152488:152493" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="152541:179497" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="152593:179483" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="152615:152858" placeholder="/** @preserve FastClick: polyfill to remove click delays on browsers with touch UIs. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="152863:152897" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="152900:152930" placeholder="/*...*/" />
+            <marker date="1477445847197" expanded="true" signature="152937:153156" placeholder="/** Instantiate fast-clicking listeners on the specified layer. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="153194:157167" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="153250:153336" placeholder="/** Whether a click is currently being tracked. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="153375:153459" placeholder="/** Timestamp for when click tracking started. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="153499:153584" placeholder="/** The element being tracked for a click. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="153622:153698" placeholder="/** X-coordinate of touch start event. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="153731:153807" placeholder="/** Y-coordinate of touch start event. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="153840:153936" placeholder="/** ID of the last touch, retrieved from Touch.identifier. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="153977:154078" placeholder="/** Touchmove boundary, beyond which a click will be cancelled. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="154139:154202" placeholder="/** The FastClick layer. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="154231:154333" placeholder="/** The minimum time between tap(touchstart and touchend) events ...*/" />
+            <marker date="1477445847197" expanded="true" signature="154383:154451" placeholder="/** The maximum time for a tap ...*/" />
+            <marker date="1477445847197" expanded="true" signature="154537:154555" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="154662:154736" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="154918:154986" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="155053:155240" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="155568:155811" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="155862:156563" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="155930:156155" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="156010:156087" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="156093:156149" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="156222:156557" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="156299:156489" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="156387:156470" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="156427:156462" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="156495:156551" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="156569:156790" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="156835:157163" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="156843:157007" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="157092:157123" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="157172:157281" placeholder="/** Windows Phone 8.1 fakes user agent string to look like Android and iPhone. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="157366:157433" placeholder="/** Android requires exceptions. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="157533:157596" placeholder="/** iOS requires exceptions. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="157692:157779" placeholder="/** iOS 4 requires an exception for select elements. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="157867:157968" placeholder="/** iOS 6.0-7. requires the target element to be manually derived ...*/" />
+            <marker date="1477445847197" expanded="true" signature="158064:158134" placeholder="/** BlackBerry requires exceptions. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="158209:158420" placeholder="/** Determine whether a given element requires a native click. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="158473:159107" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="158517:159048" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="158668:158693" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="158872:158897" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="159115:159388" placeholder="/** Determine whether a given element requires a call to focus to simulate click into element. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="159441:159932" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="159485:159928" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="159613:159751" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="159940:160078" placeholder="/** Send a click event to the specified element. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="160144:160860" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="160369:160410" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="160931:161152" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="161097:161127" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="161160:161217" placeholder="/** @param {EventTarget|Element} targetElement ...*/" />
+            <marker date="1477445847197" expanded="true" signature="161272:161984" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="161841:161941" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="161947:161980" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="161992:162160" placeholder="/** Check whether the given target element is a child of a scrollable layer and if so, set a flag on it. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="162228:163017" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="162328:162483" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="162547:162861" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="162591:162833" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="162659:162775" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="163025:163110" placeholder="/** @param {EventTarget} targetElement ...*/" />
+            <marker date="1477445847197" expanded="true" signature="163189:163421" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="163351:163392" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="163429:163553" placeholder="/** On touch start, record the position and scroll offset. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="163607:166256" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="163817:163840" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="163971:165885" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="164135:164160" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="164186:165880" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="164195:165071" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="165148:165206" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="165266:165829" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="166200:166234" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="166264:166436" placeholder="/** Based on a touchmove event object, check whether the touch has moved past a boundary since it started. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="166491:166727" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="166681:166704" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="166735:166830" placeholder="/** Update the last position. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="166883:167197" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="166913:166936" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="167106:167175" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="167205:167375" placeholder="/** Attempt to find the labelled control for the given label element. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="167435:168107" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="167556:167595" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="167724:167788" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="168115:168247" placeholder="/** On touch end, determine whether to send a click event at once. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="168299:171936" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="168442:168465" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="168591:168647" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="168720:168743" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="169006:169331" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="169365:169738" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="169831:170037" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="169903:170032" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="169963:169991" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="170079:171157" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="170087:170547" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="170673:170731" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="170813:171011" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="171064:171132" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="171197:171592" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="171205:171417" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="171562:171587" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="171598:171796" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="171837:171913" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="171944:172026" placeholder="/** On touch cancel, stop tracking the click. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="172076:172142" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="172150:172269" placeholder="/** Determine mouse events which should be permitted. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="172318:173511" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="172446:172469" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="172506:172529" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="172647:172670" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="172676:172894" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="172964:173408" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="173096:173142" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="173148:173300" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="173519:173828" placeholder="/** On actual clicks, determine whether this is a touch-generated click, a click action occurring ...*/" />
+            <marker date="1477445847197" expanded="true" signature="173877:175018" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="174188:174274" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="174624:174647" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="174881:174918" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="175026:175106" placeholder="/** Remove all FastClick's event listeners. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="175150:175742" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="175205:175401" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="175750:175855" placeholder="/** Check whether FastClick is needed. ...*/" />
+            <marker date="1477445847197" expanded="true" signature="175896:178707" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="176103:176126" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="176279:176897" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="176308:176861" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="176402:176796" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="176557:176586" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="176760:176789" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="176867:176892" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="176929:177633" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="177019:177128" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="177194:177628" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="177288:177622" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="177407:177436" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="177586:177615" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="177829:177852" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="178015:178387" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="178357:178382" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="178393:178571" placeholder="//..." />
+            <marker date="1477445847197" expanded="true" signature="178661:178684" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="178715:178903" placeholder="/** Factory method for creating a FastClick object ...*/" />
+            <marker date="1477445847197" expanded="true" signature="178950:178996" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="179014:179293" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="179110:179138" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="179352:179436" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="179442:179480" placeholder="{...}" />
+            <marker date="1477445847197" expanded="true" signature="179490:179495" placeholder="/*...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/todos/todohelp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="34" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/todos/ref/AnalysisInfo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="108" selection-start-line="34" selection-start-column="108" selection-end-line="34" selection-end-column="108" />
+          <caret line="34" column="50" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/common/jsapiactions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="32" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/common/limsapi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -1068,29 +1599,25 @@
     <entry file="file://$PROJECT_DIR$/src/assets/js/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <caret line="57" column="15" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/common/apifactory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.1538463">
+          <caret line="40" column="25" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/todos/todos.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.96039605">
-          <caret line="324" column="17" selection-start-line="324" selection-start-column="17" selection-end-line="324" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.5311871">
+          <caret line="231" column="0" selection-start-line="231" selection-start-column="0" selection-end-line="231" selection-end-column="0" />
           <folding>
             <element signature="e#0#42#0" expanded="false" />
-            <marker date="1477293359046" expanded="true" signature="13377:13572" placeholder="..." />
-            <marker date="1477293359046" expanded="true" signature="13647:13832" placeholder="..." />
-            <marker date="1477293359046" expanded="true" signature="14235:14978" placeholder="..." />
-            <marker date="1477293359046" expanded="true" signature="14301:14958" placeholder="..." />
-            <marker date="1477293359046" expanded="true" signature="14348:14368" placeholder="..." />
-            <marker date="1477293359046" expanded="true" signature="14434:14736" placeholder="..." />
-            <marker date="1477293359046" expanded="true" signature="14579:14728" placeholder="..." />
-            <marker date="1477293359046" expanded="true" signature="14645:14716" placeholder="..." />
-            <marker date="1477293359046" expanded="true" signature="14695:14708" placeholder="..." />
-            <marker date="1477293359046" expanded="true" signature="14791:14811" placeholder="..." />
-            <marker date="1477293359046" expanded="true" signature="14872:14892" placeholder="..." />
-            <marker date="1477293359046" expanded="true" signature="14940:14949" placeholder="..." />
           </folding>
         </state>
       </provider>
