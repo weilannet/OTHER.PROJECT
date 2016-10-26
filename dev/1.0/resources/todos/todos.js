@@ -337,6 +337,7 @@ webpackJsonp([2,4],{
 	
 	    //根据params.id不同，请求不同list
 	    var createItemAnaysis = function createItemAnaysis(item, index) {
+	
 	      return React.createElement(
 	        LimsLink,
 	        { className: 'link-item', onJsApi: _this3.onJsApi,
@@ -345,6 +346,7 @@ webpackJsonp([2,4],{
 	      );
 	    };
 	    var createItemCoa = function createItemCoa(item, index) {
+	
 	      return React.createElement(
 	        LimsLink,
 	        { className: 'link-item', onJsApi: _this3.onJsApi,
@@ -396,8 +398,6 @@ webpackJsonp([2,4],{
 	  onAppApi: function onAppApi(query) {
 	    //H5页面按钮调用原生
 	    var _url = TodoHelp.getURL({ pathname: '/todoapprove', query: query });
-	    alert(query);
-	    console.log(_url);
 	    TodoHelp.pushView({ url: _url }, function (response) {});
 	  },
 	  componentWillMount: function componentWillMount() {
@@ -412,9 +412,9 @@ webpackJsonp([2,4],{
 	        //推审核的页面
 	        if (typeof data == "string") {
 	          data = JSON.parse(data);
-	          data['data'] = this.defaults.recordkey;
 	        }
-	        //alert(this.defaults.recordkey);
+	
+	        data['data'] = _this.defaults.recordkey;
 	        _this.onAppApi(data);
 	      });
 	    }
@@ -429,34 +429,19 @@ webpackJsonp([2,4],{
 	    var type = _props$location$query.type;
 	
 	    var result = JSON.parse(decodeURIComponent(data));
-	    var _iteratorNormalCompletion = true;
-	    var _didIteratorError = false;
-	    var _iteratorError = undefined;
-	
-	    try {
-	      for (var _iterator = result[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	        var item = _step.value;
-	
-	        if (item['id'] == 'IDENTITY' || item['id'] == 'ID') {
-	          this.defaults.recordkey = item['value'];
-	          break;
-	        }
+	    var _this = this;
+	    result.forEach(function (item) {
+	      if (item['id'] == 'IDENTITY' || item['id'] == 'ID') {
+	        _this.defaults.recordkey = item['value'];
 	      }
-	    } catch (err) {
-	      _didIteratorError = true;
-	      _iteratorError = err;
-	    } finally {
-	      try {
-	        if (!_iteratorNormalCompletion && _iterator.return) {
-	          _iterator.return();
-	        }
-	      } finally {
-	        if (_didIteratorError) {
-	          throw _iteratorError;
-	        }
-	      }
-	    }
-	
+	    });
+	    //for (var item of result) {
+	    //  if (item['id']=='IDENTITY' || item['id']=='ID'){
+	    //    this.defaults.recordkey=item['value'];
+	    //    break;
+	    //  }
+	    //}
+	    //alert(this.defaults.recordkey);
 	    switch (parseInt(type)) {
 	      case 1:
 	        return React.createElement(
@@ -523,14 +508,6 @@ webpackJsonp([2,4],{
 	    var data = _props$location$query2.data;
 	    var type = _props$location$query2.type;
 	    var sign = _props$location$query2.sign;
-	    //var result = JSON.parse(decodeURIComponent(data));
-	    //
-	    //for (var item of result) {
-	    //  if (item['id']=='IDENTITY' || item['id']=='ID'){
-	    //    this.defaults.recordkey=item['value'];
-	    //    break;
-	    //  }
-	    //}
 	
 	    this.defaults.recordkey = data;
 	    this.defaults.type = type;
@@ -546,7 +523,6 @@ webpackJsonp([2,4],{
 	    var posturl = this.defaults.type == 1 ? 'CheckAnalysis' : 'CheckCoa';
 	    var postData = { action: action, text: text, recordkey: recordkey, uname: uname, uid: uid };
 	
-	    var that = this;
 	    TodoHelp.getUser(function (data) {
 	      TodoHelp.setUser(data);
 	

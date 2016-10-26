@@ -391,13 +391,19 @@ const TodoInfo = React.createClass({
   render: function () {
     let {data,type}= this.props.location.query;
     let result = JSON.parse(decodeURIComponent(data));
-    for (var item of result) {
+    var _this = this;
+    result.forEach(function(item) {
       if (item['id']=='IDENTITY' || item['id']=='ID'){
-        this.defaults.recordkey=item['value'];
-        break;
+        _this.defaults.recordkey=item['value'];
       }
-    }
-
+    });
+    //for (var item of result) {
+    //  if (item['id']=='IDENTITY' || item['id']=='ID'){
+    //    this.defaults.recordkey=item['value'];
+    //    break;
+    //  }
+    //}
+    //alert(this.defaults.recordkey);
     switch (parseInt(type)) {
       case 1:
         return (
