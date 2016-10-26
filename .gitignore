@@ -9,3 +9,6 @@ npm-debug.log*
 publish
 ./publish
 publish/
+dev
+./dev
+dev/
